@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="kr"
+      layout:decorate="~{layout/layout_basic}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>탑티어커피 홈페이지에 오신 것을 환영합니다.</title>
+        <link rel="stylesheet" th:href="@{/css/main.css}">
+        <link rel="stylesheet" th:href="@{/css/jquery.bxslider.css}">
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div>
+                <section class="mainVisual">
+                    <div id="MainVisual">
+                        <div class="visual" id="Visual_0">
+                            <div class="inner">
+                                <div class="copy">
+                                    <p class="subCopy">한 번 경험하면 절대 바꿀 수 없습니다!</p>
+                                    <p class="mainCopy">Toptier Coffee</p>
+                                    <a href="/introduce/introduceBrand.do" class="greenBox">탑티어 브랜드</a>
+                                </div>
+                            </div>
+                            <div class="bg">
+                                <video id="MainVideo_0" playsinline muted class="pc">
+                                    <source src="/images/main/main1.mp4" type="video/mp4" />
+                                </video>
+                                <video id="MainVideo_0_m" playsinline muted class="mobile">
+                                    <source src="/images/main/rec_main1.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <div class="visual" id="Visual_1">
+                            <div class="inner">
+                                <div class="copy">
+                                    <p class="subCopy">엄선한 우유에 <img src="/images/common/SVG/img_quot_l.svg" alt="'" />숙성의 힘<img src="/images/common/SVG/img_quot_r.svg" alt="'" />을 더해 <br class="mobile">진하고 고소한 라떼</p>
+                                    <p class="mainCopy">Toptier Coffee <br>with rich aged milk</p>
+                                    <a href="/menu/signature.do"  class="greenBox">탑티어 시그니처</a>
+                                </div>
+                            </div>
+                            <div class="bg">
+                                <video id="MainVideo_1" playsinline muted class="pc">
+                                    <source src="/images/main/main2-2.mp4" type="video/mp4" />
+                                </video>
+                                <video id="MainVideo_1_m" playsinline muted class="mobile">
+                                    <source src="/images/main/rec_main2-1.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <div class="visual" id="Visual_2">
+                            <div class="inner">
+                                <div class="copy">
+                                    <p class="subCopy">누구나? NO! <br>탑티어커피를 알아 본 당신에게만 YES!</p>
+                                    <p class="mainCopy">You are the Toptier partner</p>
+                                    <a href="/cunsult/cunsult.do" class="greenBox">탑티어 파트너</a>
+                                </div>
+                            </div>
+                            <div class="bg">
+                                <video id="MainVideo_2" playsinline muted class="pc">
+                                    <source src="/images/main/main3.mp4" type="video/mp4" />
+                                </video>
+                                <video id="MainVideo_2_m" playsinline muted class="mobile">
+                                    <source src="/images/main/rec_main3.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+
+                        <div class="visual" id="Visual_3">
+                            <div class="inner">
+                                <div class="copy">
+                                    <p class="subCopy">카페에서 만든 라떼의 맛 그대로, <br class="mobile">야외에서도 즐기세요!</p>
+                                    <p class="mainCopy">Enjoy it with a can</p>
+                                    <a href="/menu/canLatte.do"  class="greenBox">탑티어 캔라떼</a>
+                                </div>
+                            </div>
+                            <div class="bg">
+                                <video id="MainVideo_3" playsinline muted class="pc">
+                                    <source src="/images/main/main4.mp4" type="video/mp4" />
+                                </video>
+                                <video id="MainVideo_3_m" playsinline muted class="mobile">
+                                    <source src="/images/main/rec_main4.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // END : mainVisual -->
+
+                <section class="directLink" id="directLink">
+                    <div class="inner">
+                        <article>
+                            <a href="/shop/shop.do?shopId=1" class="findShop" data-aos="fade-up" data-aos-anchor="#directLink">
+                                <i><img src="/images/main/ico_shop.png" alt="매장찾기" /></i>
+                                <span class="copy">매장찾기 <span class="tag">#탑티어 커피 #탑티어 매장찾기</span></span>
+                            </a>
+                        </article>
+
+                        <article>
+                            <a href="/menu/signature.do" class="signature" data-aos="fade-up" data-aos-delay="300" data-aos-anchor="#directLink">
+                                <i><img src="/images/main/ico_top5.png" alt="Top5" /></i>
+                                <span class="copy">시그니처 TOP 5 <span class="tag">#인생라떼 #숙성우유 #시크릿레시피 </span></span>
+                            </a>
+                        </article>
+                    </div>
+                </section>
+                <!-- // END : directLink -->
+
+                <section class="topTierMenu">
+                    <div class="inner">
+                        <h3 class="title">Toptier Coffee MENU</h3>
+                        <div class="category">
+                            <button type="button" name="signature" data-aos="fade-up">Signature Top5</button>
+                            <button type="button" name="coffee" data-aos="fade-up" data-aos-delay="150">Coffee &amp; Non Coffee</button>
+                            <button type="button" name="tea" data-aos="fade-up" data-aos-delay="300">Tea &amp; Ade</button>
+                        </div>
+                        <div class="menuListContainer">
+                            <div class="menuSlide">
+                                <div id="MenuList" class="menuList">
+                                    <th:block th:if="${#lists.isEmpty(MENU_LIST)}">
+                                        <div class="emptyMenuList">등록된 메뉴가 없습니다.</div>
+                                    </th:block>
+                                    <div th:each="menuList : ${MENU_LIST}" class="menuItem">
+                                        <div class="menuImg">
+                                            <img th:src="${menuList.imagePath }" th:alt="${menuList.name_kr }" />
+                                        </div>
+                                        <div class="floatItem">
+                                            <th:if test="${menuList.signatureYN eq 'Y'}">
+                                                <span class="ico signature"><img src="/images/common/SVG/ico_signature.svg" alt="시그니쳐" /></span>
+                                            </th:if>
+                                            <th:if test="${menuList.bestYN eq 'Y'}">
+                                                <span class="ico best"><img src="/images/common/SVG/ico_best.svg" alt="Best" /></span>
+                                            </th:if>
+                                        </div>
+                                        <div class="menuInfo">
+                                            <div class="menuName">
+                                                <p class="kr" th:text="${menuList.name_kr}"></p>
+                                                <p class="en" th:text="${menuList.name_en}"></p>
+                                            </div>
+                                            <div class="description" th:utext="${menuList.description}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- // END : menuList -->
+                                <div class="slideControl">
+                                    <span id="MenuSlidePrev" class="menuSlidePrev"></span>
+                                    <span id="MenuSlideNext" class="menuSlideNext"></span>
+                                </div>
+                            </div>
+                            <div class="description">
+                                &lt;&lt; 메뉴를 좌우로 밀어서 보세요. &gt;&gt;
+                            </div>
+                        </div>
+                        <!-- // END : menuListContainer -->
+                    </div>
+                </section>
+                <!-- // END : Toptier Menu -->
+
+                <section class="franchise">
+                    <div class="inner">
+                        <h3 class="title">Toptier Coffee Franchise</h3>
+
+                        <div class="contents">
+                            <div class="areaImage" data-aos="fade-down">
+                                <video autoplay playsinline loop muted>
+                                    <source src="/images/main/franchisee.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+                            <div class="areaContent" data-aos="fade-up" data-aos-delay="300">
+                                탑티어 커피는 가맹점주와의 상생을 목표로 함께 성장하는 든든한 플랫폼이 되겠습니다.
+                                창업에 관해 궁금한 점 있으시면 언제든지 문의해 주십시오.
+                                <p class="call">가맹문의 : 1544-8680</p>
+                                <div class="link">
+                                    <a href="/cunsult/cunsult.do">온라인 가맹 상담</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // END: franchise -->
+
+                <section class="sns">
+                    <div class="inner">
+                        <h3 class="title">Toptier Coffee SNS</h3>
+
+                        <div class="contents">
+                            <div class="snsBox" data-aos="fade-up">
+                                <a href="https://www.instagram.com/p/C9WyjRlyBPK/" target="_blank"><img src="/images/main/img_main_sns_01.jpg" alt="언제 어디서나 즐기는 인생라떼 탑티어 수제 캔라떼 " /></a>
+                                <div class="ico"><a href="https://www.instagram.com/p/C9WyjRlyBPK/" target="_blank"><img src="/images/common/SVG/ico_sns.svg" alt="Instagram" /></a></div>
+                            </div>
+
+                            <div class="snsBox" data-aos="fade-up" data-aos-delay="200">
+                                <a href="https://www.instagram.com/p/C9WyjRlyBPK/" target="_blank"><img src="/images/main/img_main_sns_02.jpg" alt="언제 어디서나 즐기는 인생라떼 탑티어 수제 캔라떼 " /></a>
+                                <div class="ico"><a href="https://www.instagram.com/p/C9WyjRlyBPK/" target="_blank"><img src="/images/common/SVG/ico_sns.svg" alt="Instagram" /></a></div>
+                            </div>
+
+                            <div class="snsBox" data-aos="fade-up" data-aos-delay="400">
+                                <a href="https://www.instagram.com/p/C8JUzqZyrw8/" target="_blank"><img src="/images/main/img_main_sns_03.jpg" alt="탑티어커피 그랜드오픈 기념 영수증 리뷰 이벤트" /></a>
+                                <div class="ico"><a href="https://www.instagram.com/p/C8JUzqZyrw8/" target="_blank"><img src="/images/common/SVG/ico_sns.svg" alt="Instagram" /></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // END: sns -->
+            </div>
+            <script type="module" src="/js/main.js"></script>
+        </div>
+    <!-- // END fragment : content -->
+    </body>
+</html>

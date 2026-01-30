@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>메뉴 관리</title>
+    <link rel="stylesheet" href="/css/back.css">
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="menuContainer">
+
+        <div class="menu">
+            <h2>메뉴 관리</h2>
+
+            <form name="frm" id="frm"  enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" th:value="${MENU.id}" />
+                <input type="hidden" name="categoryMenu" id="categoryMenu" th:value="${category}" />
+                <input type="hidden" name="currentPageNo" id="currentPageNo" th:value="${currentPageNo }" />
+                <div class="tableForm">
+                    <div class="row">
+					<span class="key">
+						카테고리
+					</span>
+                        <div class="value">
+                            <select name="category" id="category">
+                                <option value="1" th:selected="${MENU.category eq '1'} ? 'selected'">Coffee</option>
+                                <option value="2" th:selected="${MENU.category eq '2'} ? 'selected'">Non Coffee</option>
+                                <option value="3" th:selected="${MENU.category eq '3'} ? 'selected'">Tea &amp; Ade</option>
+                                <option value="4" th:selected="${MENU.category eq '4'} ? 'selected'">Dessert</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴명 (한글)
+					</span>
+                        <div class="value">
+                            <input type="text" name="name_kr" id="name_kr" class="w-300" th:value="${MENU.name_kr}" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴명 (영문)
+					</span>
+                        <div class="value">
+                            <input type="text" name="name_en" id="name_en" class="w-300" th:value="${MENU.name_en}" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴 설명
+					</span>
+                        <div class="value">
+                            <div class="editor-container editor-container_classic-editor" id="editor-container">
+                                <div class="editor-container__editor">
+                                    <textarea id="content" name="content" th:utext="${MENU.description}"></textarea>
+                                </div>
+                            </div>
+                            <script type="importmap">
+                                {
+                                    "imports": {
+                                        "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
+                                        "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+                                    }
+                                }
+                            </script>
+                            <script src="https://example.com/ckfinder/ckfinder.js"></script>
+                            <script type="module" src="/js/ckeditor.js"></script>
+                            <p class="description">
+                                * 단순 줄바꿈은 Shift+Enter를 사용해 주세요. <br>
+                                * 단락에 따른 줄바꿈은 Enter를 사용해 주세요.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴 사진(일반)
+					</span>
+                        <div class="value">
+                            <div class="oldImg">
+                                <img th:src="${MENU.imagePath}" alt="" />
+                                <button type="button" onclick="chgImage();" class="btn btn-sm btn-secondary" >삭제</button>
+                            </div>
+                            <div class="newImg" style="display:none;">
+                                <input type="file" name="imagePathNew" id="imagePathNew" />
+                            </div>
+                            <input type="hidden" name="changeFile" id="changeFile" value="N" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						서비스
+					</span>
+                        <div class="value">
+                            <div class="feature">
+                                <span>
+                                    <input type="checkbox" name="signature" id="signature" value="Y" th:checked="${MENU.signatureYN eq 'Y'} ? 'checked'" />
+                                    <label for="signature">Signature</label>
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="best" id="best" value="Y" th:checked="${MENU.bestYN eq 'Y'} ? 'checked'"  />
+                                    <label for="best">Best </label>
+                                </span>
+                                <span>
+                                    <input type="checkbox" name="new" id="new" value="Y" th:checked="${MENU.newYN eq 'Y'} ? 'checked'"  />
+                                    <label for="new">New </label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						상태
+					</span>
+                        <div class="value">
+                            <select name="status" id="status">
+                                <option value="0" th:selected="${MENU.status eq '0'} ? 'selected'">숨김 </option>
+                                <option value="1" th:selected="${MENU.status eq '1'} ? 'selected'">게시중</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="listBottom mt-50">
+                <div class="func txt_center">
+                    <a th:if="${CATEGORY == null or CATEGORY == ''}"
+                       th:href="@{/manage/menu(currentPage=${currentPage})}" class="btn btn-secondary">목록</a>
+                    <a th:if="${CATEGORY != null and CATEGORY != ''}"
+                       th:href="@{/manage/menu(currentPage=${currentPage}, category=${CATEGORY})}" class="mButton">목록</a>
+                    <button type="button" name="modifyMenu" class="mButton" onclick="fncUdateMenuInfo();">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko"
+      layout:decorate="~{/layout/layout_basic}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${categoryName}"></title>
+    <link rel="stylesheet" href="/css/sub.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="menuListContainer">
+
+        <section class="menu">
+            <h2 th:text="${categoryName}"></h2>
+
+            <div id="menuList" class="menuList">
+                <p th:if="${#lists.isEmpty(MENU_LIST)}">등록된 메뉴가 없습니다.</p>
+
+                <div th:each="menu:${MENU_LIST}" class="menuItem">
+                    <div class="menuImg">
+                        <img th:src="${menu.imagePath}" th:alt="${menu.name_kr}" />
+                    </div>
+                    <div class="floatItem">
+                        <span th:if="${menu.signatureYN eq 'Y'}" class="ico"><img src="/images/common/SVG/ico_signature.svg" alt="시그니쳐" /></span>
+                        <span th:if="${menu.bestYN eq 'Y'}" class="ico"><img src="/images/common/SVG/ico_best.svg" alt="Best" /></span>
+                        <span th:if="${menu.newYN eq 'Y'}" class="ico"><img src="/images/common/SVG/ico_new.svg" alt="NEW" /></span>
+                    </div>
+                    <div class="menuInfo">
+                        <div class="menuName">
+                            <p class="kr" th:text="${menu.name_kr}"></p>
+                            <p class="en" th:text="${menu.name_en}"></p>
+                        </div>
+                        <div class="description" th:utext="${menu.description}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // END : menuList -->
+
+        </section>
+    </div>
+</div>
+</body>
+</html>

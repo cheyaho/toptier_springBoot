@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>가맹문의 관리</title>
+    <link rel="stylesheet" href="/css/back.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="frContainer">
+
+        <div class="fr">
+            <h2>가맹신청 관리</h2>
+
+            <table class="tbTypeBoard">
+                <colgroup>
+                    <col style="width:80px" />
+                    <col style="width:100px" />
+                    <col style="" />
+                    <col style="" />
+                    <col style="" />
+                    <col style="width:180px" />
+                    <col style="" />
+                    <col style="width:80px;" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>번호 </th>
+                    <th>이름 </th>
+                    <th>연락처 </th>
+                    <th>창업희망지역 </th>
+                    <th>점포유무 </th>
+                    <th>신청일 </th>
+                    <th>상태 </th>
+                    <th>비고 </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="franchise, loop:${FRANCHISE_LIST}">
+                        <td class="num">
+                            <input type="hidden" name="id" th:value="${franchise.id()}" />
+                            <span th:text="${PAGENATION.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
+                        </td>
+                        <td class="num">
+                            <a th:href="@{|/manage/manageFranchiseView.do?id=${franchise.id()}|}"
+                               th:onclick="|fncViewDetail(${franchise.id() }); return false;|"
+                               th:class="link"
+                               th:text="${franchise.reqName()}"></a>
+                        </td>
+                        <td class="subject txt_center" th:text="${franchise.reqPhoneNum()}"></td>
+                        <td class="date" th:text="${franchise.reqAddr1() + ' ' + franchise.reqAddr2()}"></td>
+                        <td class="hits" th:text="${franchise.isShop()}"></td>
+                        <td class="date" th:text="${#temporals.format(franchise.insDate(), 'yyyy-MM-dd HH:mm')}"></td>
+                        <td class="hits">
+                            <span th:text="${franchise.confirmYN() == 'Y'} ? '상담완료'"></span>
+                            <button type="button" name="delRow" th:if="${franchise.confirmYN() != 'Y'}"
+                                    th:onclick="|fncUdateRequest(this, 'confirm');|" class="btn btn-sm btn-secondary">상담완료 전환</button>
+                        </td>
+                        <td class="hits">
+                            <button type="button" name="delRow" th:if="${franchise.hidden() != 'Y'}"
+                                    onclick="fncUdateRequest(this, 'delete');" class="btn btn-sm btn-danger">삭제</button>
+                        </td>
+                    </tr>
+
+                    <tr th:if="${#lists.isEmpty(FRANCHISE_LIST)}">
+                        <td colspan="8" class="empty">해당 게시물이 없습니다. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="listBottom">
+                <div class="paging" th:replace="~{/layout/pagenation :: pagenation}"></div>
+                <div class="func">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- // END boardContainer -->
+</div>
+</body>
+</html>

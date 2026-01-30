@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns:HH="http://www.w3.org/1999/xhtml">
+<head>
+    <title>가맹점 관리</title>
+    <link rel="stylesheet" href="/css/back.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="frContainer">
+
+        <div class="fr">
+            <h2>매장 관리</h2>
+            <form name="frm" id="frm">
+                <table class="tbTypeBoard">
+                    <colgroup>
+                        <col style="width:80px" />
+                        <col style="width:100px" />
+                        <col style="width:250px" />
+                        <col style="" />
+                        <col style="width:120px" />
+                        <col style="width:250px;" />
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>번호 </th>
+                        <th>점포명 </th>
+                        <th>연락처 </th>
+                        <th>주소 </th>
+                        <th>상태 </th>
+                        <th>등록일시 </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="shop, loop:${SHOP_LIST}">
+                            <td class="num">
+                                <input type="hidden" name="id" id="id" th:value="${shop.id}" />
+                                <span th:text="${SHOP_LIST.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
+                            </td>
+                            <td class="num">
+                                <a th:href="@{|/manage/shop/${shop.id}?currentPage=${PAGENATION.page}|}" th:text="${shop.shopName}"></a>
+                            </td>
+                            <td class="phone" th:text="${shop.shopTel}"></td>
+                            <td class="subject"><span th:text="${shop.addr}"></span> <span th:text="${shop.addr2}"></span></td>
+                            <td class="">
+                                <button type="button" name="delRow" th:if="${shop.hidden == 'Y'}" th:onclick="|fncUdateShopState(${shop.id}, 'N');|" class="btn btn-sm btn-secondary">게시하기</button>
+                                <button type="button" name="delRow" th:if="${shop.hidden == 'N'}" th:onclick="|fncUdateShopState(${shop.id}, 'Y');|" class="btn btn-sm btn-secondary">숨기기</button>
+                            </td>
+                            <td class="">
+                                <span th:text="${#temporals.format(shop.insDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                            </td>
+                        </tr>
+                    <tr th:if="${#lists.isEmpty(SHOP_LIST)}">
+                        <td colspan="6" class="empty">해당 게시물이 없습니다. </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="listBottom">
+                    <div class="paging" th:replace="~{/layout/pagenation :: pagenation}"></div>
+                    <div class="func">
+                        <a href="/manage/regShop" class="btn btn-secondary" onclick="fncRegShop();return false;">매장 등록</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- // END boardContainer -->
+</div>
+</body>
+</html>

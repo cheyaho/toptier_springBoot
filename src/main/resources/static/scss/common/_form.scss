@@ -1,0 +1,252 @@
+@charset "UTF-8";
+@import '../utils/mixins';
+@import '../utils/variables';
+
+/* Form */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] { 
+  height:4.1rem;
+  padding:.6rem .8rem;
+  font-size:$font-body;
+  line-height:$font-size-3; 
+  border:1px solid #CCC;
+  border-radius:5px; 
+  vertical-align: middle;
+  &::placeholder {
+	font-size:$font-small;
+	color:#999;
+  }
+  &:focus::placeholder {
+	color:#FFF;
+  }
+}
+input {
+	  &.zipcode {
+		width:40px;
+		text-align:center;
+		&.zip1 {
+		  border-radius:5px 0 0 5px;
+		  border-right:0;
+		  text-align:right;
+		  padding-right:0;
+		}
+		&.zip2 {
+		  border-radius:0 5px 5px 0;
+		  border-left:0;
+		  text-align:left;
+		  padding-left:0;
+		}
+	  }
+	  &.address {
+		width:100%;
+		min-width:240px;
+	  }
+	  &.phone {
+		width:80px;
+		text-align:center;
+		@include mobile {
+			width:74px;
+		}
+	  }
+	  &.chr2 {
+		width:40px;
+		text-align:center;
+	  }
+	  &.chr3 {
+		width:60px;
+		text-align:center;
+	  }
+	  &.chr4 {
+		width:80px;
+		text-align:center;
+	  }
+	  &.chr5 {
+		width:100px;
+		text-align:center;
+	  }
+	  &.noBoard {
+		border: none !important;
+	  }
+	  &.w-300 {
+		width:100%;
+		max-width:300px;
+	  }
+	  &.w-400 {
+		width:100%;
+		max-width:400px;
+	  }
+	  &.w-500 {
+		width:100%;
+		max-width:500px;
+	  }
+	  &.w-600 {
+		width:100%;
+		max-width:600px;
+	  }
+	  &.w-700 {
+		width:100%;
+		max-width:700px;
+	  }
+	  &.w-800 {
+		width:100%;
+		max-width:800px;
+	  }
+  }
+
+textarea { 
+  padding:8px;
+  font-size:15px;
+  line-height:1.4; 
+  border:1px solid #CCC;
+  border-radius:5px; 
+  vertical-align: middle;
+}
+button {
+  padding:0;
+  border:none;
+  background:none;
+}
+
+.form-select {
+  // bootstrap.css override
+  display: inline-block;
+  width: auto;
+  font-size: $font-body;
+  vertical-align: middle;
+}
+
+.form-check-input[type=radio] {
+  display: inline-block;
+  margin-right: .8rem;
+  &+lable {
+    margin-right: 1.2rem;
+  }
+}
+
+/* datepickr */
+input[type="text"].datepicker {
+  width:80px;
+  padding:3px 4px;
+  text-align:center;
+}
+.ui {
+  &-datepicker {
+  display:none;
+  width:200px;
+  background-color:#FFF;
+  border:1px solid #CCC;
+  padding:15px;
+  z-index:998 !important;
+
+	&-trigger {
+	  vertical-align: middle;
+	  cursor:pointer;
+	}
+
+	&-header {
+	  position:relative;
+	  padding:0 30px 8px;
+	  margin-bottom:8px;
+	  border-bottom:1px solid #CCC;
+	}
+	&-prev {
+	  position:absolute;
+	  top:0;
+	  left:0;
+	  display:block;
+	  width:28px;
+	  height:28px;
+	  line-height:28px;
+	}
+	&-next {
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  display:block;
+	  width:28px;
+	  height:28px;
+	  line-height:28px;
+	}
+	&-title {
+	  select {
+		height:28px;
+		margin:0 3px;
+	  }
+	}
+	&-calendar {
+	  width:100%;
+	  th {
+		text-align:center;
+	  }
+	  td {
+		text-align:center;
+	  }
+	}
+	&-week-end {
+	  a {
+		color:#F30;
+	  }
+	}
+	&-today {
+	  a {
+		color:#0072bc;
+		font-weight:bold;
+	  }
+	}
+	&-current-day {
+	  a {
+		background:$color-red;
+		color:#FFF;
+		border-radius:100%;
+		display:inline-block;
+		width:18px;
+		height:18px;
+		line-height: 18px;
+	  }
+	}
+  }
+  &-icon {
+	&-circle{
+	  &-triangle {
+		&-e {
+		  display:inline-block;
+		  overflow:hidden;
+		  text-indent:-4000px;
+		  width:15px;
+		  height:15px;
+		  border-top:7px solid transparent;
+		  border-left:10px solid #000;
+		  border-bottom:7px solid transparent;
+		  vertical-align: middle;
+		}
+		&-w {
+		  display:inline-block;
+		  overflow:hidden;
+		  text-indent:-4000px;
+		  width:15px;
+		  height:15px;
+		  border-top:7px solid transparent;
+		  border-right:10px solid #000;
+		  border-bottom:7px solid transparent;
+		  vertical-align: middle;
+		}
+	  }
+	}
+  }
+  td {
+	a {
+	  padding:2px;
+	}
+  }
+}
+label.error {
+	display:none;
+	position:absolute;
+	left:2rem;
+	top:50%;
+	transform:translateY(-50%);
+	font-size:$font-small-2;
+	color:$color-red;
+}

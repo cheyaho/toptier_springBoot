@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>가맹점 상세 </title>
+    <link rel="stylesheet" href="/css/back.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="shopContainer">
+
+        <div class="shop">
+            <h2>매장 관리</h2>
+
+            <form name="frm" id="frm" >
+                <input type="hidden" name="id" th:value="${SHOP.id}" />
+                <input type="hidden" name="currentPageNo" th:value="${currentPage}" />
+                <div class="tableForm">
+                    <div class="row">
+                        <span class="key">
+                            매장명
+                        </span>
+                        <div class="value">
+                            <input type="text" name="shopName" class="w-300" th:value="${SHOP.shopName}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            매장주소
+                        </span>
+                        <div class="value">
+                            <input type="text" name="addr" id="addr" class="w-300" th:value="${SHOP.addr }" />
+                            <input type="text" name="addr2" id="addr2" class="w-300" th:value="${SHOP.addr2 }" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            전화번호
+                        </span>
+                        <div class="value">
+                            <input type="text" name="shopTel" id="shopTel" class="w-300" th:value="${SHOP.shopTel}" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            영업시간
+                        </span>
+                        <div class="value">
+                            <div class="editor-container editor-container_classic-editor" id="editor-container">
+                                <div class="editor-container__editor"><textarea id="content" name="content" th:utext="${SHOP.operTime}"></textarea></div>
+                            </div>
+                            <script type="importmap">
+                                {
+                                    "imports": {
+                                        "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
+                                        "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+                                    }
+                                }
+                            </script>
+                            <script src="https://example.com/ckfinder/ckfinder.js"></script>
+                            <script type="module" src="/js/ckeditor.js"></script>
+                            <p class="description">
+                                * 단순 줄바꿈은 Shift+Enter를 사용해 주세요. <br>
+                                * 단락에 따른 줄바꿈은 Enter를 사용해 주세요.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            서비스
+                        </span>
+                        <div class="value">
+                            <div class="services">
+                                <span><input type="checkbox" name="takeout" id="takeout" value="Y" th:checked="${SHOP.takeoutYN eq 'Y'} ? 'checked'" class="form-check form-check-inline" /> <label for="takeout">Take Out </label></span>
+                                <span><input type="checkbox" name="seat" id="seat" value="Y" th:checked="${SHOP.seatYN eq 'Y'} ? 'checked'" class="form-check orm-check-inline"/> <label for="seat">좌석유무 </label></span>
+                                <span><input type="checkbox" name="wifi" id="wifi" value="Y" th:checked="${SHOP.wifiYN eq 'Y'} ? 'checked'" class="form-check form-check-inline" /> <label for="wifi">와이파이 </label></span>
+                                <span><input type="checkbox" name="delivery" id="delivery" value="Y" th:checked="${SHOP.deliveryYN eq 'Y'} ? 'checked'" class="form-check form-check-inline" /> <label for="delivery">배달서비스 </label> </span>
+                                <span><input type="checkbox" name="parking" id="parking" value="Y" th:checked="${SHOP.parkingYN eq 'Y'} ? 'checked'" class="form-check form-check-inline" /> <label for="parking">주차가능 </label></span>
+                                <span><input type="checkbox" name="dessert" id="dessert" value="Y" th:checked="${SHOP.desertYN eq 'Y'} ? 'checked'" class="form-check form-check-inline" /> <label for="dessert">디저트 </label></span>
+                                <span><input type="checkbox" name="easypay" id="easypay" value="Y" th:checked="${SHOP.easypayYN eq 'Y'} ? 'checked'" class="form-check form-check-inline" /> <label for="easypay">간편결제 </label></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            위치
+                        </span>
+                        <div class="value">
+                            위도 <input type="text" name="lat" id="lat" th:value="${SHOP.lat }" />
+                            경도 <input type="text" name="lng" id="lng" th:value="${SHOP.lng }" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="listBottom mt-50">
+                <div class="func txt_center">
+                    <a href="/manage/manageShop.do?currentPageNo=${REQUEST_MAP.currentPageNo }" class="mButton" onclick="fncGoList(); return false;">목록</a>
+                    <button type="button" class="mButton" onclick="fncUdateShopInfo();">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

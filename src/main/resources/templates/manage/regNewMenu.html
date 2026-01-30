@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/back.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="menuContainer">
+
+        <div class="menu">
+            <h2>메뉴 관리</h2>
+
+            <form name="frm" id="frm"  enctype="multipart/form-data">
+                <input type="hidden" name="categoryMenu" id="categoryMenu" value="${REQUEST_MAP.category }" />
+                <div class="tableForm">
+                    <div class="row">
+					<span class="key">
+						카테고리
+					</span>
+                        <div class="value">
+                            <select name="category" class="form-select">
+                                <option value="1">Coffee</option>
+                                <option value="2">Non Coffee</option>
+                                <option value="3">Tea &amp; Ade</option>
+                                <option value="4">Dessert</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴명 (한글)
+					</span>
+                        <div class="value">
+                            <input type="text" name="name_kr" id="name_kr" class="w-300" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴명 (영문)
+					</span>
+                        <div class="value">
+                            <input type="text" name="name_en" id="name_en" class="w-300" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴 설명
+					</span>
+                        <div class="value">
+                            <div class="editor-container editor-container_classic-editor" id="editor-container">
+                                <div class="editor-container__editor"><textarea id="content" name="content"></textarea></div>
+                            </div>
+                            <script type="importmap">
+                                {
+                                    "imports": {
+                                        "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
+                                        "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+                                    }
+                                }
+                            </script>
+                            <script src="https://example.com/ckfinder/ckfinder.js"></script>
+                            <script type="module" src="/js/ckeditor.js"></script>
+                            <p class="description">
+                                * 단순 줄바꿈은 Shift+Enter를 사용해 주세요. <br>
+                                * 단락에 따른 줄바꿈은 Enter를 사용해 주세요.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						메뉴 사진(일반)
+					</span>
+                        <div class="value">
+                            <input type="file" name="imagePath" id="imagePath" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						서비스
+					</span>
+                        <div class="value">
+                            <div class="feature">
+                                <span><input type="checkbox" name="signature" id="signature" value="Y" /> <label for="signature">Signature</label></span>
+                                <span><input type="checkbox" name="best" id="best" value="Y" /> <label for="best">Best </label></span>
+                                <span><input type="checkbox" name="new" id="new" value="Y" /> <label for="new">New </label></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						상태
+					</span>
+                        <div class="value">
+                            <select name="status" class="form-select">
+                                <option value="0">숨김 </option>
+                                <option value="1">게시중</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="listBottom mt-50">
+                    <div class="func txt_center">
+                        <a href="/manage/manageShop.do?currentPageNo=${REQUEST_MAP.currentPageNo }" class="mButton" onclick="fncGoList(); return false;">목록</a>
+                        <button type="submit" value="Submit" class="mButton">등록</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

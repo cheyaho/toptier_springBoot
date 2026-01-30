@@ -1,0 +1,62 @@
+    <header class="header" th:fragment="headerFragment(headerInfo)">
+        <div class="inner">
+            <div class="content">
+                <h1>
+                    <a href="/"><img src="/images/common/SVG/logo_toptier_w.svg" alt="Toptier Coffee" /></a>
+                </h1>
+                <div class="headerContent">
+                    <nav>
+						<ul>
+							<li>
+								<a href="/introduce/introduceBrand">탑티어커피 소개</a>
+								<ul class="subDepth">
+									<li><a href="/introduce/introduceBrand">브랜드 소개</a></li>
+									<li><a href="/introduce/toptierLatte">탑티어 라떼</a></li>
+									<li><a href="/introduce/introduceBI">BI 소개</a></li>
+									<li><a href="/introduce/franchiseCenter">가맹본부</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="/menu/signature">메뉴 소개</a>
+								<ul class="subDepth">
+									<li><a href="/menu/signature">시그니처 Top5</a></li>
+                                    <li th:each="category:${headerInfo.categoryList}">
+                                        <a th:href="@{|/menu/${category.cate}|}"
+                                           th:text="${category.categoryName}"></a>
+                                    </li>
+								</ul>
+							</li>
+							<li>
+								<a href="/shop/shop.do?shopId=1">매장 안내</a>
+								<ul id="shopList" class="subDepth">
+                                    <li th:each="shop:${headerInfo.shopList}">
+                                        <a th:href="@{|/shop/${shop.id}|}"
+                                           th:text="${shop.shopName}"></a>
+                                    </li>
+								</ul>
+							</li>
+							<li>
+								<a href="/franchies/inquiry">가맹 상담</a>
+								<ul class="subDepth">
+									<li><a href="/franchies/inquiry">상담 문의</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="">커뮤니티</a>
+								<ul class="subDepth">
+									<li><a href="/notice/list">공지사항</a></li>
+									<li><a href="/event/list">이벤트 </a></li>
+									<li><a href="https://www.instagram.com/toptiercoffee/" target="_blank">SNS</a></li>
+									<li><a href="/community/faq.do">자주하는 질문</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+					<div class="shopOrder">
+						<a href="/partner/partnerReady.do"><img src="/images/common/SVG/ico_lock.svg" alt="점주님공간" /> 점주님 공간</a>
+					</div>
+                </div>
+            </div>
+        </div>
+		<div class="mobileMenu mobile" id="mobileMenu"><span class="line"></span></div>
+    </header>

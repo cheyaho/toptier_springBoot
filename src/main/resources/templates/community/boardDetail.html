@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_basic}">
+<head>
+    <title th:text="${BOARD_TYPE.typeName()}"></title>
+    <link rel="stylesheet" href="/css/sub.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="boardContainer">
+        <div class="board">
+
+            <h2 th:text="${BOARD_TYPE.typeName()}"></h2>
+
+            <div class="boardView">
+                <div class="title" th:text="${BOARD_DETAIL.title}"></div>
+<!--                <div class="writer">작성자 : <span th:text="${BOARD_DETAIL.writer}"></span></div>-->
+                <div class="insDate">작성일 : <span th:text="${BOARD_DETAIL.insDate}"></span></div>
+                <div class="hits">조회수 : <span th:text="${BOARD_DETAIL.hits}"></span></div>
+                <div class="content">
+                    <div th:utext="${BOARD_DETAIL.content}"></div>
+                </div>
+            </div>
+
+            <div class="boardBottom">
+                <a th:href="@{|/${BOARD_TYPE.pathName()}/list|}" onclick="fncBoardList(); return false;" class="mButton">목록보기</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

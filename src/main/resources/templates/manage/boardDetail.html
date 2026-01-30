@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>게시판 관리</title>
+    <link rel="stylesheet" href="/css/back.css">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css">
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="boardContainer">
+
+        <div class="board">
+            <h2>게시판 관리</h2>
+
+            <form name="frm" id="frm" enctype="multipart/form-data">
+                <div class="tableForm">
+                    <div class="row">
+					<span class="key">
+						카테고리
+					</span>
+                        <div class="value">
+                            <select name="category" id="category" class="form-select">
+                                <option value="notice" th:selected="${BOARD.type.seq == '1'} ? 'selected'">공지사항</option>
+                                <option value="event" th:selected="${BOARD.type.seq == '2'} ? 'selected'">이벤트</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						제목
+					</span>
+                        <div class="value">
+                            <input type="text" name="title" id="title" class="w-full" th:value="${BOARD.title }" />
+                            <input type="hidden" name="seq" id="seq" th:value="${BOARD.seq}" />
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						내용
+					</span>
+                        <div class="value">
+
+                            <div class="editor-container editor-container_classic-editor" id="editor-container">
+                                <div class="editor-container__editor"><textarea id="content" name="content" th:utext="${BOARD.content}"></textarea></div>
+                            </div>
+                            <script type="importmap">
+                                {
+                                    "imports": {
+                                        "ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.js",
+                                        "ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.2/"
+                                    }
+                                }
+                            </script>
+                            <script src="https://example.com/ckfinder/ckfinder.js"></script>
+                            <script type="module" src="/js/ckeditor.js"></script>
+                            <p class="description">
+                                * 단순 줄바꿈은 Shift+Enter를 사용해 주세요. <br>
+                                * 단락에 따른 줄바꿈은 Enter를 사용해 주세요.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						첨부파일
+					</span>
+                        <div class="value">
+                            <div class="isFile" th:if="${!BOARD.filePath.isEmpty()}">
+                                <div id="oldFile">
+                                    <a th:href="${BOARD_VIEW.filePath}" th:text="${BOARD_VIEW.filePath}"></a>
+                                    <button type="button" onclick="fncDelAttatch();" class="button_del">삭제</button>
+                                </div>
+                                <div id="newFile" class="newFile">
+                                    <input type="file" name="attatchFile" />
+                                </div>
+                                <input type="hidden" name="changeFile" value="N" />
+                            </div>
+                            <div class="attachFile" th:if="${BOARD.filePath.isEmpty()}">
+                                <input type="file" name="attatchFile" />
+                                <input type="hidden" name="changeFile" value="Y" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+					<span class="key">
+						공개여부
+					</span>
+                        <div class="value">
+                            <select name="hidden" id="hidden" class="form-select">
+                                <option value="N" th:selected="${BOARD.hidden != 'Y'} ? 'selected'"}>공개</option>
+                                <option value="Y" th:selected="${BOARD.hidden == 'Y'} ? 'selected'">숨김</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <div class="listBottom">
+                <div class="func">
+                    <a th:if=""
+                       th:href="@{/manage/board(currentPage=${PAGENATION.page})}" class="mButton">목록</a>
+                    <button type="button" class="mButton" onclick="fncSave();">수정</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_basic}">
+<head>
+    <title th:text="${BOARD_TYPE.typeName}"></title>
+    <link rel="stylesheet" href="/css/sub.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="boardContainer">
+        <div class="board">
+
+            <h2 th:text="${BOARD_TYPE.typeName}"></h2>
+
+            <table class="tbTypeBoard">
+                <colgroup>
+                    <col style="width:4em;" />
+                    <col style="" />
+                    <col style="width:10em;" />
+                    <col style="width:6em;" />
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>번호 </th>
+                    <th>제목 </th>
+                    <th>게시일 </th>
+                    <th>조회수 </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${!BOARD_LIST.isEmpty()}"
+                        th:each="board, loop:${BOARD_LIST}">
+                        <td class="num"><span th:text="${board.seq}"></span></td>
+                        <td class="subject"><a th:href="@{|/${BOARD_TYPE.pathName}/detail/${board.seq}|}" th:text="${board.title}" /></a></td>
+                        <td class="date">
+                            <span th:text="${#temporals.format(board.insDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+                        </td>
+                        <td class="hits"><span th:text="${board.hits}"></span></td>
+                    </tr>
+                    <tr th:if="${BOARD_LIST.isEmpty()}">
+                        <td colspan="4" class="empty">
+                            해당하는 게시글이 없습니다.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="paging">
+                <a th:classappend="${BOARD_LIST.hasPrevious} ? 'disabled'"
+                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${PAGENATION.page - 1}&pageSize=2|}"
+                   th:text="이전"
+                   class="previousPage"></a>
+                <th:block th:if="${PAGENATION.totalPages > 1}">
+                <a th:each="page : ${#numbers.sequence(PAGENATION.startPage, PAGENATION.endPage)}"
+                   th:classappend="${PAGENATION.page == page} ? 'active'"
+                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${page}&pageSize=2|}"
+                   th:text="${page}"></a>
+                </th:block>
+                <th:block th:if="${PAGENATION.totalPages == 1}">
+                    <span th:text="1" th:class="active"></span>
+                </th:block>
+                <a th:classappend="${PAGENATION.hasNext} ? 'disabled'"
+                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${PAGENATION.page + 1}&pageSize=2|}"
+                   th:text="다음"
+                   class="nextPage"></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

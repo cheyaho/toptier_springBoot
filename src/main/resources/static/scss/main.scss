@@ -1,0 +1,863 @@
+@charset "UTF-8";
+@import 'utils/variables';
+@import 'utils/mixins';
+
+.mainVisual {
+  position: relative;
+  width: 100vw;
+  //height:70rem;
+  //height:47.91vw;
+  aspect-ratio: 1000 / 479;
+  overflow: hidden;
+  @include w-dtop {
+    //height:54.68vw;
+  }
+  @include mobile {
+    //height:100vw;
+    aspect-ratio: 100 / 100;
+    .bx-controls-direction {
+      display: none !important;
+    }
+  }
+
+  .bx-viewport {
+    @include w-dtop {
+      //height:54.68vw !important;
+    }
+  }
+
+  .visual {
+    position: relative;
+    width: 100%;
+    //height:70rem;
+    //height:100%;
+    //padding-top:47.91vw;
+    aspect-ratio: 1000 / 479;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    color: #FFF;
+    @include w-dtop {
+      //height:54.68vw;
+    }
+    @include mobile {
+      //height:100%;
+      aspect-ratio: 100 / 100;
+    }
+
+    .inner {
+      position: absolute;
+      width: 100%;
+      max-width: $max-width;
+      left: 50%;
+      top: 0;
+      height: 100%;
+      margin: 0 auto;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .copy {
+      position: absolute;
+      // bottom:50%;
+      bottom: 38%;
+      left: 7.5rem;
+      transition: bottom .3s linear;
+      @media (max-width: 1400px) {
+        bottom: 30%;
+      }
+      @include desktop {
+        bottom: 20%;
+      }
+      @include tablet {
+        bottom: 15%;
+      }
+      @include mobile {
+        left: 3rem;
+        bottom: 25%;
+      }
+
+      .subCopy {
+        margin-bottom: 0.4em;
+        font-size: 2.8rem;
+        transform: translateY(2rem);
+        opacity: 0;
+        transition: all .3s ease-in 1s;
+        @include tablet {
+          font-size: $font-size-5;
+        }
+        @include mobile {
+          font-size: $font-small-2;
+        }
+
+        &.aniOn {
+          transform: translateY(0);
+          opacity: 1;
+          transition: all .3s ease-in;
+        }
+
+        img {
+          display: inline-block;
+          height: 1em;
+          margin: 0 1px;
+        }
+      }
+
+      .mainCopy {
+        font-weight: 500;
+        line-height: 1.2;
+        transform: translateY(2rem);
+        opacity: 0;
+        transition: all .3s ease-in 2s;
+
+        &.aniOn {
+          transform: translateY(0);
+          opacity: 1;
+          transition: all .3s ease-in .3s;
+        }
+
+        @include mobile {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 0;
+      @include w-dtop {
+        width: initial;
+        height: 100%;
+        transform: translate(0, -50%);
+      }
+
+      video {
+        width: 100%;
+        @include mobile {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .greenBox {
+    //position:absolute;
+    //left:7.5rem;
+    //bottom:38%;
+    margin-top: 5rem;
+    display: inline-block;
+    width: 19.5rem;
+    height: 4rem;
+    padding: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #FFF;
+    line-height: 4rem;
+    background: #3FA24B;
+    border-radius: 1.2rem;
+    text-align: center;
+    // @include mobile {
+    // 	left:3rem;
+    // 	bottom:30%;
+    // }
+    @include mobile {
+      margin-top: 3rem;
+      width: 14.5rem;
+      height: $font-size-2;
+      font-size: $font-small-2;
+      line-height: $font-size-2;
+      border-radius: .8rem;
+    }
+  }
+
+  #Visual_0 {
+    .copy {
+      padding-top: 25rem;
+      @include mobile {
+        font-size: 3.4rem;
+      }
+    }
+
+    .mainCopy {
+      font-size: 9.6rem;
+      @include tablet {
+        font-size: 7.5rem;
+      }
+      @include mobile {
+        font-size: 3.4rem;
+      }
+    }
+  }
+
+  #Visual_1 {
+    color: #183517;
+
+    .copy {
+      //padding-top:21.5rem;
+      //@include w-dtop{
+      //	padding-top:16.79vw;
+      //}
+    }
+
+    .mainCopy {
+      font-size: 7.6rem;
+      @media (max-width: 1200px) {
+        font-size: 5.6rem;
+      }
+      @include mobile {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  #Visual_2 {
+    .copy {
+      //padding-top:28rem;
+      //@include w-dtop{
+      //	padding-top:21.87vw;
+      //}
+    }
+
+    .mainCopy {
+      font-size: 7.6rem;
+      @media (max-width: 1024px) {
+        font-size: 6.6rem;
+      }
+      @include tablet {
+        font-size: 4.6rem;
+      }
+      @include mobile {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  #Visual_3 {
+    color: #000;
+
+    .copy {
+      //padding-top:27.5rem;
+      //@include w-dtop{
+      //	padding-top:21.48vw;
+      //}
+    }
+
+    .mainCopy {
+      font-size: 8.4rem;
+      margin-left: -7px;
+      @include tablet {
+        font-size: 5.4rem;
+      }
+      @include mobile {
+        margin-left: -2px;
+        font-size: 3rem;
+      }
+    }
+  }
+}
+
+.directLink {
+  background: #E3E7E3;
+
+  .inner {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 4rem;
+    max-width: $max-width;
+    width: 100%;
+    margin: 0 auto;
+    @include mobile {
+      padding: 2rem;
+      grid-template-columns: 1fr;
+      grid-template-rows:repeat(2, 1fr);
+    }
+
+    a {
+      display: flex;
+      //height:24.5rem;
+      aspect-ratio: 10/4;
+      border-radius: 2rem;
+      font-size: 5rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      text-align: center;
+      align-items: center;
+      overflow: hidden;
+      @include tablet {
+        font-size: 3.7rem;
+      }
+      @include mobile {
+        //height:14.5rem;
+        font-size: 3.2rem;
+      }
+
+      .tag {
+        margin-top: 2.4rem;
+        display: block;
+        font-size: 1.6rem;
+        font-weight: 400;
+        @include tablet {
+          margin-top: 1.2rem;
+          font-size: 1.4rem;
+        }
+        @include mobile {
+          margin-top: 2.4rem;
+        }
+      }
+
+      i {
+        display: block;
+        flex: 0 0 19.5rem;
+        line-height: 0;
+        @include tablet {
+          flex: 0 0 10rem;
+        }
+        @include mobile {
+          flex: 0 0 8rem;
+        }
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .copy {
+        flex: 1 1 auto;
+        line-height: 1;
+        word-break: auto-phrase;
+      }
+
+      &.findShop {
+        padding: 2rem 5rem;
+        color: #094438;
+        background: $color-basic2;
+        //background-size:cover;
+        column-gap: 1rem;
+        @include tablet {
+          padding: 2rem;
+        }
+
+        .tag {
+          color: #0C4639;
+        }
+      }
+
+      &.signature {
+        padding: 2rem 5rem 2rem 0;
+        color: #FFF;
+        background: $color-basic;
+        @include tablet {
+          padding: 2rem;
+        }
+
+        .tag {
+          color: #FFF;
+        }
+      }
+    }
+  }
+}
+
+.topTierMenu {
+  .inner {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 6rem 0;
+    @include w-dtop {
+      padding: $headerH 4rem;
+    }
+    @include desktop {
+      padding-left: 10rem;
+      padding-right: 10rem;
+    }
+    @include tablet {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+    @include mobile {
+      @include mobile-padding;
+    }
+  }
+
+  .title {
+    margin-bottom: 4rem;
+    font-size: 6rem;
+    font-weight: 500;
+    color: #6D6E71;
+    text-align: center;
+    letter-spacing: 0;
+    @include tablet {
+      font-size: 5rem;
+    }
+    @include mobile {
+      font-size: 3.4rem;
+      line-height: 1.1;
+    }
+  }
+
+  .category {
+    display: grid;
+    width: 100%;
+    height: 6.5rem;
+    margin-bottom: 5.5rem;
+    line-height: 6.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    vertical-align: middle;
+    text-align: center;
+    font-size: 2.2rem;
+    @include mobile {
+      display: block;
+      height: auto;
+    }
+
+    button {
+      background: #864A33;
+      color: #FFF;
+      height: 6.5rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+
+      &:first-child {
+        background: #D8BB9A;
+      }
+
+      &:last-child {
+        background: #52C5D5;
+      }
+    }
+  }
+
+  .description {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #FF6600;
+    text-align: center;
+    @include mobile {
+      //display:block;
+    }
+  }
+}
+
+.menuList {
+  &Container {
+    position: relative;
+
+    .menuSlide {
+      width: 100%;
+      max-width: $max-width;
+      margin: 0 auto;
+      @include mobile {
+        height: 400px;
+      }
+    }
+  }
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  //max-width:$max-width;
+  height: 36.5rem;
+  overflow: hidden;
+  @include mobile {
+    max-width: none;
+    height: 40rem;
+  }
+
+  .menuItem {
+    position: relative;
+    //flex:0 0 220px;
+    width: 25%;
+    //height:100%;
+    //margin-right:20px;
+    aspect-ratio: 363 / 461;
+    @include desktop {
+      width: 33.33%;
+    }
+    @include tablet {
+      width: 50%;
+    }
+    @include mobile {
+      width: 100%;
+      height: 400px;
+    }
+
+    .floatItem {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 4rem;
+      z-index: 3;
+
+      .ico {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .menuImg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    img {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) scale(1);
+      transition: all .2s linear;
+      display: block;
+      //width:100%;
+      max-width: none;
+      height: 100%;
+      aspect-ratio: 85 / 108;
+      @include tablet {
+        height: 400px;
+        width: auto;
+      }
+    }
+
+    &:hover {
+      img {
+        transform: translateX(-50%) scale(1.1);
+      }
+    }
+  }
+
+  .menuInfo {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+
+    .menuName {
+      margin-bottom: .8rem;
+
+      .kr {
+        font-size: 2rem;
+        font-weight: 500;
+        color: #58595b;
+        line-height: 1;
+        margin-bottom: 0.4rem;
+      }
+
+      .en {
+        font-size: 1.5rem;
+        font-weight: 400;
+        color: #A97763;
+      }
+    }
+
+    .description {
+      display: none;
+      font-size: 0.9rem;
+      word-break: keep-all;
+    }
+  }
+}
+
+.slideControl {
+  @include mobile {
+    //display:none;
+  }
+
+  span {
+    position: absolute;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 9999;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      text-indent: -4000px;
+    }
+  }
+
+  .menuSlidePrev {
+    left: -70px;
+    width: 47px;
+    //height:76px;
+    background: url('../images/common/SVG/ico_menu_prev.svg') no-repeat 50% 50% / contain;
+    aspect-ratio: 31/50;
+    @include tablet {
+      left: -42px;
+      width: 32px;
+    }
+    @include mobile {
+      left: -16px;
+      width: 32px;
+    }
+  }
+
+  .menuSlideNext {
+    right: -70px;
+    width: 47px;
+    //height:76px;
+    background: url('../images/common/SVG/ico_menu_next.svg') no-repeat 50% 50% / contain;
+    aspect-ratio: 31/50;
+    @include tablet {
+      right: -42px;
+      width: 32px;
+    }
+    @include mobile {
+      right: -16px;
+      width: 32px;
+    }
+  }
+}
+
+.franchise {
+  width: 100%;
+  background: #F3EDD9;
+
+  .inner {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 5rem 11.6rem;
+    @include tablet {
+      padding: 5rem;
+    }
+    @include mobile {
+      @include mobile-padding;
+    }
+  }
+
+  .title {
+    margin-bottom: 0.7em;
+    font-size: 6rem;
+    font-weight: 500;
+    color: #6D6E71;
+    text-align: center;
+    letter-spacing: -2px;
+    @include mobile {
+      font-size: 3.4rem;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+  }
+
+  .contents {
+    display: grid;
+    grid-template-columns: auto 34rem;
+    gap: 5rem;
+    @include tablet {
+      display: block;
+    }
+
+    .areaImage {
+      padding-top: 1.5rem;
+      line-height: 0;
+      @include mobile {
+        margin-bottom: 2rem;
+      }
+
+      img {
+        width: 100%;
+      }
+
+      video {
+        width: 100%;
+      }
+    }
+
+    .areaContent {
+      position: relative;
+      font-size: 2.5rem;
+      line-height: 1.8;
+      color: #333;
+      word-break: keep-all;
+      letter-spacing: -0.05rem;
+      @include desktop {
+        font-size: $font-body;
+        line-height: 1.6;
+      }
+
+      .call {
+        margin-bottom: .5rem;
+        font-size: 3.4rem;
+        font-weight: 700;
+        color: #40AE49;
+        @include desktop {
+          font-size: 2.6rem;
+          margin: 10px 0 16px;
+        }
+      }
+
+      .link {
+        position: absolute;
+        bottom: 0;
+        @include tablet {
+          position: relative;
+        }
+
+        a {
+          display: inline-block;
+          height: 4rem;
+          padding: 0 1em;
+          font-size: 1.8rem;
+          font-weight: 700;
+          line-height: 4rem;
+          color: #FFF;
+          border-radius: 1rem;
+          background: #40AE49;
+        }
+      }
+    }
+  }
+}
+
+.sns {
+  width: 100%;
+
+  .inner {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 5rem 11.6rem 12rem;
+    @include tablet {
+      padding: 5rem 5rem 12rem;
+    }
+    @include mobile {
+      @include mobile-padding;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .title {
+    margin-bottom: 0.7em;
+    font-size: 6rem;
+    font-weight: 500;
+    color: #6D6E71;
+    text-align: center;
+    letter-spacing: -2px;
+    @include mobile {
+      font-size: 3.4rem;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+  }
+
+  .contents {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    @include mobile {
+      display: block;
+    }
+
+    .snsBox {
+      position: relative;
+      @include mobile {
+        margin-bottom: 8rem;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        line-height: 0;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .ico {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        width: 75px;
+        height: 75px;
+      }
+    }
+  }
+}
+
+#popWrap {
+  position: fixed;
+  top: 150px;
+  left: 150px;
+  //transform: translate(-50%, -50%);
+  overflow: hidden;
+  z-index: 9999;
+  @include mobile {
+    top: 100px;
+    left: 0;
+    padding: 0 10px;
+  }
+
+  .popContainer {
+    display: none;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .25);
+  }
+
+  .popBox {
+    display: grid;
+    grid-template-rows: auto 40px;
+    @include mobile {
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .popContents {
+    padding: 10px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .popFunction {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 5px 10px;
+    font-size: 13px;
+
+    .close {
+      text-align: right;
+
+      button {
+        border: 1px solid #CCC;
+        border-radius: 3px;
+        padding: 4px 12px;
+        line-height: 1;
+        height: 24px;
+        vertical-align: middle;
+        background: #EFEFEF;
+      }
+    }
+  }
+}

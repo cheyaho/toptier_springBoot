@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_basic}">
+<head>
+    <title>매장안내</title>
+    <link rel="stylesheet" href="/css/sub.css" />
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="shopContainer">
+
+        <div class="visual"><img src="/images/sub/img_shopTop.jpg" alt="" /></div>
+
+        <section class="shop">
+            <h2 th:text="|탑티어커피 ${SHOP_INFO.shopName()}|"></h2>
+
+            <div class="loadmap">
+                <h3>오시는 길</h3>
+                <div id="map" class="kakaomap"></div>
+                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a8615e04d4ae32d1cab5d709f227fab2"></script>
+            </div>
+
+            <div class="shopInfo">
+                <div class="chart">
+                    <span class="key">매장주소 : </span>
+                    <span class="value">
+                        <th:block th:text="${SHOP_INFO.addr()}"></th:block>
+                        <th:block th:text="${SHOP_INFO.addr2()}"></th:block></span>
+                </div>
+                <div class="chart">
+                    <span class="key">전화번호 :</span>
+                    <span class="value" th:text="${SHOP_INFO.shopTel()}"></span>
+                </div>
+                <div class="chart">
+                    <span class="key">영업시간 :</span>
+                    <span class="value" th:utext="${SHOP_INFO.operTime()}"></span>
+                </div>
+                <div class="chart vertical">
+                    <span class="key" th:text="|탑티어커피 ${SHOP_INFO.shopName()} 매장 서비스|"></span>
+                    <div class="value">
+
+                        <div class="shopService">
+							<span th:if="${SHOP_INFO.takeoutYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_takeout.svg" alt="Take Out" /></i>
+								<span class="serviceTitle">Take Out</span>
+							</span>
+							<span th:if="${SHOP_INFO.seatYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_seat.svg" alt="좌석유무" /></i>
+								<span class="serviceTitle">좌석유무</span>
+							</span>
+							<span th:if="${SHOP_INFO.wifiYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_wifi.svg" alt="와이파이" /></i>
+								<span class="serviceTitle">와이파이</span>
+							</span>
+							<span th:if="${SHOP_INFO.deliveryYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_delivery.svg" alt="배달서비스" /></i>
+								<span class="serviceTitle">배달서비스</span>
+							</span>
+							<span th:if="${SHOP_INFO.parkingYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_parking.svg" alt="주차가능" /></i>
+								<span class="serviceTitle">주차가능</span>
+							</span>
+							<span th:if="${SHOP_INFO.desertYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_dessert.svg" alt="디저트" /></i>
+								<span class="serviceTitle">디저트</span>
+							</span>
+							<span th:if="${SHOP_INFO.easypayYN() eq 'Y'}" class="service">
+								<i><img src="/images/sub/ico_easyPay.svg" alt="간편결제" /></i>
+								<span class="serviceTitle">간편결제</span>
+							</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- // END : chart -->
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+</html>

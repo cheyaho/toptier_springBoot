@@ -1,0 +1,46 @@
+// reset 
+$min-width: 360px; 
+$max-width: 1280px; 
+$base-bg: #FFF; 
+$base-line-height: 1.5; 
+$base-font-family: 'Noto Sans KR', sans-serif; 
+$link-color: #100da9;
+$default-transition:all 0.3s linear;
+
+$personalH : 40px;
+$headerH : 6rem;
+$headerM : 8rem;
+$footerH : 16.6rem;
+//$headerH : 130px;
+$menuH : 50px;
+$header-height : 42px;
+$header-subH : 28px;
+$mAside : 150px;
+$m_headerH : 60px;
+
+//text, titles
+$text-color: #333;
+$title-color: #1b1b1c;
+$title-font-family: $base-font-family;
+
+$font-size-2: 3.8rem;
+$font-size-3: 3.2rem;
+$font-size-4: 2.8rem;
+$font-size-5: 2.4rem;
+$font-body: 1.8rem;
+$font-small: 1.8rem;
+$font-small-2: 1.6rem;
+$font-small-3: 1.4rem;
+
+// color 
+$color-basic:#004438;
+$color-basic2:#FFDB7C;
+$color-red:#FF3300;
+$color-green:#44AD4B;
+$color-orange:#ED5E2D;
+
+// media
+$mobile: 480px;
+$tablet: 860px;
+$desktop: 1024px;
+$w-dtop: $max-width;

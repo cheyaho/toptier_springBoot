@@ -1,0 +1,385 @@
+@charset "UTF-8";
+@import '../utils/variables';
+@import '../utils/mixins';
+
+.main {
+	position:relative;
+	width:100%;
+	height:100%;
+	min-height:100vh;
+	padding-bottom:$footerH;
+	@include mobile {
+		padding-bottom:30rem;
+	}
+}
+
+/** Header **/
+.header {
+	position:fixed;
+	width:100vw;
+	height:$headerH;
+	// background:rgba(0,132,66,.55); // 오리지날
+	background:rgba(0,132,66,.7);
+	transition: height .2s linear;
+	z-index:9999;
+	.inner {
+		position:relative;
+		width:100%;
+		height:$headerH;
+		max-width:$max-width;
+		margin:0 auto;
+	}
+	.content {
+		display:flex;
+		justify-content: space-between;
+		align-items: center;
+		width:100%;
+		@include tablet {
+			display:block;
+		}
+	}
+	h1 {
+		display:block;
+		flex:0 0 35rem;
+		width:20rem;
+		@include desktop {
+			flex:0 0 20rem;
+		}
+		@include tablet {
+			display: block;
+			margin:0 auto;
+			padding-top:1rem;
+		}
+		
+		a {
+			display:block;
+			margin:0 auto;
+			width:20rem;
+			line-height:1;
+			@include desktop {
+				width:18rem;
+			}
+			img {
+				width:100%;
+			}
+		}
+	}
+	&Content {
+		display:flex;
+		align-items: center;
+		@include w-dtop{
+			grid-template-columns: auto 15rem;
+		}
+		@include tablet {
+			position:fixed;
+			display:block;
+			width:35vw;
+			height:100%;
+			top:$headerH;
+			left:-72vw;
+			background:rgba(0,132,66,.7);
+			transition:left .3s ease-in;
+			&.on {
+				left:0;
+			}
+		}
+		@include tablet {
+			width:70vw;
+		}
+	}
+	nav {
+		display: flex;
+		flex:0 0 auto;
+		@include tablet {
+			display:block;
+		}
+		> ul {
+			display:flex;
+			@include tablet {
+				display:block;
+			}
+			> li {
+				position:relative;
+				width:14rem;
+				font-size:1.7rem;
+				@include desktop {
+					width:12rem;
+				}
+				@include tablet {
+					width:100% !important;
+				}
+				&:nth-child(1){
+					width:16rem;
+					@include desktop {
+						width:14rem;
+					}
+				}
+				&:nth-child(2){
+					width:16rem;
+					@include desktop {
+						width:14rem;
+					}
+				}
+				// &:nth-child(3){
+				// 	width:15rem;
+				// }
+				// &:nth-child(4){
+				// 	width:15rem;
+				// }
+				> a {
+					position:relative;
+					display:block;
+					width:100%;
+					height:$headerH;
+					//padding:0 3rem;
+					padding:0;
+					color:#FFF;
+					line-height:$headerH;
+					white-space: nowrap;
+					transition:all .2s linear;
+					text-align:center;
+					@include tablet {
+						padding-left:2rem;
+						text-align:left;
+					}
+				}
+				&:not(:first-child) {
+					> a:after { 
+						position:absolute;
+						display:block;
+						width:2px;
+						height:2rem;
+						left:-1px;
+						top:50%;
+						transform: translate(-50%, -50%);
+						background:$color-basic;
+						content:'';
+						opacity: 1;
+						@include tablet {
+							display:none;
+						}
+					}	
+				}
+				&.on {
+					> a:after {
+						background:rgba(0,132,66, 1);
+						opacity:0;
+					}
+					& + li > a:after {
+						opacity:0;
+					}
+					> .subDepth {
+                        display: flex;
+                        flex-direction: column;
+                        padding:2rem 0 2rem;
+                        height:auto;
+						a {
+                          height: 4rem;
+                          line-height: 4rem;
+						}
+					}
+
+					background:rgba(0,132,66, 1);
+					> .subDepth {
+						//height:37rem;
+						padding-top:2rem;
+						background:rgba(0,132,66, 1);
+						opacity:1;
+						@include tablet {
+							padding-top:0;
+						}
+						a {
+							height:4rem;
+							line-height:4rem;
+							@include tablet{
+								text-align:left;
+								padding-left:4rem;
+							}
+						}
+					} 
+				}
+			}
+		}
+		.subDepth {
+			position:absolute;
+			top:$headerH;
+			width:100%;
+			height:0;
+			transition:all .1s linear;
+			background:rgba(0,132,66,.7);
+			padding-top:0;
+			opacity:0;
+			@include tablet {
+				position:relative;
+				top:0;
+			}
+			a {
+				display:block;
+				height:0;
+				line-height:0;
+				//padding-left:3rem;
+				color:#FFF;
+				white-space: nowrap;
+				text-align: center;
+				transition:all .2s linear;
+				&:hover {
+					font-weight:bold;
+					color:#2BA739;
+				}
+			}
+		}
+	}
+	.shopOrder {
+		//padding-right:2.5rem;
+		line-height:1;
+		text-align:right;
+		@include tablet {
+			text-align:left;
+			padding-left:0.9em;
+			margin-top:20px;
+		}
+		a {
+			display:inline-block;
+			//width:3.4rem;
+			//height:2.8rem;
+			font-size:$font-small-2;
+			line-height:3.2rem;
+			color:#FFF;
+			img {
+				width:3.2rem;
+				vertical-align: middle;
+			}
+		}
+	}
+	.mobileMenu {
+		display:none;
+		@include tablet {
+			display:block;
+		}
+		@include vertical-center();
+		left:2rem;
+		width:2.5rem;
+		height:2.5rem;
+		.line {
+			display:block;
+			@include vertical-center();
+			@include hamberg();
+		}
+		&:before {
+			position:absolute;
+			top:0;
+			@include hamberg();
+			content:'';
+		}
+		&:after {
+			position:absolute;
+			bottom:0;
+			@include hamberg();
+			content:'';
+		}
+
+	}
+}
+
+.floatBannerContainer {
+	position:fixed;
+	top:0;
+	left:50%;
+	//max-width:$max-width;
+	width:100%;
+	height:0;
+	transform:translateX(-50%);
+	transition:all .3s linear;
+	z-index:9999;
+	@include w-dtop {
+		opacity:.5;
+	}
+	@include tablet {
+		display:none;
+	}
+	@include mobile {
+		display:block;
+		top:unset;
+		left:unset;
+		bottom:20px;
+		right:20px;
+		transform:unset;
+		width:auto;
+		height:auto;
+		opacity:1;
+	}
+	
+	
+	.floatBanner {
+		position:absolute;
+		right:1rem;
+		top:12rem;
+		@include mobile {
+			position:relative;
+			display:grid;
+			grid-template-columns: 1fr 1fr;
+			width:196px;
+			text-align: center;
+			right:unset;
+			top:unset;
+			.banner {
+				img {
+					width:100%;
+				}
+			}
+		}
+	}
+}
+
+.footer {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	height:$footerH;
+	background:#094438;
+	color:#FFF;
+	@include mobile {
+		height:30rem;
+	}
+	.inner {
+		display:grid;
+		grid-template-columns: auto 340px;
+		grid-template-rows: 8rem auto;
+		max-width:$max-width;
+		width:100%;
+		margin:0 auto;
+		padding:3rem 8rem 2rem;	
+		@include mobile {
+			display:flex;
+			flex-direction: column;
+			padding:2.4rem;
+		}
+	}
+	.logo {
+		width:30rem;
+		margin-top:-6px;
+		@include mobile {
+			margin-top:0;
+			width:25rem;
+			margin-bottom:5rem;
+		}
+	}
+	.franchisee {
+		font-size:2.4rem;
+		font-weight:600;
+		color:#2BA739;
+		a {
+			color:#2BA739;
+		}
+	}
+	.companyInfo {
+		font-size:$font-small-2;
+		@include mobile {
+			margin-bottom:1rem;
+		}
+	}
+	.copyright {
+		padding-top:1rem;
+		font-size:1.2rem;
+	}
+}
