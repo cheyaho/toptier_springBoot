@@ -38,10 +38,10 @@
                         <tr th:each="shop, loop:${SHOP_LIST}">
                             <td class="num">
                                 <input type="hidden" name="id" id="id" th:value="${shop.id}" />
-                                <span th:text="${SHOP_LIST.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
+                                <span th:text="${SHOP_LIST.totalElements - ((PAGINATION.page - 1) * PAGINATION.pageSize) - loop.index}"></span>
                             </td>
                             <td class="num">
-                                <a th:href="@{|/manage/shop/${shop.id}?currentPage=${PAGENATION.page}|}" th:text="${shop.shopName}"></a>
+                                <a th:href="@{|/manage/shop/${shop.id}?currentPage=${PAGINATION.page}|}" th:text="${shop.shopName}"></a>
                             </td>
                             <td class="phone" th:text="${shop.shopTel}"></td>
                             <td class="subject"><span th:text="${shop.addr}"></span> <span th:text="${shop.addr2}"></span></td>
@@ -62,7 +62,7 @@
                 </table>
 
                 <div class="listBottom">
-                    <div class="paging" th:replace="~{/layout/pagenation :: pagenation}"></div>
+                    <div class="paging" th:replace="~{/layout/pagination :: pagination}"></div>
                     <div class="func">
                         <a href="/manage/shop/create" class="btn btn-secondary">매장 등록</a>
                     </div>

@@ -1,0 +1,20 @@
+<div class="paging" th:fragment="pagination">
+    <a th:if="${PAGINATION.hasPrevious}"
+       th:href="@{/manage/menu(currentPage=${PAGINATION.page - 1})}"
+       th:text="이전"></a>
+    <th:block th:if="${PAGINATION.startPage > 0}">
+    <a th:if="${CATEGORY == null or CATEGORY == ''}"
+       th:each="pageNo : ${#numbers.sequence(PAGINATION.startPage, PAGINATION.endPage)}"
+       th:class="${pageNo == PAGINATION.page} ? 'active'"
+       th:href="@{/manage/menu(currentPage=${pageNo})}"
+       th:text="${pageNo}"></a>
+    <a th:if="${CATEGORY != null and CATEGORY != ''}"
+       th:each="pageNo : ${#numbers.sequence(PAGINATION.startPage, PAGINATION.endPage)}"
+       th:class="${pageNo == PAGINATION.page} ? 'active'"
+       th:href="@{/manage/menu(currentPage=${pageNo}, category=${CATEGORY})}"
+       th:text="${pageNo}"></a>
+    </th:block>
+    <a th:if="${PAGINATION.hasNext}"
+       th:href="@{/manage/menu(currentPage=${PAGINATION.page + 1})}"
+       th:text="다음"></a>
+</div>

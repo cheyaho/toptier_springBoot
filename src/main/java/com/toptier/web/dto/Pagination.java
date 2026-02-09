@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Pagenation {
+public class Pagination {
     int totalPages;
     long totalElements;
     int page;
@@ -16,7 +16,7 @@ public class Pagenation {
     Boolean hasNext;
     Boolean hasPrevious;
 
-    public Pagenation(Page<?> page, int pageSize){
+    public Pagination(Page<?> page, int pageSize){
         this.totalPages = page.getTotalPages();
         this.totalElements = page.getTotalElements();
         this.page = page.getNumber() + 1;

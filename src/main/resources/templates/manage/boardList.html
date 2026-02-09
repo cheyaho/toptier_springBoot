@@ -38,14 +38,14 @@
                         th:each="board, loop:${BOARD_LIST}">
                         <td class="num">
                             <input type="hidden" name="id" th:value="${board.id}" />
-                            <span th:text="${PAGENATION.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
+                            <span th:text="${PAGINATION.totalElements - ((PAGINATION.page - 1) * PAGINATION.pageSize) - loop.index}"></span>
                         </td>
                         <td class="num" th:text="${board.type.typeName}"></td>
                         <td class="subject">
                             <a th:if="${CATEGORY == null or CATEGORY == 0}"
-                               th:href="@{/manage/board/{id}(id=${board.id}, currentPage=${PAGENATION.page})}" th:text="${board.title}"></a>
+                               th:href="@{/manage/board/{id}(id=${board.id}, currentPage=${PAGINATION.page})}" th:text="${board.title}"></a>
                             <a th:if="${CATEGORY != null and CATEGORY != 0}"
-                               th:href="@{/manage/board/{id}(id=${board.id}, currentPage=${PAGENATION.page},type=${CATEGORY})}" th:text="${board.title}"></a>
+                               th:href="@{/manage/board/{id}(id=${board.id}, currentPage=${PAGINATION.page},type=${CATEGORY})}" th:text="${board.title}"></a>
                         </td>
                         <td class="date" th:text="${#temporals.format(board.insDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                         <td class="date" th:text="${board.hits}"></td>
@@ -58,7 +58,7 @@
             </table>
 
             <div class="listBottom">
-                <div th:replace="~{layout/pagenation :: pagenation}"></div>
+                <div th:replace="~{layout/pagination :: pagination}"></div>
                 <div class="func">
                     <a href="/manage/board/create" class="btn btn-secondary">글쓰기</a>
                 </div>

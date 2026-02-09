@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,12 +39,12 @@ public class ManageViewController {
         Page<MenuResponse> menuList = menuService.getAllMenuList(req.getCategory(), req.pageable());
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(menuList, req.getPageSize());
+        Pagination pagination = new Pagination(menuList, req.getPageSize());
 
         // Model에 담기
         mv.addAttribute("CATEGORY", req.getCategory());
         mv.addAttribute("MENU_LIST", menuList);
-        mv.addAttribute("PAGENATION", pagenation);
+        mv.addAttribute("PAGINATION", pagination);
 
         return "manage/menuList";
     }
@@ -87,11 +86,11 @@ public class ManageViewController {
         Page<ShopResponse> shopList = shopService.getAllShopList(pageable);
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(shopList, pageSize);
+        Pagination pagination = new Pagination(shopList, pageSize);
 
         // Model에 담기
         mv.addAttribute("SHOP_LIST", shopList);
-        mv.addAttribute("PAGENATION", pagenation);
+        mv.addAttribute("PAGINATION", pagination);
 
         return "manage/shopList";
     }
@@ -128,11 +127,11 @@ public class ManageViewController {
         Page<FranchiseResponse> franchiseList = franchiseService.getAllFranchiseList(reqFr.pageable(), hidden);
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(franchiseList, reqFr.getPageSize());
+        Pagination pagination = new Pagination(franchiseList, reqFr.getPageSize());
 
         // Model에 담기
         mv.addAttribute("FRANCHISE_LIST", franchiseList);
-        mv.addAttribute("PAGENATION", pagenation);
+        mv.addAttribute("PAGINATION", pagination);
 
         return "manage/franchiseList";
     }
@@ -160,11 +159,11 @@ public class ManageViewController {
         Page<BoardResponse> boardList = boardService.getAllBoard(req.pageable(), req.getType());
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(boardList, req.getPageSize());
+        Pagination pagination = new Pagination(boardList, req.getPageSize());
 
         // Model에 담기
         mv.addAttribute("BOARD_LIST", boardList);
-        mv.addAttribute("PAGENATION", pagenation);
+        mv.addAttribute("PAGINATION", pagination);
         mv.addAttribute("CATEGORY", req.getType());
 
         return "manage/boardList";

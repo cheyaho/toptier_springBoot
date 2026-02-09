@@ -34,7 +34,7 @@
                     <tr th:each="popup, loop:${POPUP_LIST}">
                         <td class="num">
                             <input type="hidden" name="seq" id="seq" value="${popList.seq }" />
-                            <span th:text="${PAGENATION.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
+                            <span th:text="${PAGINATION.totalElements - ((PAGINATION.page - 1) * PAGINATION.pageSize) - loop.index}"></span>
                         </td>
                         <td class="subject"><a th:href="@{/manage/popup/view(seq=${popList.seq})}" th:text="${popList.popNm}"></a></td>
                         <td class="date">
@@ -49,7 +49,7 @@
             </table>
 
             <div class="listBottom">
-                <div th:replace="~{layout/pagenation :: pagenation}"></div>
+                <div th:replace="~{layout/pagination :: pagination}"></div>
                 <div class="func">
                     <a href="/manage/managePopupWrite.do" class="mButton">글쓰기</a>
                 </div>

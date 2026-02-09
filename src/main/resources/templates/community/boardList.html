@@ -49,20 +49,20 @@
 
             <div class="paging">
                 <a th:classappend="${BOARD_LIST.hasPrevious} ? 'disabled'"
-                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${PAGENATION.page - 1}&pageSize=2|}"
+                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${PAGINATION.page - 1}&pageSize=2|}"
                    th:text="이전"
                    class="previousPage"></a>
-                <th:block th:if="${PAGENATION.totalPages > 1}">
-                <a th:each="page : ${#numbers.sequence(PAGENATION.startPage, PAGENATION.endPage)}"
-                   th:classappend="${PAGENATION.page == page} ? 'active'"
+                <th:block th:if="${PAGINATION.totalPages > 1}">
+                <a th:each="page : ${#numbers.sequence(PAGINATION.startPage, PAGINATION.endPage)}"
+                   th:classappend="${PAGINATION.page == page} ? 'active'"
                    th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${page}&pageSize=2|}"
                    th:text="${page}"></a>
                 </th:block>
-                <th:block th:if="${PAGENATION.totalPages == 1}">
+                <th:block th:if="${PAGINATION.totalPages == 1}">
                     <span th:text="1" th:class="active"></span>
                 </th:block>
-                <a th:classappend="${PAGENATION.hasNext} ? 'disabled'"
-                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${PAGENATION.page + 1}&pageSize=2|}"
+                <a th:classappend="${PAGINATION.hasNext} ? 'disabled'"
+                   th:href="@{|/${BOARD_TYPE.pathName}/list?currentPage=${PAGINATION.page + 1}&pageSize=2|}"
                    th:text="다음"
                    class="nextPage"></a>
             </div>

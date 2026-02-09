@@ -3,21 +3,20 @@ package com.toptier.web.controller;
 import com.toptier.web.dto.HeaderInfo;
 import com.toptier.web.service.CommonService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 @ControllerAdvice(basePackages = "com.toptier.web.controller")
 @RequiredArgsConstructor
+@Slf4j
 public class CommonController {
-    Logger log = org.slf4j.LoggerFactory.getLogger(this.getClass());
     private final CommonService commonService;
 
     @ModelAttribute("headerInfo")
-    public HeaderInfo headerInfo() {
-        HeaderInfo headerInfo = new HeaderInfo(
+    public HeaderInfo getHeaderInfo() {
+        return new HeaderInfo(
                 commonService.findAllCategory(),
                 commonService.findAllNoneHiddenShop());
-        return headerInfo;
     }
 }

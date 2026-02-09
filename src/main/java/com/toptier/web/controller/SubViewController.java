@@ -8,17 +8,13 @@ import com.toptier.web.service.ShopService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -126,12 +122,12 @@ public class SubViewController {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시판을 찾을 수 없습니다."));
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(boardList, pageable.getPageSize());
+        Pagination pagination = new Pagination(boardList, pageable.getPageSize());
 
         // Model에 담기
         mv.addAttribute("BOARD_LIST", boardList);
         mv.addAttribute("BOARD_TYPE", boardType);
-        mv.addAttribute("PAGENATION", pagenation);
+        mv.addAttribute("PAGINATION", pagination);
         return "community/boardList";
     }
 
