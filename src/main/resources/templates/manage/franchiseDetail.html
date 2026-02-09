@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>가맹 문의 관리</title>
+    <link rel="stylesheet" href="/css/back.css">
+    <script type="module" src="/js/manageHandler.js"></script>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="boardContainer">
+
+        <div class="board">
+            <h2>게시판 관리</h2>
+
+            <div class="tableForm view">
+                <div class="row">
+					<span class="key">
+						신청자명
+					</span>
+                    <div class="value">
+                        <span th:text="${REQ_FR.reqName }"></span>
+                    </div>
+                </div>
+                <div class="row col4">
+                    <span class="key"> 신청일 </span>
+                    <div class="value" th:text="${#temporals.format(REQ_FR.insDate, 'yyyy-MM-dd hh:ss')}"></div>
+
+                    <span class="key">
+						진행상태
+					</span>
+                    <div class="value">
+                        <span th:if="${REQ_FR.confirmYN == 'Y'}" th:text="상담완료"></span>
+                        <button type="button" name="btnFrStatus"
+                                th:if="${REQ_FR.confirmYN != 'Y'}"
+                                th:data-id="${REQ_FR.id}" th:data-status="Y" class="btn btn-secondary">상담완료 전환</button>
+                    </div>
+                </div>
+                <div class="row col4">
+                    <span class="key"> 연락처 </span>
+                    <div class="value" th:text="${REQ_FR.reqPhoneNum}"> </div>
+
+                    <span class="key"> 이메일 </span>
+                    <div class="value" th:text="${REQ_FR.reqEmail}"> </div>
+                </div>
+                <div class="row">
+                    <span class="key"> 창업희망지역 </span>
+                    <div class="value">
+                        <span th:text="${REQ_FR.reqAddr1}" class="d-block"></span>
+                        <span th:text="${REQ_FR.reqAddr2 }" class="d-block"></span></div>
+                </div>
+                <div class="row col4">
+                    <span class="key"> 점포유무 </span>
+                    <div class="value" th:text="${REQ_FR.isShop}"> </div>
+
+                    <span class="key"> 점포크기 </span>
+                    <div class="value" th:text="|${REQ_FR.shopSize} 평|"></div>
+                </div>
+                <div class="row col4">
+                    <span class="key"> 운영방식 </span>
+                    <div class="value" th:text="${REQ_FR.operMethod}"> </div>
+
+                    <span class="key"> 운영경험 </span>
+                    <div class="value" th:text="${REQ_FR.operExp}"> </div>
+                </div>
+                <div class="row">
+                    <span class="key"> 기타 </span>
+                    <div class="value etc">
+                        <textarea id="content" name="content" th:text="${REQ_FR.etc}"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="listBottom">
+                <div class="func txt_center">
+                    <a th:href="@{/manage/franchise(currentPage=${currentPage})}" class="btn btn-secondary">목록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

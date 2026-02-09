@@ -5,6 +5,7 @@
 <head>
     <title>메뉴 관리</title>
     <link rel="stylesheet" href="/css/back.css">
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css">
 </head>
 <body>
 <div layout:fragment="content" class="content">
@@ -15,20 +16,18 @@
             <h2>메뉴 관리</h2>
 
             <form name="frm" id="frm"  enctype="multipart/form-data">
-                <input type="hidden" name="id" id="id" th:value="${MENU.id}" />
-                <input type="hidden" name="categoryMenu" id="categoryMenu" th:value="${category}" />
-                <input type="hidden" name="currentPageNo" id="currentPageNo" th:value="${currentPageNo }" />
+                <input type="hidden" name="id" th:value="${MENU.id}" />
                 <div class="tableForm">
                     <div class="row">
 					<span class="key">
 						카테고리
 					</span>
                         <div class="value">
-                            <select name="category" id="category">
-                                <option value="1" th:selected="${MENU.category eq '1'} ? 'selected'">Coffee</option>
-                                <option value="2" th:selected="${MENU.category eq '2'} ? 'selected'">Non Coffee</option>
-                                <option value="3" th:selected="${MENU.category eq '3'} ? 'selected'">Tea &amp; Ade</option>
-                                <option value="4" th:selected="${MENU.category eq '4'} ? 'selected'">Dessert</option>
+                            <select name="category" id="category" class="form-select">
+                                <option th:each="category, loop:${CATEGORIES}"
+                                        th:value="${category.id}"
+                                        th:selected="${category.id == MENU.category.id} ? 'selected'"
+                                        th:text="${category.categoryName}"></option>
                             </select>
                         </div>
                     </div>
@@ -55,7 +54,7 @@
                         <div class="value">
                             <div class="editor-container editor-container_classic-editor" id="editor-container">
                                 <div class="editor-container__editor">
-                                    <textarea id="content" name="content" th:utext="${MENU.description}"></textarea>
+                                    <textarea name="description" id="content" th:utext="${MENU.description}"></textarea>
                                 </div>
                             </div>
                             <script type="importmap">
@@ -79,14 +78,15 @@
 						메뉴 사진(일반)
 					</span>
                         <div class="value">
+                            <input type="hidden" name="imagePath" id="imagePath" th:value="${MENU.imagePath}" />
+                            <input type="hidden" name="chgImg" id="chgImg" value="N" />
                             <div class="oldImg">
-                                <img th:src="${MENU.imagePath}" alt="" />
-                                <button type="button" onclick="chgImage();" class="btn btn-sm btn-secondary" >삭제</button>
+                                <img th:src="${MENU.imagePath}" id="prodImage" alt="" />
+                                <button type="button" name="btnChgImg" class="btn btn-sm btn-secondary" >삭제</button>
                             </div>
                             <div class="newImg" style="display:none;">
                                 <input type="file" name="imagePathNew" id="imagePathNew" />
                             </div>
-                            <input type="hidden" name="changeFile" id="changeFile" value="N" />
                         </div>
                     </div>
                     <div class="row">
@@ -115,7 +115,7 @@
 						상태
 					</span>
                         <div class="value">
-                            <select name="status" id="status">
+                            <select name="status" id="status" class="form-select">
                                 <option value="0" th:selected="${MENU.status eq '0'} ? 'selected'">숨김 </option>
                                 <option value="1" th:selected="${MENU.status eq '1'} ? 'selected'">게시중</option>
                             </select>
@@ -126,15 +126,36 @@
 
             <div class="listBottom mt-50">
                 <div class="func txt_center">
-                    <a th:if="${CATEGORY == null or CATEGORY == ''}"
+                    <a th:if="${CATEGORY == null or CATEGORY == 0}"
                        th:href="@{/manage/menu(currentPage=${currentPage})}" class="btn btn-secondary">목록</a>
-                    <a th:if="${CATEGORY != null and CATEGORY != ''}"
-                       th:href="@{/manage/menu(currentPage=${currentPage}, category=${CATEGORY})}" class="mButton">목록</a>
-                    <button type="button" name="modifyMenu" class="mButton" onclick="fncUdateMenuInfo();">수정</button>
+                    <a th:if="${CATEGORY != null and CATEGORY != 0}"
+                       th:href="@{/manage/menu(currentPage=${currentPage}, category=${CATEGORY})}" class="btn btn-secondary">목록</a>
+                    <button type="button" name="updateMenu" class="btn btn-warning">수정</button>
                 </div>
             </div>
         </div>
     </div>
+    <script type="module" src="/js/manageHandler.js"></script>
+    <script type="text/javascript">
+        const btnChgImg = document.querySelector("button[name=btnChgImg]");
+        const oldImg = document.querySelector(".oldImg");
+        const newImg = document.querySelector(".newImg");
+        const chgImg = document.querySelector("input[name=chgImg]");
+        if(btnChgImg) {
+            btnChgImg.addEventListener('click', (e) => {
+                e.target.disable = true;
+                if(chgImg.value == 'Y') {
+                    chgImg.value = 'N';
+                    newImg.style.display = 'none';
+                    oldImg.style.display = '';
+                }else{
+                    chgImg.value = 'Y';
+                    newImg.style.display = '';
+                    oldImg.style.display = 'none';
+                };
+            });
+        }
+    </script>
 </div>
 </body>
 </html>

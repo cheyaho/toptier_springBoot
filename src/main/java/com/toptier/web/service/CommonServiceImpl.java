@@ -29,4 +29,11 @@ public class CommonServiceImpl implements CommonService {
                 .map(ShopResponse::from)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ShopResponse> findAllNoneHiddenShop() {
+        return shopRepository.findAllByHidden("N").stream()
+                .map(ShopResponse::from)
+                .collect(Collectors.toList());
+    }
 }

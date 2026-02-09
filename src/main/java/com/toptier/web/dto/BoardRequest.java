@@ -2,11 +2,12 @@ package com.toptier.web.dto;
 
 import com.toptier.web.entity.BoardType;
 
-public record AddBoardRequest(
+public record BoardRequest(
+        Integer id,
         String title,
         String content,
         String filePath,
         String hidden,
-        BoardType boardType
+        Integer boardType
 ) {
 }

@@ -51,9 +51,6 @@ public class ShopAmenity {
     @LastModifiedDate
     private LocalDateTime updDate;
 
-    @OneToOne(mappedBy = "amenity")
-    private Shop shop;
-
     public void update(ShopRequest reqShop) {
         this.takeOutYN = reqShop.takeoutYN();
         this.seatYN = reqShop.seatYN();

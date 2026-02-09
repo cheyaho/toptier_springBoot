@@ -17,8 +17,7 @@ public class CommonController {
     public HeaderInfo headerInfo() {
         HeaderInfo headerInfo = new HeaderInfo(
                 commonService.findAllCategory(),
-                commonService.findAllShop());
-        log.info("headerInfo : {}", headerInfo.toString());
+                commonService.findAllNoneHiddenShop());
         return headerInfo;
     }
 }

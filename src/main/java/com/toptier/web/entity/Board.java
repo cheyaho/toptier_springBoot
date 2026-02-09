@@ -1,6 +1,7 @@
 package com.toptier.web.entity;
 
-import com.toptier.web.dto.AddBoardRequest;
+import com.toptier.web.dto.BoardRequest;
+import com.toptier.web.repository.BoardTypeRepository;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,11 +21,11 @@ import java.time.LocalDateTime;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="seq", updatable = false)
-    private int seq;
+    @Column(name="id", updatable = false)
+    private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "boardType", referencedColumnName = "seq")
+    @JoinColumn(name = "boardType", referencedColumnName = "id")
     private BoardType boardType;
 
     @Column(name="title", columnDefinition = "varchar(100)")
@@ -59,22 +60,27 @@ public class Board {
     @Column(name="updEmp")
     private String updEmp;
 
-    public Board(AddBoardRequest request) {
-        this.boardType = request.boardType();
+    public Board(BoardRequest request, BoardType boardType) {
+        this.boardType = boardType;
         this.title = request.title();
         this.content = request.content();
         this.hits = 0;
-        if(request.filePath() == null) this.filePath = "";
+        if(request.filePath() == null || request.filePath() == "") this.filePath = "";
             else this.filePath = request.filePath();
         if(request.hidden() == null) this.hidden = "N";
             else this.hidden = request.hidden();
     }
 
-    public void update(AddBoardRequest request) {
+    public void update(BoardRequest request, BoardType boardType) {
         this.title = request.title();
         this.content = request.content();
         if(request.filePath() == null) this.filePath = "";
             else this.filePath = request.filePath();
-        this.hits = this.hits++;
+        this.boardType = boardType;
+        this.hidden = request.hidden();
+    }
+
+    public void addHits() {
+        this.hits++;
     }
 }

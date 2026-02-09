@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CommonService {
     List<CategoryResponse> findAllCategory();
-
     List<ShopResponse> findAllShop();
+    List<ShopResponse> findAllNoneHiddenShop();
 }

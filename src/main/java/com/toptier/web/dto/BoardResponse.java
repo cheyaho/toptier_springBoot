@@ -6,7 +6,7 @@ import com.toptier.web.entity.BoardType;
 import java.time.LocalDateTime;
 
 public record BoardResponse(
-        Integer seq,
+        Integer id,
         BoardTypeResponse type,
         String title,
         String content,
@@ -17,7 +17,7 @@ public record BoardResponse(
 ) {
     public static BoardResponse from(Board board) {
         return new BoardResponse(
-                board.getSeq(),
+                board.getId(),
                 BoardTypeResponse.from(board.getBoardType()),
                 board.getTitle(),
                 board.getContent(),

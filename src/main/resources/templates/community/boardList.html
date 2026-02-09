@@ -32,8 +32,8 @@
                 <tbody>
                     <tr th:if="${!BOARD_LIST.isEmpty()}"
                         th:each="board, loop:${BOARD_LIST}">
-                        <td class="num"><span th:text="${board.seq}"></span></td>
-                        <td class="subject"><a th:href="@{|/${BOARD_TYPE.pathName}/detail/${board.seq}|}" th:text="${board.title}" /></a></td>
+                        <td class="num"><span th:text="${board.id}"></span></td>
+                        <td class="subject"><a th:href="@{|/${BOARD_TYPE.pathName}/detail/${board.id}|}" th:text="${board.title}" /></a></td>
                         <td class="date">
                             <span th:text="${#temporals.format(board.insDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
                         </td>

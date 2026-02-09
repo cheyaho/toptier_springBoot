@@ -10,11 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BoardRepository extends JpaRepository<Board, Integer> {
-    Page<Board> findByBoardType_seq(int seq, Pageable pageable);
-
-    Optional<Board> findBySeq(Integer seq);
-
-    void deleteBySeq(Integer seq);
-
-    Page<Board> findByBoardType_Seq(int seq, Pageable pageable);
+    Page<Board> findByBoardType_id(int id, Pageable pageable);
+    Optional<Board> findById(Integer id);
+    void deleteById(Integer id);
 }

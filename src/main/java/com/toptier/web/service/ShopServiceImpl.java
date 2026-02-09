@@ -1,5 +1,6 @@
 package com.toptier.web.service;
 
+import com.toptier.web.dto.ResultResponse;
 import com.toptier.web.dto.ShopRequest;
 import com.toptier.web.dto.ShopResponse;
 import com.toptier.web.entity.Shop;
@@ -36,8 +37,8 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     @Transactional
-    public void updateShop(Integer id, ShopRequest reqShop) {
-        Shop shop = shopRepository.findById(id)
+    public void updateShop(ShopRequest reqShop) {
+        Shop shop = shopRepository.findById(reqShop.id())
                 .orElseThrow(() -> new IllegalArgumentException("Shop not found"));
         shop.update(reqShop);
     }
@@ -71,5 +72,14 @@ public class ShopServiceImpl implements ShopService {
         Page<ShopResponse> shopList = shopRepository.findAll(pageable)
                                             .map(ShopResponse::from);
         return shopList;
-    };
+    }
+
+    @Override
+    @Transactional
+    public void updateShopState(Integer id, String hidden) {
+        Shop shop = shopRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Shop not found"));
+        shop.setHidden(hidden);
+        shopRepository.save(shop);
+    }
 }

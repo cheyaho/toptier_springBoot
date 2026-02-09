@@ -8,6 +8,5 @@ import java.util.function.Supplier;
 
 public interface BoardTypeRepository extends JpaRepository<BoardType, Integer> {
     Optional<BoardType> findByPathName(String path);
-
-    Optional<BoardType> findBySeq(int i);
+    Optional<BoardType> findById(int i);
 }

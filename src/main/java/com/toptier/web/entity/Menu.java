@@ -1,8 +1,8 @@
 package com.toptier.web.entity;
 
+import com.toptier.web.dto.MenuRequest;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @EntityListeners(value = {AuditingEntityListener.class})
 @Table(name = "TBMenu")
@@ -21,7 +22,7 @@ public class Menu {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category", referencedColumnName = "cate")
+    @JoinColumn(name = "category", referencedColumnName = "id")
     private MenuCategory category;
 
     @Column(name="name_kr", columnDefinition = "varchar(100)")
@@ -58,4 +59,17 @@ public class Menu {
     @Column(name="updDate")
     @LastModifiedDate
     private LocalDateTime upDate;
+
+    public Menu putMenu(MenuRequest reqMenu, MenuCategory category) {
+        this.category = category;
+        this.nameKr = reqMenu.name_kr();
+        this.nameEn = reqMenu.name_en();
+        this.imagePath = reqMenu.imagePath();
+        this.description = reqMenu.description();
+        this.signatureYN = reqMenu.signatureYN();
+        this.bestYN = reqMenu.bestYN();
+        this.newYN = reqMenu.newYN();
+        this.status = reqMenu.status();
+        return this;
+    }
 }

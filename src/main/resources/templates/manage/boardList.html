@@ -20,6 +20,7 @@
                     <col style="width:150px" />
                     <col style="" />
                     <col style="width:250px" />
+                    <col style="width:120px" />
                     <col style="width:120px;" />
                 </colgroup>
                 <thead>
@@ -28,19 +29,30 @@
                     <th>구분 </th>
                     <th>제목 </th>
                     <th>작성일</th>
+                    <th>조회수</th>
                     <th>상태 </th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="board, loop:${BOARD_LIST}">
+                    <tr th:if="${BOARD_LIST.totalPages > 0}"
+                        th:each="board, loop:${BOARD_LIST}">
                         <td class="num">
-                            <input type="hidden" name="seq" th:value="${board.seq}" />
+                            <input type="hidden" name="id" th:value="${board.id}" />
                             <span th:text="${PAGENATION.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
                         </td>
                         <td class="num" th:text="${board.type.typeName}"></td>
-                        <td class="subject"><a th:href="@{|/manage/board/${board.seq}?currentPage=${PAGENATION.page}|}" th:text="${board.title}"></a></td>
+                        <td class="subject">
+                            <a th:if="${CATEGORY == null or CATEGORY == 0}"
+                               th:href="@{/manage/board/{id}(id=${board.id}, currentPage=${PAGENATION.page})}" th:text="${board.title}"></a>
+                            <a th:if="${CATEGORY != null and CATEGORY != 0}"
+                               th:href="@{/manage/board/{id}(id=${board.id}, currentPage=${PAGENATION.page},type=${CATEGORY})}" th:text="${board.title}"></a>
+                        </td>
                         <td class="date" th:text="${#temporals.format(board.insDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td class="date" th:text="${board.hits}"></td>
                         <td class="hits" th:text="${board.hidden == 'N'} ? '게시중' : '숨김'"></td>
+                    </tr>
+                    <tr th:if="${BOARD_LIST.totalPages <= 0}">
+                        <td colspan="6" class="empty">해당 게시물이 없습니다.</td>
                     </tr>
                 </tbody>
             </table>
@@ -48,7 +60,7 @@
             <div class="listBottom">
                 <div th:replace="~{layout/pagenation :: pagenation}"></div>
                 <div class="func">
-                    <a href="/manage/regBoard" class="btn btn-secondary">글쓰기</a>
+                    <a href="/manage/board/create" class="btn btn-secondary">글쓰기</a>
                 </div>
             </div>
         </div>

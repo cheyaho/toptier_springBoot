@@ -8,7 +8,7 @@ public record FranchiseResponse(
         int id,
         String reqName,
         String reqPhoneNum,
-        String email,
+        String reqEmail,
         String reqAddr1,
         String reqAddr2,
         String isShop,

@@ -14,9 +14,6 @@ public class MenuCategory {
     @Column(name="id")
     private int id;
 
-    @Column(name="cate", columnDefinition = "char(2)")
-    private String cate;
-
     @Column(name="parent", columnDefinition = "char(2)")
     private String parent;
 

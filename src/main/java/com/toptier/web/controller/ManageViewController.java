@@ -13,10 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -35,26 +34,16 @@ public class ManageViewController {
     }
 
     @GetMapping("/menu")
-    public String manageMenu(@RequestParam(defaultValue="") String category,
-                             @RequestParam(defaultValue="1") int currentPage,
-                             @RequestParam(defaultValue="10") int pageSize,
-                             @RequestParam(defaultValue = "") String search,
-                             @RequestParam(defaultValue="insDate,desc") String sort,
+    public String manageMenu(MenuSearchRequest req,
                              Model mv) {
-        // 페이지 정보 설정
-        currentPage = Math.max(currentPage -1, 0);
-        String[] sorts = sort.split(",");
-        Sort.Direction direction = (sorts.length > 1 && "asc".equalsIgnoreCase(sorts[1])) ? Sort.Direction.ASC :Sort.Direction.DESC;
-        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(direction, sorts[0]));
-
         // 메뉴 목록 조회
-        Page<MenuResponse> menuList = menuService.getAllMenuList(category, pageable);
+        Page<MenuResponse> menuList = menuService.getAllMenuList(req.getCategory(), req.pageable());
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(menuList, pageSize);
+        Pagenation pagenation = new Pagenation(menuList, req.getPageSize());
 
         // Model에 담기
-        mv.addAttribute("CATEGORY", category);
+        mv.addAttribute("CATEGORY", req.getCategory());
         mv.addAttribute("MENU_LIST", menuList);
         mv.addAttribute("PAGENATION", pagenation);
 
@@ -63,21 +52,26 @@ public class ManageViewController {
 
     @GetMapping("/menu/{id}")
     public String getMenuDetail(@PathVariable("id") Integer id,
-                                @RequestParam(defaultValue = "1") int currentPage,
+                                MenuSearchRequest req,
                                 Model mv){
         // 메뉴 정보 조회
         MenuResponse menu = menuService.getMenuInfo(id);
 
+        // 카테고리 정보 조회
+        List<CategoryResponse> categories = menuService.getAllCategories();
+
         // Model에 담기
         mv.addAttribute("MENU", menu);
-        mv.addAttribute("currentPage", currentPage);
+        mv.addAttribute("currentPage", req.getCurrentPage());
+        mv.addAttribute("CATEGORY", req.getCategory());
+        mv.addAttribute("CATEGORIES", categories);
+
 
         return "manage/menuDetail";
     }
 
     @GetMapping("/menu/regNewMenuItem")
-    public String regNewMenuItem(Model mv) {
-
+    public String regNewMenuItem(CommonSearchRequest req, Model mv) {
         return "manage/regNewMenu";
     }
 
@@ -112,19 +106,29 @@ public class ManageViewController {
         return "manage/shopDetail";
     }
 
+    @GetMapping("/shop/create")
+    public String createShop(@RequestParam(defaultValue = "1") Integer currentPage, Model mv){
+        mv.addAttribute("currentPage", currentPage);
+        return "manage/regNewShop";
+    }
+
+    /**
+     * 가맹 문의
+     * @param mv
+     * @param reqFr
+     * @return
+     */
     @GetMapping("/franchise")
     public String manageFranchise(Model mv,
-                                  @RequestParam(defaultValue = "1") int currentPage,
-                                  @RequestParam(defaultValue = "10") int pageSize) {
+                                  FranchiseSearchRequest reqFr) {
         // Pageable
-        currentPage = Math.max(currentPage - 1, 0);
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        String hidden = reqFr.getHidden();
 
         // 가맹 문의 조회
-        Page<FranchiseResponse> franchiseList = franchiseService.getAllFranchiseList(pageable);
+        Page<FranchiseResponse> franchiseList = franchiseService.getAllFranchiseList(reqFr.pageable(), hidden);
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(franchiseList, pageSize);
+        Pagenation pagenation = new Pagenation(franchiseList, reqFr.getPageSize());
 
         // Model에 담기
         mv.addAttribute("FRANCHISE_LIST", franchiseList);
@@ -133,40 +137,54 @@ public class ManageViewController {
         return "manage/franchiseList";
     }
 
+    @GetMapping("/franchise/{id}")
+    public String getFranchiseDetail(@PathVariable("id") int id,
+                                     @RequestParam(defaultValue = "1") int currentPage,
+                                     Model mv){
+        FranchiseResponse franchise = franchiseService.getFranchiseInfo(id);
+        mv.addAttribute("REQ_FR", franchise);
+        mv.addAttribute("currentPage", currentPage);
+        return "manage/franchiseDetail";
+    }
+
+    /**
+     * 게시판
+     * @param mv
+     * @param req
+     * @return
+     */
     @GetMapping("/board")
     public String manageBoard(Model mv,
-                              @RequestParam(defaultValue = "0") int type,
-                              @RequestParam(defaultValue = "1") int currentPage,
-                              @RequestParam(defaultValue = "10") int pageSize) {
-        // Pageable
-        currentPage = Math.max(currentPage - 1, 0);
-        Pageable pageable = PageRequest.of(currentPage, pageSize);
-
+                              BoardSearchRequest req) {
         // 게시판 목록 조회
-        Page<BoardResponse> boardList = boardService.getAllBoard(type, pageable);
+        Page<BoardResponse> boardList = boardService.getAllBoard(req.pageable(), req.getType());
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(boardList, pageSize);
+        Pagenation pagenation = new Pagenation(boardList, req.getPageSize());
 
         // Model에 담기
         mv.addAttribute("BOARD_LIST", boardList);
         mv.addAttribute("PAGENATION", pagenation);
-        mv.addAttribute("CATEGORY", type);
+        mv.addAttribute("CATEGORY", req.getType());
 
         return "manage/boardList";
     }
 
+    @GetMapping("/board/create")
+    public String getBoardCreate(Model mv){
+        return "manage/boardNew";
+    }
+
     @GetMapping("/board/{seq}")
     public String getBoardDetail(@PathVariable("seq") Integer seq,
-                                 @RequestParam(defaultValue = "") int currentPage,
-                                 @RequestParam(defaultValue = "") int type,
+                                 BoardSearchRequest req,
                                  Model mv){
         // 게시판 정보 조회
         BoardResponse board = boardService.getBoardDetail(seq);
         // Model에 담기
         mv.addAttribute("BOARD", board);
-        mv.addAttribute("currentPage", currentPage);
-        mv.addAttribute("CATEGORY", type);
+        mv.addAttribute("currentPage", req.getCurrentPage());
+        mv.addAttribute("CATEGORY", req.getType());
 
         return "manage/boardDetail";
     }

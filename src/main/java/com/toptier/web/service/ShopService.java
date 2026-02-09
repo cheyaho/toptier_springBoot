@@ -1,5 +1,6 @@
 package com.toptier.web.service;
 
+import com.toptier.web.dto.ResultResponse;
 import com.toptier.web.dto.ShopRequest;
 import com.toptier.web.dto.ShopResponse;
 import org.springframework.data.domain.Page;
@@ -12,7 +13,9 @@ public interface ShopService {
 
     void createShop(ShopRequest reqShop);
 
-    void updateShop(Integer id, ShopRequest reqShop);
+    void updateShop(ShopRequest reqShop);
 
     Page<ShopResponse> getAllShopList(Pageable pageable);
+
+    void updateShopState(Integer id, String hidden);
 }

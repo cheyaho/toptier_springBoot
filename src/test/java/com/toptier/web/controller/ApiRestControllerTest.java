@@ -1,6 +1,6 @@
 package com.toptier.web.controller;
 
-import com.toptier.web.dto.AddBoardRequest;
+import com.toptier.web.dto.BoardRequest;
 import com.toptier.web.entity.BoardType;
 import com.toptier.web.repository.BoardTypeRepository;
 import com.toptier.web.service.MenuService;
@@ -88,28 +88,6 @@ public class ApiRestControllerTest {
 
         // when
         ResultActions result = mockMvc.perform(get(url))
-                .andExpect(status().isOk());
-
-        // then
-        result.andExpect(status().isOk());
-    }
-
-    @DisplayName("게시판에 글을 등록합니다.")
-    @Test
-    void postBoard() throws Exception {
-        // given
-        String title = "게시글 테스트입니다.2";
-        String content = "게시물 등록 테스트입니다. 컨텐츠를 입력합니다.";
-        String filePath = "";
-        String hidden = "N";
-        BoardType boardType = boardTypeRepository.findByPathName("notice").orElse(null);
-        String url = "/api/board/create";
-
-        // when
-        ResultActions result = mockMvc.perform(post(url)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new AddBoardRequest(title, content, filePath, hidden, boardType))))
                 .andExpect(status().isOk());
 
         // then

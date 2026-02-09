@@ -21,7 +21,7 @@
 								<ul class="subDepth">
 									<li><a href="/menu/signature">시그니처 Top5</a></li>
                                     <li th:each="category:${headerInfo.categoryList}">
-                                        <a th:href="@{|/menu/${category.cate}|}"
+                                        <a th:href="@{|/menu/${category.id}|}"
                                            th:text="${category.categoryName}"></a>
                                     </li>
 								</ul>

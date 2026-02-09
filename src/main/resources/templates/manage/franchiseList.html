@@ -5,6 +5,7 @@
 <head>
     <title>가맹문의 관리</title>
     <link rel="stylesheet" href="/css/back.css" />
+    <script type="module" src="/js/manageHandler.js"></script>
 </head>
 <body>
 <div layout:fragment="content" class="content">
@@ -40,27 +41,25 @@
                 <tbody>
                     <tr th:each="franchise, loop:${FRANCHISE_LIST}">
                         <td class="num">
-                            <input type="hidden" name="id" th:value="${franchise.id()}" />
                             <span th:text="${PAGENATION.totalElements - ((PAGENATION.page - 1) * PAGENATION.pageSize) - loop.index}"></span>
                         </td>
                         <td class="num">
-                            <a th:href="@{|/manage/manageFranchiseView.do?id=${franchise.id()}|}"
-                               th:onclick="|fncViewDetail(${franchise.id() }); return false;|"
+                            <a th:href="@{/manage/franchise/{id}(id=${franchise.id}, currentPage=${PAGENATION.page})}"
                                th:class="link"
-                               th:text="${franchise.reqName()}"></a>
+                               th:text="${franchise.reqName}"></a>
                         </td>
-                        <td class="subject txt_center" th:text="${franchise.reqPhoneNum()}"></td>
-                        <td class="date" th:text="${franchise.reqAddr1() + ' ' + franchise.reqAddr2()}"></td>
-                        <td class="hits" th:text="${franchise.isShop()}"></td>
-                        <td class="date" th:text="${#temporals.format(franchise.insDate(), 'yyyy-MM-dd HH:mm')}"></td>
+                        <td class="subject txt_center" th:text="${franchise.reqPhoneNum}"></td>
+                        <td class="date" th:text="${franchise.reqAddr1 + ' ' + franchise.reqAddr2}"></td>
+                        <td class="hits" th:text="${franchise.isShop}"></td>
+                        <td class="date" th:text="${#temporals.format(franchise.insDate, 'yyyy-MM-dd HH:mm')}"></td>
                         <td class="hits">
-                            <span th:text="${franchise.confirmYN() == 'Y'} ? '상담완료'"></span>
-                            <button type="button" name="delRow" th:if="${franchise.confirmYN() != 'Y'}"
-                                    th:onclick="|fncUdateRequest(this, 'confirm');|" class="btn btn-sm btn-secondary">상담완료 전환</button>
+                            <span th:text="${franchise.confirmYN == 'Y'} ? '상담완료'"></span>
+                            <button type="button" name="btnFrStatus" th:if="${franchise.confirmYN != 'Y'}"
+                                    th:data-id="${franchise.id}" th:data-status="Y" class="btn btn-sm btn-secondary">상담완료 전환</button>
                         </td>
                         <td class="hits">
-                            <button type="button" name="delRow" th:if="${franchise.hidden() != 'Y'}"
-                                    onclick="fncUdateRequest(this, 'delete');" class="btn btn-sm btn-danger">삭제</button>
+                            <button type="button" name="btnFrDelete" th:if="${franchise.hidden != 'Y'}"
+                                    th:data-id="${franchise.id}" th:data-hidden="Y" class="btn btn-sm btn-danger">삭제</button>
                         </td>
                     </tr>
 

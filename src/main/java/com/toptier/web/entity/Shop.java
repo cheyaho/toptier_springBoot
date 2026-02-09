@@ -56,7 +56,7 @@ public class Shop {
     private LocalDateTime updDate;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="shop_amenity_id")
+    @JoinColumn(name="shop_amenity_id", referencedColumnName = "id")
     private ShopAmenity amenity;
 
     public void update(ShopRequest reqShop) {

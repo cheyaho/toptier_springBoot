@@ -67,10 +67,11 @@ public class SubViewController {
         }else if(cate.equals("5")){ // 캔라떼 메뉴
             return "/menu/canLatte";
         }else {
+            Integer cateId = Integer.parseInt(cate);
             // 메뉴 목록 조회
-            List<MenuResponse> menuList = menuService.getMenuInCategory(cate);
+            List<MenuResponse> menuList = menuService.getMenuInCategory(cateId);
             // 카테고리 이름 조회
-            String categoryName = menuService.getCategoryName(cate);
+            String categoryName = menuService.getCategoryName(cateId);
             // Model에 담기
             mv.addAttribute("MENU_LIST", menuList);
             mv.addAttribute("categoryName", categoryName);
@@ -114,15 +115,9 @@ public class SubViewController {
      */
     @GetMapping("/{path}/list")
     public String notice(@PathVariable String path,
-                         @RequestParam(defaultValue = "1") int currentPage,
-                         @RequestParam(defaultValue = "10") int pageSize,
-                         @RequestParam(defaultValue = "seq,desc") String sort,
+                         BoardSearchRequest searchRequest,
                          Model mv) throws Exception {
-        // 페이지 정보 설정
-        currentPage = Math.max(currentPage-1, 0);
-        String[] sorts = sort.split(",");
-        Sort.Direction direction = (sorts.length > 1 && "asc".equalsIgnoreCase(sorts[1])) ? Sort.Direction.ASC :Sort.Direction.DESC;
-        Pageable pageable = PageRequest.of(currentPage, pageSize, Sort.by(direction, "seq"));
+        Pageable pageable = searchRequest.pageable();
 
         // 게시물 목록 조회
         Page<BoardResponse> boardList = boardService.getBoardList(path, pageable);
@@ -131,7 +126,7 @@ public class SubViewController {
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시판을 찾을 수 없습니다."));
 
         // Pagenation
-        Pagenation pagenation = new Pagenation(boardList, pageSize);
+        Pagenation pagenation = new Pagenation(boardList, pageable.getPageSize());
 
         // Model에 담기
         mv.addAttribute("BOARD_LIST", boardList);
@@ -140,17 +135,17 @@ public class SubViewController {
         return "community/boardList";
     }
 
-    @GetMapping("/{path}/detail/{seq}")
-    public String notice(@PathVariable String path, @PathVariable Integer seq, HttpSession session, Model mv) throws Exception {
+    @GetMapping("/{path}/detail/{id}")
+    public String notice(@PathVariable String path, @PathVariable Integer id, HttpSession session, Model mv) throws Exception {
         // 게시물 조회수 증가
-        String sessionKey = "VIEWED_BOARD_"+seq;
+        String sessionKey = "VIEWED_BOARD_"+id;
         if(session.getAttribute(sessionKey) == null) {
-            boardService.increaseHits(seq);
+            boardService.increaseHits(id);
             session.setAttribute(sessionKey, true);
         }
 
         // 게시물 상세 조회
-        BoardResponse boardDetail = boardService.getBoardDetail(seq);
+        BoardResponse boardDetail = boardService.getBoardDetail(id);
 
         // Model에 담기
         mv.addAttribute("BOARD_DETAIL", boardDetail);

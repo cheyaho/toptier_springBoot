@@ -6,6 +6,7 @@
     <title>게시판 관리</title>
     <link rel="stylesheet" href="/css/back.css">
     <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/42.0.2/ckeditor5.css">
+    <script type="module" src="/js/manageHandler.js"></script>
 </head>
 <body>
 <div layout:fragment="content" class="content">
@@ -22,9 +23,9 @@
 						카테고리
 					</span>
                         <div class="value">
-                            <select name="category" id="category" class="form-select">
-                                <option value="notice" th:selected="${BOARD.type.seq == '1'} ? 'selected'">공지사항</option>
-                                <option value="event" th:selected="${BOARD.type.seq == '2'} ? 'selected'">이벤트</option>
+                            <select name="boardType" id="boardType" class="form-select">
+                                <option value="1" th:selected="${BOARD.type.id == 1} ? 'selected'">공지사항</option>
+                                <option value="2" th:selected="${BOARD.type.id == 2} ? 'selected'">이벤트</option>
                             </select>
                         </div>
                     </div>
@@ -34,7 +35,7 @@
 					</span>
                         <div class="value">
                             <input type="text" name="title" id="title" class="w-full" th:value="${BOARD.title }" />
-                            <input type="hidden" name="seq" id="seq" th:value="${BOARD.seq}" />
+                            <input type="hidden" name="seq" id="id" th:value="${BOARD.id}" />
                         </div>
                     </div>
                     <div class="row">
@@ -67,19 +68,14 @@
 						첨부파일
 					</span>
                         <div class="value">
-                            <div class="isFile" th:if="${!BOARD.filePath.isEmpty()}">
-                                <div id="oldFile">
-                                    <a th:href="${BOARD_VIEW.filePath}" th:text="${BOARD_VIEW.filePath}"></a>
-                                    <button type="button" onclick="fncDelAttatch();" class="button_del">삭제</button>
-                                </div>
-                                <div id="newFile" class="newFile">
-                                    <input type="file" name="attatchFile" />
-                                </div>
-                                <input type="hidden" name="changeFile" value="N" />
+                            <input type="hidden" name="filePath" id="filePath" th:value="${BOARD.filePath}" />
+                            <input type="hidden" name="chgFileYn" id="chgFileYn" th:value="${!BOARD.filePath.isEmpty()} ? 'N'" />
+                            <div id="oldAttachFile" th:class="${BOARD.filePath.isEmpty()} ? 'd-none'">
+                                <a th:href="${BOARD.filePath}" th:text="${BOARD.filePath}"></a>
+                                <button type="button" class="btn btn-sm btn-dark btnDeleteAttachFile">삭제</button>
                             </div>
-                            <div class="attachFile" th:if="${BOARD.filePath.isEmpty()}">
-                                <input type="file" name="attatchFile" />
-                                <input type="hidden" name="changeFile" value="Y" />
+                            <div id="newAttachFile" th:class="${!BOARD.filePath.isEmpty()} ? 'd-none'">
+                                <input type="file" name="attachFile" />
                             </div>
                         </div>
                     </div>
@@ -88,9 +84,9 @@
 						공개여부
 					</span>
                         <div class="value">
-                            <select name="hidden" id="hidden" class="form-select">
-                                <option value="N" th:selected="${BOARD.hidden != 'Y'} ? 'selected'"}>공개</option>
-                                <option value="Y" th:selected="${BOARD.hidden == 'Y'} ? 'selected'">숨김</option>
+                            <select name="hidden" class="form-select">
+                                <option value="Y" th:selected="${BOARD.hidden == 'Y'} ? 'selected'"}>숨김</option>
+                                <option value="N" th:selected="${BOARD.hidden != 'Y'} ? 'selected'">공개</option>
                             </select>
                         </div>
                     </div>
@@ -100,12 +96,43 @@
 
             <div class="listBottom">
                 <div class="func">
-                    <a th:if=""
-                       th:href="@{/manage/board(currentPage=${PAGENATION.page})}" class="mButton">목록</a>
-                    <button type="button" class="mButton" onclick="fncSave();">수정</button>
+                    <a th:if="${CATEGORY == null or CATEGORY == ''}"
+                       th:href="@{/manage/board(currentPage=${currentPage})}" class="btn btn-secondary">목록</a>
+                    <a th:if="${CATEGORY != null and CATEGORY != ''}"
+                       th:href="@{/manage/board(currentPage=${currentPage}, type=${CATEGORY})}" class="btn btn-secondary">목록</a>
+                    <button type="button" name="btnUpdateBoard" th:data-id="${BOARD.id}" class="btn btn-warning">수정</button>
                 </div>
             </div>
         </div>
+
+        <script type="text/javascript">
+            const btnDeleteAttachFile = document.querySelector(".btnDeleteAttachFile");
+            if(btnDeleteAttachFile) {
+                btnDeleteAttachFile.addEventListener("click", (e) => {
+                    e.target.disabled = true;
+                    try {
+                        const oldAttach = document.querySelector("#oldAttachFile");
+                        const newAttach = document.querySelector("#newAttachFile");
+                        const filePath = document.getElementById("filePath");
+                        const chgFileYn = document.getElementById("chgFileYn");
+                        if (chgFileYn.value == 'Y') {
+                            chgFileYn.value = 'N';
+                            oldAttach.className = "";
+                            newAttach.className = "d-none";
+                        } else {
+                            chgFileYn.value = 'Y';
+                            oldAttach.className = "d-none";
+                            newAttach.className = "";
+                            filePath.value = "";
+                        }
+                    } catch (error) {
+                        console.log(error);
+                    } finally {
+                        e.target.disabled = false;
+                    }
+                });
+            }
+        </script>
     </div>
 </div>
 </body>

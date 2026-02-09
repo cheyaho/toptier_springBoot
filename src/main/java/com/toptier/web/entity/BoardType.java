@@ -17,7 +17,7 @@ import java.util.List;
 public class BoardType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int seq;
+    private Integer id;
 
     @Column(name="typeName")
     private String typeName;

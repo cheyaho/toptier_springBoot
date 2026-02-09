@@ -46,8 +46,10 @@
                             <td class="phone" th:text="${shop.shopTel}"></td>
                             <td class="subject"><span th:text="${shop.addr}"></span> <span th:text="${shop.addr2}"></span></td>
                             <td class="">
-                                <button type="button" name="delRow" th:if="${shop.hidden == 'Y'}" th:onclick="|fncUdateShopState(${shop.id}, 'N');|" class="btn btn-sm btn-secondary">게시하기</button>
-                                <button type="button" name="delRow" th:if="${shop.hidden == 'N'}" th:onclick="|fncUdateShopState(${shop.id}, 'Y');|" class="btn btn-sm btn-secondary">숨기기</button>
+                                <button type="button" name="btnChgShopStatus" th:if="${shop.hidden == 'Y'}"
+                                        th:data-id="${shop.id}" th:data-status="N" th:text="게시하기" class="btn btn-sm btn-secondary"></button>
+                                <button type="button" name="btnChgShopStatus" th:if="${shop.hidden != 'Y'}"
+                                        th:data-id="${shop.id}" th:data-status="Y" th:text="숨기기" class="btn btn-sm btn-secondary"></button>
                             </td>
                             <td class="">
                                 <span th:text="${#temporals.format(shop.insDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
@@ -62,12 +64,13 @@
                 <div class="listBottom">
                     <div class="paging" th:replace="~{/layout/pagenation :: pagenation}"></div>
                     <div class="func">
-                        <a href="/manage/regShop" class="btn btn-secondary" onclick="fncRegShop();return false;">매장 등록</a>
+                        <a href="/manage/shop/create" class="btn btn-secondary">매장 등록</a>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <script type="module" src="/js/manageHandler.js"></script>
     <!-- // END boardContainer -->
 </div>
 </body>

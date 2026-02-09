@@ -21,7 +21,7 @@ public class Pagenation {
         this.totalElements = page.getTotalElements();
         this.page = page.getNumber() + 1;
         this.pageSize = pageSize;
-        this.startPage = (page.getNumber() / pageSize) * pageSize + 1;
+        this.startPage = Math.min((page.getNumber() / pageSize) * pageSize + 1, page.getTotalPages());
         this.endPage = Math.min(startPage + pageSize, page.getTotalPages());
         this.hasNext = page.hasNext();
         this.hasPrevious = page.hasPrevious();

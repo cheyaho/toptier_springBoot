@@ -3,10 +3,16 @@ package com.toptier.web.customException;
 import com.toptier.web.dto.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 
 @RestControllerAdvice
@@ -15,8 +21,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     // 유효성 검사 예외 처리
-    @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
-    public ResponseEntity<ResultResponse<Void>> handleValidation(org.springframework.web.bind.MethodArgumentNotValidException e) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ResultResponse<Void>> handleValidation(MethodArgumentNotValidException e) {
         String msg = e.getBindingResult().getFieldErrors().stream()
                 .findFirst()
                 .map(fe -> fe.getField() + ": " + fe.getDefaultMessage())
@@ -27,9 +33,8 @@ public class GlobalExceptionHandler {
     }
 
     // DB 제약 위반 예외 처리
-    @ExceptionHandler({
-            org.springframework.dao.DataIntegrityViolationException.class,
-            org.hibernate.exception.ConstraintViolationException.class
+    @ExceptionHandler({DataIntegrityViolationException.class,
+            ConstraintViolationException.class
     })
     public ResponseEntity<ResultResponse<Void>> handleDataIntegrity(Exception e){
         log.warn("DB constraint violation", e);
@@ -38,20 +43,27 @@ public class GlobalExceptionHandler {
     }
 
     // 정적 리소스(파비콘, well-known 등) 없음: 404로 처리
-    @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
-    public ResponseEntity<ResultResponse<Void>> handleNoResourceFound(
-            org.springframework.web.servlet.resource.NoResourceFoundException e) {
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<ResultResponse<Void>> handleNoResourceFound(NoResourceFoundException e) {
         // 브라우저가 자동으로 요청하는 favicon, devtools 관련 경로 등이 자주 발생하므로 ERROR로 로깅하지 않음
         log.debug("Static resource not found: {}", e.getResourcePath());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ResultResponse.fail("Resource Not Found", "RESOURCE_NOT_FOUND"));
     }
 
+    // 인수 예외 처리
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ResultResponse<Void>> handleIllegalArgument(IllegalArgumentException e) {
+        log.warn("Illegal argument: {}", e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ResultResponse.fail(e.getMessage(), "400"));
+    }
+
     // 그 외 예외 처리
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResultResponse<Void>> handleException(Exception e) {
+    public ResponseEntity<ResultResponse> handleException(Exception e) {
         // ResponseStatusException 등은 지정된 상태코드를 존중
-        if (e instanceof org.springframework.web.server.ResponseStatusException rse) {
+        if (e instanceof ResponseStatusException rse) {
             HttpStatus status = HttpStatus.resolve(rse.getStatusCode().value());
             if (status != null && status.is4xxClientError()) {
                 log.warn("Client error: {}", rse.getMessage());
@@ -62,10 +74,17 @@ public class GlobalExceptionHandler {
         }
 
         // NoHandlerFoundException은 404로 처리 (설정에 따라 발생)
-        if (e instanceof org.springframework.web.servlet.NoHandlerFoundException nhfe) {
+        if (e instanceof NoHandlerFoundException nhfe) {
             log.debug("No handler found: {} {}", nhfe.getHttpMethod(), nhfe.getRequestURL());
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ResultResponse.fail("Not Found", "NOT_FOUND"));
+        }
+
+        // NullPointException
+        if (e instanceof NullPointerException npe) {
+            log.warn("Null pointer exception: {}", npe.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ResultResponse.fail("Null Pointer Exception", "NULL_POINTER_EXCEPTION"));
         }
 
         log.error("Internal Server Error", e);

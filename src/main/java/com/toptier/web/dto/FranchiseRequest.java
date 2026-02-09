@@ -11,7 +11,7 @@ public record FranchiseRequest(
         String reqAddr2,
         String isShop,
         String confirmYN,
-        int shopSize,
+        Integer shopSize,
         String operMethod,
         String operExp,
         String etc,

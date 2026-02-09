@@ -32,8 +32,31 @@ public class FranchiseServiceImpl implements FranchiseService {
     }
 
     @Override
-    public Page<FranchiseResponse> getAllFranchiseList(Pageable pageable) {
-        Page<Franchise> franchiseList = franchiseRepository.findAll(pageable);
+    public Page<FranchiseResponse> getAllFranchiseList(Pageable pageable, String hidden) {
+        Page<Franchise> franchiseList = franchiseRepository.findAllByHidden(pageable, hidden);
         return franchiseList.map(FranchiseResponse::from);
+    }
+
+    @Override
+    public FranchiseResponse getFranchiseInfo(int id) {
+        return franchiseRepository.findById(id)
+                .map(FranchiseResponse::from)
+                .orElseThrow(() -> new IllegalArgumentException("해당 정보를 찾을 수 없습니다."));
+    }
+
+    @Override
+    public void updateFranchiseUpdate(Integer id, String confirmYN) {
+        Franchise fr = franchiseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 문의를 찾을 수 없습니다."));
+        fr.setConfirmYN(confirmYN);
+        franchiseRepository.save(fr);
+    }
+
+    @Override
+    public void deleteFranchiseUpdate(Integer id, String hidden) {
+        Franchise fr = franchiseRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 문의를 찾을 수 없습니다."));
+        fr.setHidden(hidden);
+        franchiseRepository.save(fr);
     }
 }
