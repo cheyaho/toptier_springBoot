@@ -2,15 +2,13 @@ package com.toptier.web.controller;
 
 import com.toptier.web.common.utils.FileUtil;
 import com.toptier.web.dto.*;
-import com.toptier.web.service.BoardService;
-import com.toptier.web.service.FranchiseService;
-import com.toptier.web.service.MenuService;
-import com.toptier.web.service.ShopService;
+import com.toptier.web.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -18,6 +16,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequiredArgsConstructor
@@ -28,10 +28,58 @@ public class ApiRestController {
     private final ShopService shopService;
     private final BoardService boardService;
     private final FranchiseService franchiseService;
+    private final SiteUserService siteUserService;
+
+    /**
+     * User
+     */
+    @PostMapping("/user/create")
+    public ResponseEntity<ResultResponse> createSiteUser(@Valid SiteUserRequest reqUser, BindingResult bindingResult) {
+        ResultResponse result = null;
+        if(bindingResult.hasErrors()) {
+            result = ResultResponse.fail(bindingResult.getAllErrors().get(0).getDefaultMessage(), null);
+            return ResponseEntity.ok()
+                    .body(result);
+        } else if(!reqUser.getPassword().equals(reqUser.getPasswordConfirm())) {
+            result = ResultResponse.fail("비밀번호가 일치하지 않습니다.", "E201");
+            return ResponseEntity.ok()
+                    .body(result);
+        } else {
+            siteUserService.createSiteUser(reqUser);
+            result = ResultResponse.success("사용자 등록이 완료되었습니다.", null);
+        }
+        return ResponseEntity.ok()
+                .body(result);
+    }
+
+    @GetMapping(value = "/user/checkDupId")
+    public ResponseEntity<ResultResponse<String>> checkDuplicateId(@RequestParam("userId") String userId) {
+        log.info("userId : {}", userId);
+        ResultResponse<String> result;
+        if(!siteUserService.checkDuplicateId(userId)) {
+            result = ResultResponse.success("사용 가능한 아이디입니다.", userId);
+        } else {
+            result = ResultResponse.fail("이미 사용중인 아이디입니다.", userId);
+        }
+        return ResponseEntity.ok()
+                .body(result);
+    }
+
+    @GetMapping(value = "/user/checkDupEmail")
+    public ResponseEntity<ResultResponse<String>> checkDuplicateEmail(@RequestParam("email") String email) {
+        ResultResponse<String> result = null;
+        if(!siteUserService.checkDuplicateEmail(email)) {
+            result = result.success("사용 가능한 이메일입니다.", email);
+        } else {
+            result = result.fail("이미 사용중인 이메일입니다.", email);
+        }
+        return ResponseEntity.ok()
+                .body(result);
+    }
 
     /**
      * Menu
-     * @param cate
+     * @param cateId
      * @return
      */
     @GetMapping("/menu/category")

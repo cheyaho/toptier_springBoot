@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko"
+      layout:decorate="~{/layout/layout_manage}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title>관리자 등록</title>
+    <link rel="stylesheet" href="/css/back.css" />
+    <script type="module" src="/js/manageHandler.js"></script>
+</head>
+<body>
+<div class="content" layout:fragment="content">
+
+    <div class="userContainer">
+
+        <div class="user">
+            <h2>관리자 등록</h2>
+
+            <form id="frm" name="frm">
+                <div class="tableForm">
+                    <div class="row">
+                        <span class="key">
+                            아이디
+                        </span>
+                        <div class="value">
+                            <input type="text" name="userId" id="userId" />
+                            <button type="button" name="btnCheckDupId" class="btn btn-sm btn-dark">중복확인</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            이름
+                        </span>
+                        <div class="value">
+                            <input type="text" name="name" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            이메일
+                        </span>
+                        <div class="value">
+                            <div id="newAttachFile">
+                                <input type="text" name="email" id="email" />
+                                <button type="button" name="btnCheckDupEmail" class="btn btn-sm btn-dark">중복확인</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            비밀번호
+                        </span>
+                        <div class="value">
+                            <input type="password" name="password" id="password" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="key">
+                            비밀번호 확인
+                        </span>
+                        <div class="value">
+                            <input type="password" name="passwordConfirm" id="re-password" />
+                            <span id="pwMsg" style="font-size: 0.8rem; margin-left: 10px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="listBottom">
+                <div class="func text-center">
+                    <a class="btn btn-secondary"
+                       th:href="@{/manage/siteUser/list(currentPage=${currentPage})}">목록</a>
+                    <button type="button" name="btnCreateUser" class="btn btn-warning">저장</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const password = document.getElementById('password');
+            const rePassword = document.getElementById('re-password');
+            const pwMsg = document.getElementById('pwMsg');
+
+            function checkPasswordMatch() {
+                const pw = password.value;
+                const rePw = rePassword.value;
+
+                if (pw === '' || rePw === '') {
+                    pwMsg.textContent = '';
+                    return;
+                }
+
+                if (pw === rePw) {
+                    pwMsg.textContent = '비밀번호가 일치합니다.';
+                    pwMsg.style.color = 'green';
+                } else {
+                    pwMsg.textContent = '비밀번호가 일치하지 않습니다.';
+                    pwMsg.style.color = 'red';
+                }
+            }
+
+            password.addEventListener('input', checkPasswordMatch);
+            rePassword.addEventListener('input', checkPasswordMatch);
+        });
+    </script>
+</div>
+</body>
+</html>

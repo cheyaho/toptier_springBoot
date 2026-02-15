@@ -27,7 +27,7 @@
 								</ul>
 							</li>
 							<li>
-								<a href="/shop/shop.do?shopId=1">매장 안내</a>
+								<a th:href="@{|/shop/${headerInfo.shopList.get(0).id}|}">매장 안내</a>
 								<ul id="shopList" class="subDepth">
                                     <li th:each="shop:${headerInfo.shopList}">
                                         <a th:href="@{|/shop/${shop.id}|}"

@@ -1,4 +1,18 @@
 @charset "UTF-8";
+.header.manage .inner {
+  display: grid;
+  grid-template-columns: 250px auto;
+}
+.header.manage nav > ul {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  width: 100%;
+}
+.header.manage nav > ul > li {
+  width: auto;
+}
+
 .tbTypeBoard {
   width: 100%;
 }
@@ -13,8 +27,8 @@
 }
 .tbTypeBoard td {
   padding: 0.5rem 1.4rem;
-  text-align: center;
   border-bottom: 1px solid #EEE;
+  text-align: center;
 }
 .tbTypeBoard td.subject {
   text-align: left;
@@ -42,15 +56,12 @@
   transform: translate(-50%, -50%);
 }
 .backMain .loginBox h2 {
+  color: #004438;
   font-size: 3.8rem;
   font-weight: 700;
-  color: #004438;
   text-align: center;
 }
 .backMain .loginForm {
-  display: grid;
-  gap: 10px;
-  grid-template-rows: 4.6rem 4.6rem 3rem 4.6rem 2.8rem;
   width: 40rem;
   margin: 0 auto 20rem;
 }
@@ -60,8 +71,12 @@
 .backMain .loginForm > div {
   position: relative;
 }
-.backMain .loginForm input {
+.backMain .loginForm input[type=text], .backMain .loginForm input[type=password] {
   width: 100%;
+}
+.backMain .loginForm .btnLogin {
+  width: 100%;
+  border-radius: 4px;
 }
 .backMain .loginForm .rememberCheck {
   font-size: 1.8rem;
@@ -71,23 +86,59 @@
   font-size: 1.6rem;
 }
 .backMain .loginForm label.error {
-  left: auto;
   right: 2em;
+  left: auto;
 }
 .backMain .btnLogin {
   height: 5.8rem;
+  border: none;
   background: #000;
   color: #FFF;
-  border: none;
 }
 .backMain .btnLogout {
-  margin: 0 auto;
   width: 20rem;
   height: 3.8rem;
-  background: #000;
-  color: #FFF;
+  margin: 0 auto;
   border: none;
   border-radius: 7px;
+  background: #000;
+  color: #FFF;
+}
+
+.user {
+  min-height: 55vh;
+  padding: 0 4rem;
+}
+@media screen and (max-width: 480px) {
+  .user {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+.userContainer {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto 10rem;
+  padding-top: 6rem;
+}
+.user h2 {
+  margin: 4rem auto;
+  color: #004438;
+  font-size: 3.8rem;
+  text-align: center;
+}
+@media screen and (max-width: 480px) {
+  .user h2 {
+    margin-bottom: 4rem;
+    font-size: 3.2rem;
+  }
+}
+.user .tableForm {
+  max-width: 550px;
+  margin: auto;
+}
+.user .tableForm .row {
+  margin: 0;
 }
 
 .board {
@@ -108,26 +159,26 @@
 }
 .board h2 {
   margin: 4rem auto;
+  color: #004438;
   font-size: 3.8rem;
   text-align: center;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .board h2 {
-    font-size: 3.2rem;
     margin-bottom: 4rem;
+    font-size: 3.2rem;
   }
 }
 .board .newFile {
   display: none;
 }
 .board .button_del {
+  height: 31px;
   padding: 5px 8px;
   border: 1px solid #FFDDDD;
   border-radius: 2px;
-  height: 31px;
-  line-height: 21px;
   font-weight: bold;
+  line-height: 21px;
 }
 
 .fr {
@@ -148,14 +199,14 @@
 }
 .fr h2 {
   margin: 4rem auto;
+  color: #004438;
   font-size: 3.8rem;
   text-align: center;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .fr h2 {
-    font-size: 3.2rem;
     margin-bottom: 4rem;
+    font-size: 3.2rem;
   }
 }
 
@@ -177,14 +228,14 @@
 }
 .shop h2 {
   margin: 4rem auto;
+  color: #004438;
   font-size: 3.8rem;
   text-align: center;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .shop h2 {
-    font-size: 3.2rem;
     margin-bottom: 4rem;
+    font-size: 3.2rem;
   }
 }
 .shop .services {
@@ -216,14 +267,14 @@
 }
 .menu h2 {
   margin: 4rem auto;
+  color: #004438;
   font-size: 3.8rem;
   text-align: center;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .menu h2 {
-    font-size: 3.2rem;
     margin-bottom: 4rem;
+    font-size: 3.2rem;
   }
 }
 .menu .ico {
@@ -235,20 +286,20 @@
 }
 .menu .categoryList {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
   width: 100%;
   height: 6rem;
   margin: 0 auto 4rem;
   background: #D8BB9A;
+  grid-template-columns: repeat(5, 1fr);
 }
 .menu .categoryList a {
   display: block;
   width: 100%;
   height: 100%;
+  color: #FFF;
+  font-size: 1.8rem;
   line-height: 6rem;
   text-align: center;
-  font-size: 1.8rem;
-  color: #FFF;
   transition: all 0.3s ease-in;
 }
 .menu .categoryList a:hover {
@@ -280,10 +331,10 @@
   height: 2.4rem;
   padding: 0 8px;
   border: 1px solid #999;
+  border-radius: 5px;
   background: #DDD;
   font-size: 12px;
   line-height: 2.4rem;
-  border-radius: 5px;
   vertical-align: middle;
 }
 
@@ -297,24 +348,24 @@
 }
 
 .tableForm.view .row {
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
   gap: 10px;
 }
 .tableForm.view .row .key {
+  height: 36px;
+  padding: 9px 10px;
+  border-radius: 10px;
   background: #44AD4B;
   color: #FFF;
   font-weight: bold;
-  padding: 9px 10px;
   line-height: 1;
-  border-radius: 10px;
-  height: 36px;
 }
 .tableForm.view .row .key:after {
   display: none;
 }
 .tableForm.view .row .value {
-  font-size: 1.8rem;
   padding: 8px 10px;
+  font-size: 1.8rem;
   line-height: 1.2;
 }
 .tableForm.view .row .value.etc {
@@ -322,8 +373,8 @@
 }
 .tableForm .row {
   display: grid;
-  grid-template-columns: 120px auto;
   margin-bottom: 20px;
+  grid-template-columns: 120px auto;
 }
 .tableForm .row.col4 {
   grid-template-columns: 120px 250px 120px auto;
@@ -335,21 +386,21 @@
 }
 .tableForm .row .key {
   position: relative;
-  font-size: 1.8rem;
-  padding: 16px 0;
-  line-height: 1;
   height: 54px;
+  padding: 16px 0;
+  font-size: 1.8rem;
+  line-height: 1;
 }
 .tableForm .row .key:after {
   display: block;
   position: absolute;
-  right: 0;
   top: 50%;
-  transform: translateY(-50%);
-  content: "";
+  right: 0;
   width: 2px;
   height: 2rem;
   background: #CCC;
+  content: "";
+  transform: translateY(-50%);
 }
 .tableForm .row .value {
   position: relative;
@@ -360,8 +411,8 @@
   min-height: 30rem;
 }
 .tableForm .description {
-  font-size: 14px;
   color: #FF6600;
+  font-size: 14px;
 }
 
 .notReady {
@@ -373,11 +424,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  color: #004438;
   font-size: 3.8rem;
   font-weight: 700;
-  color: #004438;
   text-align: center;
+  transform: translate(-50%, -50%);
 }
 
 /* 팝업 */
@@ -399,12 +450,12 @@ input[type=text].datepicker {
 
 .ui-datepicker {
   display: none;
-  width: 200px;
-  background-color: #FFF;
-  border: 1px solid #CCC;
-  padding: 15px;
-  font-size: 13px;
   z-index: 998 !important;
+  width: 200px;
+  padding: 15px;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  font-size: 13px;
 }
 .ui-datepicker-trigger {
   vertical-align: middle;
@@ -412,24 +463,24 @@ input[type=text].datepicker {
 }
 .ui-datepicker-header {
   position: relative;
-  padding: 0 30px 8px;
   margin-bottom: 8px;
+  padding: 0 30px 8px;
   border-bottom: 1px solid #CCC;
 }
 .ui-datepicker-prev {
+  display: block;
   position: absolute;
   top: 0;
   left: 0;
-  display: block;
   width: 28px;
   height: 28px;
   line-height: 28px;
 }
 .ui-datepicker-next {
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
-  display: block;
   width: 28px;
   height: 28px;
   line-height: 28px;
@@ -455,35 +506,35 @@ input[type=text].datepicker {
   font-weight: bold;
 }
 .ui-datepicker-current-day a {
-  background: #FF3300;
-  color: #FFF;
-  border-radius: 100%;
   display: inline-block;
   width: 18px;
   height: 18px;
+  border-radius: 100%;
+  background: #FF3300;
+  color: #FFF;
   line-height: 18px;
 }
 .ui-icon-circle-triangle-e {
   display: inline-block;
   overflow: hidden;
-  text-indent: -4000px;
   width: 15px;
   height: 15px;
   border-top: 7px solid transparent;
-  border-left: 10px solid #000;
   border-bottom: 7px solid transparent;
+  border-left: 10px solid #000;
   vertical-align: middle;
+  text-indent: -4000px;
 }
 .ui-icon-circle-triangle-w {
   display: inline-block;
   overflow: hidden;
-  text-indent: -4000px;
   width: 15px;
   height: 15px;
   border-top: 7px solid transparent;
   border-right: 10px solid #000;
   border-bottom: 7px solid transparent;
   vertical-align: middle;
+  text-indent: -4000px;
 }
 .ui td a {
   padding: 2px;

@@ -266,3 +266,89 @@ async function handleResponse(res, path = null) {
         alert(data.message);
     }
 }
+
+const btnCheckDupId = document.querySelector("button[name=btnCheckDupId]");
+if (btnCheckDupId) {
+    btnCheckDupId.addEventListener("click", async (e) => {
+        e.preventDefault();
+        // 중복 클릭 방지
+        e.target.disabled = true;
+        try {
+            const form = document.getElementById("frm");
+            const userId = document.getElementById("userId");
+            const res = await fetch(`/api/user/checkDupId?userId=${userId.value}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const data = await res.json();
+            alert(data.message);
+        } catch (error) {
+            console.log(error.message);
+            alert("아이디 중복 확인 중 오륟가 발생하였습니다.");
+        } finally {
+            e.target.disabled = false;
+        }
+    });
+}
+
+const btnCheckDupEmail = document.querySelector("button[name=btnCheckDupEmail]");
+if (btnCheckDupEmail) {
+    btnCheckDupEmail.addEventListener("click", async (e) => {
+        e.preventDefault();
+        // 중복 클릭 방지
+        e.target.disabled = true;
+        try {
+            const email = document.getElementById("email").value;
+            const res = await fetch(`/api/user/checkDupEmail?email=${email}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            const data = await res.json();
+            alert(data.message);
+        } catch (error) {
+            console.log(error.message);
+            alert("이메일 중복 확인 중 오류가 발생했습니다.")
+        } finally {
+            e.target.disabled = false;
+        }
+    });
+}
+
+const btnCreateUser = document.querySelector("button[name=btnCreateUser]");
+if (btnCreateUser) {
+    btnCreateUser.addEventListener("click", async (e) => {
+        e.preventDefault();
+        // 중복 클릭 방지
+        e.target.disabled = true;
+        try {
+            const frm = document.getElementById("frm")
+            const formData = new FormData(frm);
+            const req = Object.fromEntries(formData.entries());
+
+            const res = await fetch(`/api/user/create`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+            alert(data.message);
+            if(data.success) {
+                window.location.href = "/manage/main";
+            } else {
+                if(data.errorCode == "E201") {
+                    frm.password.value = "";
+                    frm.passwordConfirm.value = "";
+                    frm.password.focus();
+                }
+            }
+        } catch (error) {
+            console.log(error.message);
+            alert("사용자 등록 중 오류가 발생했습니다.")
+        } finally {
+            e.target.disabled = false;
+        }
+    });
+}

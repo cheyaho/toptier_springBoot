@@ -1,7 +1,6 @@
 package com.toptier.web.dto;
 
 import com.toptier.web.entity.Board;
-import com.toptier.web.entity.BoardType;
 
 import java.time.LocalDateTime;
 

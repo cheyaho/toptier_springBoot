@@ -13,8 +13,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Table(name = "TBFranchise")
 @EntityListeners(value = {AuditingEntityListener.class})
 public class Franchise {

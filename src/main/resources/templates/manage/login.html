@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{/layout/layout_manage}">
+<head>
+    <title>관리자 로그인</title>
+    <link rel="stylesheet" href="/css/back.css" />
+    <script type="module" src="/js/manageHandler.js"></script>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+
+    <div class="backMainContainer">
+        <div class="backMain">
+            <div class="loginBox">
+                <h2>Toptier Coffee <br>관리자 페이지입니다.</h2>
+                <div class="loginFormContainer">
+                        <div class="loginForm">
+                            <!-- th:action을 사용하면 CSRF 토큰이 자동으로 포함됩니다. -->
+                            <form id="loginForm" name="loginForm" th:action="@{/manage/login}" method="post">
+                                <!-- 에러 메시지 표시 -->
+                                <div th:if="${param.error}">
+                                    <div class="alert alert-danger">
+                                        사용자ID 또는 비밀번호를 확인해 주세요.
+                                    </div>
+                                </div>
+                                <div class="mb-1"><input type="text" name="userId" placeholder="아이디" /></div>
+                                <div class="mb-1"><input type="password" name="password" placeholder="비밀번호" /></div>
+
+                                <div class="mb-1 rememberCheck"><input type="checkbox" id="idKeep" name="idKeep" class="d-inline-block"> <label for="idKeep">아이디 저장</label></div>
+                                <div><button type="submit" class="btnLogin">Login</button></div>
+                            </form>
+
+                            <div class="mb-1 findId"><a href="/manage/user/signUp">회원가입</a> | <a href="">아이디 찾기</a> / <a href="">비밀번호 찾기</a></div>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

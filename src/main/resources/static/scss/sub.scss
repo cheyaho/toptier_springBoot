@@ -3,1035 +3,1140 @@
 @import 'utils/mixins';
 
 .introduce {
-	@include w-dtop {
-		padding:0 4rem;
-	}
-	@include mobile {
-		@include mobile-padding;
-	}
-	&Container {
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-	}
-			
-	.aboutBrand {
-		margin-bottom:6rem;
-		p {
-			padding-right:20rem;
-			margin-bottom:1em;
-			font-size:2.1rem;
-			line-height: 1.38;
-			color:#000;
-			@include mobile {
-				font-size:1.8rem;
-				padding-right:0;
-			}
-		}
-	}
-	
-	.subject {
-		dl {
-			display:flex;
-			width:100%;
-			height:15rem;
-			max-width:64rem;
-			align-items: center;
-			margin-bottom:2.4rem;
-			background:#F4F4F0;
-			@include mobile {
-				display:block;
-				height:auto;
-			}
-		}
-		dt {
-			position:relative;
-			flex:0 0 15rem;
-			height: 100%;
-			line-height:0;
-			background:#000;
-			border-right:0.4rem solid #FFF;
-			.subject {
-				position:absolute;
-				top:50%;
-				left:50%;
-				transform: translate(-50%, -50%);
-				font-size:2.4rem;
-				font-weight:900;
-				line-height:1.3;
-				text-align:center;
-				color:#FFF;
-				z-index:3;
-			}
-			img {
-				display:block;
-				width:100%;
-				height:100%;
-				opacity: .5;
-			}
-		}
-		dd {
-			ul { 
-				display:grid;
-				grid-template-rows: repeat(3,1fr);
-				gap:3px;
-				padding-left:5.4rem;
-				font-weight:400;
-				color:#515242;
-				@include mobile {
-					display:block;
-					padding:2rem;
-				}
-			}
-			li {
-				padding-left:1em;
-				text-indent:-1em;
-				font-size:1.8rem;
-				font-weight:500;
-				letter-spacing:-1px;
-				@include mobile {
-					font-size:1.6rem;
-					padding-left:0.8em;
-					text-indent:-0.8em;
-				}
-				&:before {
-					display:inline-block;
-					content:'';
-					width:4px;
-					height:4px;
-					margin-right:0.8rem;
-					border-radius:100%;
-					background:#515242;
-					vertical-align: middle;
-				}
-			}
-		}
-	}
+  @include w-dtop {
+    padding: 0 4rem;
+  }
+  @include mobile {
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  .aboutBrand {
+    margin-bottom: 6rem;
+
+    p {
+      margin-bottom: 1em;
+      padding-right: 20rem;
+      color: #000;
+      font-size: 2.1rem;
+      line-height: 1.38;
+      @include mobile {
+        padding-right: 0;
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  .subject {
+    dl {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 64rem;
+      height: 15rem;
+      margin-bottom: 2.4rem;
+      background: #F4F4F0;
+      @include mobile {
+        display: block;
+        height: auto;
+      }
+    }
+
+    dt {
+      position: relative;
+      flex: 0 0 15rem;
+      height: 100%;
+      border-right: 0.4rem solid #FFF;
+      background: #000;
+      line-height: 0;
+
+      .subject {
+        position: absolute;
+        z-index: 3;
+        top: 50%;
+        left: 50%;
+        color: #FFF;
+        font-size: 2.4rem;
+        font-weight: 900;
+        line-height: 1.3;
+        text-align: center;
+        transform: translate(-50%, -50%);
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+      }
+    }
+
+    dd {
+      ul {
+        display: grid;
+        padding-left: 5.4rem;
+        color: #515242;
+        font-weight: 400;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 3px;
+        @include mobile {
+          display: block;
+          padding: 2rem;
+        }
+      }
+
+      li {
+        padding-left: 1em;
+        font-size: 1.8rem;
+        font-weight: 500;
+        text-indent: -1em;
+        letter-spacing: -1px;
+        @include mobile {
+          padding-left: 0.8em;
+          font-size: 1.6rem;
+          text-indent: -0.8em;
+        }
+
+        &:before {
+          display: inline-block;
+          width: 4px;
+          height: 4px;
+          margin-right: 0.8rem;
+          border-radius: 100%;
+          background: #515242;
+          vertical-align: middle;
+          content: '';
+        }
+      }
+    }
+  }
 }
 
 .visual {
-	position:relative;
-	width:100%;
-	//max-width:63.5rem;
-	margin-bottom:4rem;
-	line-height:0;
-	h2 {
-		position:absolute;
-		//top:50%;
-		top:45%;
-		left:5rem;
-		font-size:7.7rem;
-		font-weight:700;
-		line-height:1.1;
-		letter-spacing: -1px;
-		color:#FFF;
-		transform:translateY(-50%);
-		@include w-dtop {
-			left:4vw;
-			font-size:6vw;
-		}
-	}
-	img {
-		width:100%;
-	}
+  position: relative;
+  width: 100%;
+  //max-width:63.5rem;
+  margin-bottom: 4rem;
+  line-height: 0;
+
+  h2 {
+    position: absolute;
+    //top:50%;
+    top: 45%;
+    left: 5rem;
+    color: #FFF;
+    font-size: 7.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    transform: translateY(-50%);
+    @include w-dtop {
+      left: 4vw;
+      font-size: 6vw;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
 }
 
 .toptierLatte {
-	@include w-dtop {
-		padding:0 4rem;
-	}
-	@include mobile {
-		@include mobile-padding;
-	}
-	
-	&Container {
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-	}
-	
-	.aboutLatte{
-		width:100%;
-		margin-bottom:5rem;
-		.slogan1 {
-			margin-bottom:2.5rem;
-			font-size:3.2rem;
-			font-weight:700;
-			line-height:1;
-			color:$color-basic;
-			@include mobile {
-				font-size:2.4rem;
-				line-height:1.2;
-			}
-		}
-		.description {
-			display:block;
-			width:100%;
-			//max-width:76rem;
-			//grid-template-columns: 24rem auto;
-			//gap:1rem;
-			font-size:2.1rem;
-			font-weight:400;
-			line-height:1.6;
-			color:#000;
-			letter-spacing:-1px;
-			@include mobile {
-				display:block;
-				font-size:1.8rem;
-			}
-			//p:first-child {
-			//	padding:0.2rem 0;
-			//	line-height:0;
-			//	@include mobile {
-			//		display:none;
-			//		margin-bottom:2rem;
-			//	}
-			//}
-			//img {
-			//	display:block;
-			//	width:100%;
-			//}
-		}
-	}
-	
-	.versus {
-		>p:first-child {
-			max-width:80rem;
-			width:100%;
-			img {
-				width:100%;
-			}
-		}
-		dl {
-			width:100%;
-			max-width:80rem;
-			margin-bottom:2rem;
-		}
-		dt {
-			margin-bottom:.2rem;
-			font-size:$font-size-4;
-			font-weight:700;
-			color:$color-basic;
-			@include mobile {
-				font-size:$font-body;
-			}
-		}
-		dd {
-			font-size:$font-small;
-			line-height:1.3;
-			letter-spacing:-1px;
-			color:#000;
-		}
-	}
+  @include w-dtop {
+    padding: 0 4rem;
+  }
+  @include mobile {
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  .aboutLatte {
+    width: 100%;
+    margin-bottom: 5rem;
+
+    .slogan1 {
+      margin-bottom: 2.5rem;
+      color: $color-basic;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1;
+      @include mobile {
+        font-size: 2.4rem;
+        line-height: 1.2;
+      }
+    }
+
+    .description {
+      display: block;
+      width: 100%;
+      //max-width:76rem;
+      //grid-template-columns: 24rem auto;
+      //gap:1rem;
+      color: #000;
+      font-size: 2.1rem;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -1px;
+      @include mobile {
+        display: block;
+        font-size: 1.8rem;
+      }
+      //p:first-child {
+      //	padding:0.2rem 0;
+      //	line-height:0;
+      //	@include mobile {
+      //		display:none;
+      //		margin-bottom:2rem;
+      //	}
+      //}
+      //img {
+      //	display:block;
+      //	width:100%;
+      //}
+    }
+  }
+
+  .versus {
+    > p:first-child {
+      width: 100%;
+      max-width: 80rem;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    dl {
+      width: 100%;
+      max-width: 80rem;
+      margin-bottom: 2rem;
+    }
+
+    dt {
+      margin-bottom: .2rem;
+      color: $color-basic;
+      font-size: $font-size-4;
+      font-weight: 700;
+      @include mobile {
+        font-size: $font-body;
+      }
+    }
+
+    dd {
+      color: #000;
+      font-size: $font-small;
+      line-height: 1.3;
+      letter-spacing: -1px;
+    }
+  }
 }
 
 .introduceBI {
-	padding-top:4rem;
-	max-width:1080px;
-	margin:0 auto;
-	@include w-dtop {
-		padding:$headerH 4rem 0;
-	}
-	@include mobile {
-		padding-top:0;
-		@include mobile-padding;
-	}
-	
-	&Container{
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-		
-		.conceptBI {
-			display:flex;
-			width:100%;
-			max-width:108rem;
-			aspect-ratio: 100/27.778;
-			//height:30rem;
-			margin:4rem auto 20rem;
-			text-align:center;
-			align-items:center;
-			background:#FFF2E3;
-			@include mobile {
-				display:block;
-				height:auto;
-				margin:0 auto 8rem;
-				aspect-ratio: initial;
-			}
-			.image {
-				flex:0 0 27.778%;
-				line-height:0;
-				@include mobile {
-					display:block;
-					margin-bottom:4rem;
-				}
-				img {
-					width:100%;
-					display:block;
-				}
-			}
-			.copy {
-				flex:1 1 auto;
-				//height:85%;
-				font-size:3.4rem;
-				text-align:center;
-				color:$color-basic;
-				@include mobile {
-					font-size:2.8rem;
-					line-height:1.3;
-					padding-bottom:4rem;
-				}
-				img {
-					width:70%;
-					//height:100%;
-					@include mobile {
-						width:75%;
-						height:auto;
-					}
-				}
-			}
-		}
-	}
-	
-	article {
-		width:100%;
-		margin-bottom:4rem;
-		h4 {
-			font-size:$font-size-5;
-			line-height:1;
-			margin-bottom:1rem;
-			@include mobile {
-				font-size:$font-body;
-			}
-		}
-		img {
-			width:100%;
-		}
-		.biBox {
-			img {
-				border:1px solid #F2F2F2;
-			}
-		}
-	}
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-top: 4rem;
+  @include w-dtop {
+    padding: $headerH 4rem 0;
+  }
+  @include mobile {
+    padding-top: 0;
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+
+    .conceptBI {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 108rem;
+      //height:30rem;
+      margin: 4rem auto 20rem;
+      background: #FFF2E3;
+      text-align: center;
+      aspect-ratio: 100/27.778;
+      @include mobile {
+        display: block;
+        height: auto;
+        margin: 0 auto 8rem;
+        aspect-ratio: initial;
+      }
+
+      .image {
+        flex: 0 0 27.778%;
+        line-height: 0;
+        @include mobile {
+          display: block;
+          margin-bottom: 4rem;
+        }
+
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      .copy {
+        flex: 1 1 auto;
+        //height:85%;
+        color: $color-basic;
+        font-size: 3.4rem;
+        text-align: center;
+        @include mobile {
+          padding-bottom: 4rem;
+          font-size: 2.8rem;
+          line-height: 1.3;
+        }
+
+        img {
+          width: 70%;
+          //height:100%;
+          @include mobile {
+            width: 75%;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  article {
+    width: 100%;
+    margin-bottom: 4rem;
+
+    h4 {
+      margin-bottom: 1rem;
+      font-size: $font-size-5;
+      line-height: 1;
+      @include mobile {
+        font-size: $font-body;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .biBox {
+      img {
+        border: 1px solid #F2F2F2;
+      }
+    }
+  }
 }
 
 
 .signature {
-	position:relative;
-	width:100%;
-	padding-top:4rem;
-	letter-spacing:-1px;
-	@include w-dtop {
-		padding:$headerH 4rem 0;
-	}
-	@include mobile {
-		@include mobile-padding;
-		padding-top:0;
-	}
-	
-	&Container {
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-	}
-	
-	h2 {
-		font-size:$font-size-2;
-		font-weight:700;
-		color:$color-basic;
-		margin-bottom:2rem;
-		@include mobile {
-			font-size:$font-size-4;
-		}
-	}
-	.copy {
-		font-size:$font-body;
-	}
-	.signatureExplane {
-		//max-width:55rem;
-		width:100%;
-		margin-top:4rem;
-		//padding-left:2rem;
-		article {
-			margin-bottom:3rem;
-		}
-		h4 {
-			font-size:$font-size-4;
-			font-weight:700;
-			color:$color-basic;
-			@include mobile {
-				font-size:$font-size-5;
-				line-height:1.1;
-				margin-bottom:1rem;
-				.en {
-					display:none;
-					font-size:$font-size-5;
-				}
-			}
-			i {
-				display:inline-block;
-				height:1.6em;
-				vertical-align:middle;
-				font-size:$font-size-4;
-				line-height:0;
-				img {
-					height:100%;
-				}
-			}
-		}
-		.description {
-			font-size:$font-body;
-			@include mobile {
-				font-size:$font-small;
-			}
-		}
-	}
+  position: relative;
+  width: 100%;
+  padding-top: 4rem;
+  letter-spacing: -1px;
+  @include w-dtop {
+    padding: $headerH 4rem 0;
+  }
+  @include mobile {
+    @include mobile-padding;
+    padding-top: 0;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    color: $color-basic;
+    font-size: $font-size-2;
+    font-weight: 700;
+    @include mobile {
+      font-size: $font-size-4;
+    }
+  }
+
+  .copy {
+    font-size: $font-body;
+  }
+
+  .signatureExplane {
+    //max-width:55rem;
+    width: 100%;
+    margin-top: 4rem;
+    //padding-left:2rem;
+    article {
+      margin-bottom: 3rem;
+    }
+
+    h4 {
+      color: $color-basic;
+      font-size: $font-size-4;
+      font-weight: 700;
+      @include mobile {
+        margin-bottom: 1rem;
+        font-size: $font-size-5;
+        line-height: 1.1;
+        .en {
+          display: none;
+          font-size: $font-size-5;
+        }
+      }
+
+      i {
+        display: inline-block;
+        height: 1.6em;
+        font-size: $font-size-4;
+        line-height: 0;
+        vertical-align: middle;
+
+        img {
+          height: 100%;
+        }
+      }
+    }
+
+    .description {
+      font-size: $font-body;
+      @include mobile {
+        font-size: $font-small;
+      }
+    }
+  }
 }
 
 .menu {
-	padding-top:4rem;
-	
-	h2 {
-		font-size:4.8rem;
-		text-align:center;
-		color:#FECB8B;
-		@include mobile {
-			font-size:$font-size-3;
-			margin-bottom:4rem;
-		}
-	}
-	
+  padding-top: 4rem;
+
+  h2 {
+    color: #FECB8B;
+    font-size: 4.8rem;
+    text-align: center;
+    @include mobile {
+      margin-bottom: 4rem;
+      font-size: $font-size-3;
+    }
+  }
+
 }
 
 .menuList {
-	position:relative;
-	display:grid;
-	width:100%;
-	padding-top:4rem;
-	grid-template-columns: repeat(4, 1fr);
-	gap:25px;
-	overflow:hidden;
-	@include w-dtop {
-		padding-left: 4rem;
-		padding-right: 4rem;
-	}
-	@include desktop{
-		grid-template-columns: repeat(3, 1fr);
-	}
-	@include tablet{
-		grid-template-columns: repeat(2, 1fr);
-	}
-	@include mobile {
-		display:block;
-		padding-top:0;
-		@include mobile-padding;
-	}
-	
-	&Container {
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-	}
-	.menuItem {
-		position:relative;
-		width:100%;
-		background:#F2F2F2;
-		@include mobile {
-			margin-bottom:2.5rem;
-		}
-		.floatItem {
-			position:absolute;
-			top:1.2rem;
-			right:1.2rem;
-			width:4rem;
-			z-index:3;
-			.ico {
-				display: block;
-				width:100%;
-				height:auto;
-				margin-bottom:5px;
-			}
-			img {
-				width:100%;
-			}
-		}
-	}
-	.menuImg {
-		position:relative;
-		width:100%;
-		height:100%;
-		position:relative;
-		overflow:hidden;
-		z-index:0;
-		img {
-			position:relative;
-			left:50%;
-			top:-1.5rem;
-			transform:translateX(-50%) scale(1);
-			transition:all .2s linear;
-			display:block;
-			max-width:none;
-			width:100%;
-		}
-		&:hover {
-			img {
-				transform:translateX(-50%) scale(1.2);
-			}
-		}
-	}
-	.menuInfo {
-		position:absolute;
-		bottom:1rem;
-		width:100%;
-		padding:1rem;
-		text-align: center;
-		.menuName {
-			margin-bottom:.8rem;
-			.kr {
-				font-size:2rem;
-				font-weight:500;
-				color:#58595b;
-				line-height:1;
-				margin-bottom:0.4rem;
-			}
-			.en {
-				font-size:1.5rem;
-				font-weight:400;
-				color:#A97763;
-			}
-		}
-		.description {
-			font-size:1.1rem;
-			word-break: keep-all;
-		}
-	}
+  display: grid;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding-top: 4rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  @include w-dtop {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mobile {
+    display: block;
+    padding-top: 0;
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  .menuItem {
+    position: relative;
+    width: 100%;
+    background: #F2F2F2;
+    @include mobile {
+      margin-bottom: 2.5rem;
+    }
+
+    .floatItem {
+      position: absolute;
+      z-index: 3;
+      top: 1.2rem;
+      right: 1.2rem;
+      width: 4rem;
+
+      .ico {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .menuImg {
+    overflow: hidden;
+    position: relative;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+
+    img {
+      display: block;
+      position: relative;
+      top: -1.5rem;
+      left: 50%;
+      width: 100%;
+      max-width: none;
+      transition: all .2s linear;
+      transform: translateX(-50%) scale(1);
+    }
+
+    &:hover {
+      img {
+        transform: translateX(-50%) scale(1.2);
+      }
+    }
+  }
+
+  .menuInfo {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+
+    .menuName {
+      margin-bottom: .8rem;
+
+      .kr {
+        margin-bottom: 0.4rem;
+        color: #58595b;
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .en {
+        color: #A97763;
+        font-size: 1.5rem;
+        font-weight: 400;
+      }
+    }
+
+    .description {
+      font-size: 1.1rem;
+      word-break: keep-all;
+    }
+  }
 }
 
 .canLatte {
-	position:relative;
-	width:100%;
-	padding-top:4rem;
-	letter-spacing:-1px;
-	@include w-dtop {
-		padding-left: 4rem;
-		padding-right: 4rem;
-	}
-	@include mobile {
-		@include mobile-padding;
-	}
-	
-	&Container {
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-		.mainVisual{
-			margin-bottom:2rem;
-			width:100%;
-			//max-width:80rem;
-			img {
-				width: 100%;
-			}
-		}
-	}
-	
-	h2 {
-		font-size:$font-size-2;
-		font-weight:700;
-		color:$color-basic;
-		margin-bottom:2rem;
-		@include mobile {
-			font-size:$font-size-4;
-		}
-	}
-	.copy {
-		font-size:$font-body;
-		@include mobile {
-			font-size:$font-small;
-		}
-	}
-	.canLatteExplane {
-		//max-width:55rem;
-		display:grid;
-		grid-template-columns: repeat(4, 1fr);
-		width:100%;
-		max-width:85rem;
-		margin-top:4rem;
-		gap:4rem;
-		//padding-left:2rem;
-		@include mobile {
-			gap:2rem;
-		}
-		article {
-			margin-bottom:3rem;
-			img {
-				width:100%;
-			}
-		}
-		h4 {
-			font-size:$font-size-4;
-			font-weight:700;
-			color:$color-basic;
-		}
-		.description {
-			font-size:$font-body;
-		}
-	}
-	.versus {
-		margin-top:10rem;
-		text-align:center;
-		width:100%;
-		max-width:853px;
-		@include mobile {
-			margin-top:6rem;
-		}
-		img {
-			width:100%;
-		}
-	}
+  position: relative;
+  width: 100%;
+  padding-top: 4rem;
+  letter-spacing: -1px;
+  @include w-dtop {
+    padding-right: 4rem;
+    padding-left: 4rem;
+  }
+  @include mobile {
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+
+    .mainVisual {
+      width: 100%;
+      margin-bottom: 2rem;
+      //max-width:80rem;
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  h2 {
+    margin-bottom: 2rem;
+    color: $color-basic;
+    font-size: $font-size-2;
+    font-weight: 700;
+    @include mobile {
+      font-size: $font-size-4;
+    }
+  }
+
+  .copy {
+    font-size: $font-body;
+    @include mobile {
+      font-size: $font-small;
+    }
+  }
+
+  .canLatteExplane {
+    //max-width:55rem;
+    display: grid;
+    width: 100%;
+    max-width: 85rem;
+    margin-top: 4rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    //padding-left:2rem;
+    @include mobile {
+      gap: 2rem;
+    }
+
+    article {
+      margin-bottom: 3rem;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    h4 {
+      color: $color-basic;
+      font-size: $font-size-4;
+      font-weight: 700;
+    }
+
+    .description {
+      font-size: $font-body;
+    }
+  }
+
+  .versus {
+    width: 100%;
+    max-width: 853px;
+    margin-top: 10rem;
+    text-align: center;
+    @include mobile {
+      margin-top: 6rem;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
 }
 
 .shop {
-	position:relative;
-	width:100%;
-	padding-top:4rem;
-	//letter-spacing:-1px;
-	@include w-dtop {
-		padding:0 4rem;
-	}
-	@include mobile {
-		@include mobile-padding;
-	}
-	
-	&Container {
-		width:100%;
-		max-width:$max-width;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-	}
-	.topImg {
-		margin-bottom:8rem;
-		line-height:0;
-		img {
-			width:100%;
-		}
-	}
-	.kakaomap {
-		width:82rem;
-		height:68rem;
-		@include tablet {
-			width:100%;
-			height:80vw;
-		}
-	}
-	&Info {
-		width:100%;
-		max-width:83rem;
-		margin:0 auto 4rem;
-		font-size:$font-body;
-		@include mobile {
-			font-size:$font-small;
-		}
-		.chart {
-			@include mobile {
-				display: block;
-				margin-bottom:2rem;
-				.value {
-					padding-left:1.8rem;
-				}
-			}
-			&.vertical {
-				flex-direction: column;
-				.key {
-					flex:1 1 6rem;
-				}
-			}
-			.key {
-				flex: 0 0 10rem;
-				line-height:1;
-				padding-top:6px;
-				margin-right:4px;
-				@include mobile {
-					font-weight:500;
-				}
-				&:before {
-					display:inline-block;
-					content:'';
-					width:10px;
-					height:10px;
-					margin-top:5px;
-					margin-right:.8rem;
-					border-radius:100%;
-					background:$color-green;
-					vertical-align: middle;
-					transform: translateY(-50%);
-				}
-			}
-		}
-	}
-	&Service {
-		display:grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap:3rem;
-		width:100%;
-		max-width:50rem;
-		padding:0;
-		@include mobile {
-			padding:1rem 0 0;
-			//grid-template-columns: repeat(3, 1fr);
-			gap:1.2rem;
-			margin-left:-1.4rem;
-		}
-		.service {
-			display:block;
-			font-size:$font-small;
-			text-align:center;
-			&Title {
-				font-size:$font-body;
-				@include mobile {
-					font-size:14px;
-				}
-			}
-		}
-		i {
-			display:block;
-			width:100%;
-			line-height:1;
-			margin-bottom:.5rem;
-			img {
-				width:100%;
-			}
-		}
-	}
-	h2 {
-		width:100%;
-		max-width:83rem;
-		margin:0 auto 4rem;
-		font-size:$font-size-2;
-		@include mobile {
-			font-size:$font-size-4;
-		}
-	}
-	.loadmap {
-		width:100%;
-		max-width:83rem;
-		margin:0 auto 4rem;
-		h3 {
-			width:24rem;
-			height:5.4rem;
-			margin-bottom:1em;
-			font-size:$font-size-4;
-			font-weight:700;
-			line-height:5.4rem;
-			color:#FFF;
-			text-align:center;
-			border-radius:2.7rem;
-			background:$color-green;
-			@include mobile {
-				width:13.4rem;
-				height:3.8rem;
-				line-height:3.7rem;
-				font-size:$font-body;
-			}
-		}
-	}
+  position: relative;
+  width: 100%;
+  padding-top: 4rem;
+  //letter-spacing:-1px;
+  @include w-dtop {
+    padding: 0 4rem;
+  }
+  @include mobile {
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  .topImg {
+    margin-bottom: 8rem;
+    line-height: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .kakaomap {
+    width: 82rem;
+    height: 68rem;
+    @include tablet {
+      width: 100%;
+      height: 80vw;
+    }
+  }
+
+  &Info {
+    width: 100%;
+    max-width: 83rem;
+    margin: 0 auto 4rem;
+    font-size: $font-body;
+    @include mobile {
+      font-size: $font-small;
+    }
+
+    .chart {
+      @include mobile {
+        display: block;
+        margin-bottom: 2rem;
+        .value {
+          padding-left: 1.8rem;
+        }
+      }
+
+      &.vertical {
+        flex-direction: column;
+
+        .key {
+          flex: 1 1 6rem;
+        }
+      }
+
+      .key {
+        flex: 0 0 10rem;
+        margin-right: 4px;
+        padding-top: 6px;
+        line-height: 1;
+        @include mobile {
+          font-weight: 500;
+        }
+
+        &:before {
+          display: inline-block;
+          width: 10px;
+          height: 10px;
+          margin-top: 5px;
+          margin-right: .8rem;
+          border-radius: 100%;
+          background: $color-green;
+          vertical-align: middle;
+          content: '';
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+  &Service {
+    display: grid;
+    width: 100%;
+    max-width: 50rem;
+    padding: 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    @include mobile {
+      margin-left: -1.4rem;
+      //grid-template-columns: repeat(3, 1fr);
+      padding: 1rem 0 0;
+      gap: 1.2rem;
+    }
+
+    .service {
+      display: block;
+      font-size: $font-small;
+      text-align: center;
+
+      &Title {
+        font-size: $font-body;
+        @include mobile {
+          font-size: 14px;
+        }
+      }
+    }
+
+    i {
+      display: block;
+      width: 100%;
+      margin-bottom: .5rem;
+      line-height: 1;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  h2 {
+    width: 100%;
+    max-width: 83rem;
+    margin: 0 auto 4rem;
+    font-size: $font-size-2;
+    @include mobile {
+      font-size: $font-size-4;
+    }
+  }
+
+  .loadmap {
+    width: 100%;
+    max-width: 83rem;
+    margin: 0 auto 4rem;
+
+    h3 {
+      width: 24rem;
+      height: 5.4rem;
+      margin-bottom: 1em;
+      border-radius: 2.7rem;
+      background: $color-green;
+      color: #FFF;
+      font-size: $font-size-4;
+      font-weight: 700;
+      line-height: 5.4rem;
+      text-align: center;
+      @include mobile {
+        width: 13.4rem;
+        height: 3.8rem;
+        font-size: $font-body;
+        line-height: 3.7rem;
+      }
+    }
+  }
 }
 
 .franchise {
-    &Container {
-      width:100%;
-      max-width:$max-width;
-      margin:0 auto 10rem;
-      padding-top:$headerH;
+  width: 100%;
+
+  max-width: 80rem;
+  padding-top: 4rem;
+
+  &Container {
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  @include w-dtop {
+    padding: 0 4rem 0;
+  }
+  @include mobile {
+    @include mobile-padding;
+  }
+
+  .headline {
+    margin-bottom: 3rem;
+    font-size: $font-size-3;
+    line-height: 1.3;
+    @include mobile {
+      padding-top: 2rem;
+      font-size: $font-size-5;
+      font-weight: 500;
+    }
+  }
+
+  .promise {
+    margin-bottom: 4rem;
+
+    h4 {
+      color: $color-basic;
+      font-size: $font-size-4;
+      @include mobile {
+        font-size: $font-body;
+      }
     }
 
-	width:100%;
-	max-width:80rem;
-	padding-top:4rem;
-	@include w-dtop {
-		padding:0 4rem 0;
-	}
-	@include mobile {
-		@include mobile-padding;
-	}
-	.headline {
-		font-size:$font-size-3;
-		line-height:1.3;
-		margin-bottom:3rem;
-		@include mobile {
-			padding-top:2rem;
-			font-size:$font-size-5;
-			font-weight:500;
-		}
-	}
-	.promise {
-		margin-bottom:4rem;
-		h4 {
-			font-size:$font-size-4;
-			color:$color-basic;
-			@include mobile {
-				font-size:$font-body;
-			}
-		}
-		p {
-			font-size:$font-body;
-			margin-bottom:3rem;
-			@include mobile {
-				font-size:$font-small;
-			}
-		}
-		.franchiseProgress {
-			max-width:72rem;
-			width:100%;
-			margin-bottom:7rem;
-		}
-	}
+    p {
+      margin-bottom: 3rem;
+      font-size: $font-body;
+      @include mobile {
+        font-size: $font-small;
+      }
+    }
+
+    .franchiseProgress {
+      width: 100%;
+      max-width: 72rem;
+      margin-bottom: 7rem;
+    }
+  }
 }
 
 .requestForm {
-	width:100%;
-	max-width:94rem;
-	//margin:0 auto;
-	@include w-dtop {
-		padding:0 4rem 0;
-	}
-	@include mobile {
-		@include mobile-padding;
-	}
-	
-	.privacyPolicy {
-		margin-bottom:3rem;
-		font-size:$font-small;
-		h4 {
-			font-size:$font-size-4;
-			@include mobile {
-				font-size:$font-body;
-			}
-		}
-	}
-	.privacyPolicyAll {
-		&Container {
-			width:90%;
-			height:4em;
-			padding:.5em;
-			margin-bottom:1rem;
-			border:1px solid #CCC;
-		}
-		width:100%;
-		height:100%;
-		font-size:$font-small-3;
-		color:#999;
-		overflow-y:auto;
-	}
-	.checkPrivacy {
-		margin-bottom:3rem;
-	}
-	.chart {
-		max-width:90%;
-		width:100%;
-		align-items: center;
-		padding-bottom:1rem;
-		margin-bottom:1rem;
-		border-bottom:1px solid #EEE;
-		@include mobile {
-			display:block;
-		}
-		.key {
-			flex:0 0 7em;
-			height:$font-small-2;
-			font-size:$font-small-2;
-			font-weight:700;
-			line-height:$font-small-2;
-			@include mobile {
-				margin-bottom:1rem;
-			}
-			.star {
-				color:$color-red;
-			}
-		}
-		.email {
-			width:20rem;
-			@include mobile {
-				width:100%;
-				margin-bottom:3px;
-			}
-		}
-		.addr1 {
-			width:30rem;
-			@include mobile {
-				width:100%;
-				margin-bottom:3px;
-			}
-		}
-		.addr2 {
-			width:20rem;
-			@include mobile {
-				width:100%;
-			}
-		}
-		.shopSize {
-			width:6rem;
-			text-align:right;
-		}
-		.etc {
-			width:40rem;
-			@include mobile {
-				width:100%;
-				margin-bottom:3px;
-			}
-		}
-	}
-	
-	.btn_line {
-		padding:1rem 0;
-		text-align:center
-	}
-	.submit {
-		height:5rem;
-		padding:0 3.2rem;
-		font-size:$font-size-5;
-		font-weight:700;
-		line-height:5rem;
-		color:#FFF;
-		background:$color-orange;
-		border-radius:8px;
-	}
-}
+  width: 100%;
+  max-width: 94rem;
+  //margin:0 auto;
+  @include w-dtop {
+    padding: 0 4rem 0;
+  }
+  @include mobile {
+    @include mobile-padding;
+  }
 
+  .privacyPolicy {
+    margin-bottom: 3rem;
+    font-size: $font-small;
+
+    h4 {
+      font-size: $font-size-4;
+      @include mobile {
+        font-size: $font-body;
+      }
+    }
+  }
+
+  .privacyPolicyAll {
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    color: #999;
+    font-size: $font-small-3;
+
+    &Container {
+      width: 90%;
+      height: 4em;
+      margin-bottom: 1rem;
+      padding: .5em;
+      border: 1px solid #CCC;
+    }
+  }
+
+  .checkPrivacy {
+    margin-bottom: 3rem;
+  }
+
+  .chart {
+    align-items: center;
+    width: 100%;
+    max-width: 90%;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #EEE;
+    @include mobile {
+      display: block;
+    }
+
+    .key {
+      flex: 0 0 7em;
+      height: $font-small-2;
+      font-size: $font-small-2;
+      font-weight: 700;
+      line-height: $font-small-2;
+      @include mobile {
+        margin-bottom: 1rem;
+      }
+
+      .star {
+        color: $color-red;
+      }
+    }
+
+    .email {
+      width: 20rem;
+      @include mobile {
+        width: 100%;
+        margin-bottom: 3px;
+      }
+    }
+
+    .addr1 {
+      width: 30rem;
+      @include mobile {
+        width: 100%;
+        margin-bottom: 3px;
+      }
+    }
+
+    .addr2 {
+      width: 20rem;
+      @include mobile {
+        width: 100%;
+      }
+    }
+
+    .shopSize {
+      width: 6rem;
+      text-align: right;
+    }
+
+    .etc {
+      width: 40rem;
+      @include mobile {
+        width: 100%;
+        margin-bottom: 3px;
+      }
+    }
+  }
+
+  .btn_line {
+    padding: 1rem 0;
+    text-align: center
+  }
+
+  .submit {
+    height: 5rem;
+    padding: 0 3.2rem;
+    border-radius: 8px;
+    background: $color-orange;
+    color: #FFF;
+    font-size: $font-size-5;
+    font-weight: 700;
+    line-height: 5rem;
+  }
+}
 
 
 .board {
-	min-height: 55vh;
-	padding:0 4rem;
-	@include mobile {
-		@include mobile-padding;
-	}
-	
-	&Container {
-		width:100%;
-		max-width:$desktop;
-		margin:0 auto 10rem;
-		padding-top:$headerH;
-	}
-	
-	h2 {
-		margin:4rem auto;
-		font-size:$font-size-2;
-		text-align:center;
-		color:$color-basic;
-		@include mobile {
-			font-size:$font-size-3;
-			margin-bottom:4rem;
-		}
-	}
-	&View {
-		width:100%;
-		margin:4rem auto;
-		display:grid;
-		grid-template-columns: auto auto 18rem;
-		grid-template-areas:
+  min-height: 55vh;
+  padding: 0 4rem;
+  @include mobile {
+    @include mobile-padding;
+  }
+
+  &Container {
+    width: 100%;
+    max-width: $desktop;
+    margin: 0 auto 10rem;
+    padding-top: $headerH;
+  }
+
+  h2 {
+    margin: 4rem auto;
+    color: $color-basic;
+    font-size: $font-size-2;
+    text-align: center;
+    @include mobile {
+      margin-bottom: 4rem;
+      font-size: $font-size-3;
+    }
+  }
+
+  &View {
+    display: grid;
+    width: 100%;
+    margin: 4rem auto;
+    grid-template-columns: auto auto 18rem;
+    grid-template-areas:
 			"title title title"
 			"writer insDate hits"
 			"content content content";
-		.title { 
-			grid-area:title;  
-			padding:1rem 0;
-			border-bottom:2px solid #AAA;
-		}
-		.writer { 
-			grid-area:writer; 
-			padding:1rem 0 1rem 1rem;
-			font-size:$font-small-2;
-		}
-		.insDate { 
-			grid-area:insDate;  
-			padding:1rem 0;
-			font-size:$font-small-2;
-			text-align:right;
-		}
-		.hits { 
-			grid-area:hits; 
-			padding:1rem 1rem 1rem 0;
-			font-size:$font-small-2;
-			text-align:right;
-		}
-		.content { 
-			grid-area:content; 
-			padding:2.5rem;
-			min-height:25vh;
-			border-top:1px solid #CCC;
-			img {
-				max-width:100%;
-			}
-		}
-	}
-	&Bottom {
-		width:100%;
-		padding:2.5rem;
-		max-width:$desktop;
-		margin:4rem auto;
-		border-top:1px solid #CCC;
-		text-align:center;
-	}
+
+    .title {
+      padding: 1rem 0;
+      border-bottom: 2px solid #AAA;
+      grid-area: title;
+    }
+
+    .writer {
+      padding: 1rem 0 1rem 1rem;
+      font-size: $font-small-2;
+      grid-area: writer;
+    }
+
+    .insDate {
+      padding: 1rem 0;
+      font-size: $font-small-2;
+      text-align: right;
+      grid-area: insDate;
+    }
+
+    .hits {
+      padding: 1rem 1rem 1rem 0;
+      font-size: $font-small-2;
+      text-align: right;
+      grid-area: hits;
+    }
+
+    .content {
+      min-height: 25vh;
+      padding: 2.5rem;
+      border-top: 1px solid #CCC;
+      grid-area: content;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+
+  &Bottom {
+    width: 100%;
+    max-width: $desktop;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    border-top: 1px solid #CCC;
+    text-align: center;
+  }
 }
 
 .tbTypeBoard {
-	width:100%;
-	thead {
-		border-top:2px solid $color-basic;
-		font-size:$font-small-2;
-		border-bottom:1px solid #AAA;
-	}
-	tr {
-	}
-	th {
-		font-size:$font-small-2;
-		padding:1.4rem;
-		border-bottom:1px solid #AAA;
-	}
-	td {
-		font-size:$font-small;
-		padding:1.4rem;
-		text-align:center;
-		border-bottom:1px solid #EEE;
-		&.subject {
-			text-align:left;
-			a:hover {
-				text-decoration: underline;
-			}
-		}
-		&.num {
-			font-size:$font-small-2;
-		}
-		&.date {
-			font-size:$font-small-2;
-		}
-		&.hits {
-			font-size:$font-small-2;
-		}
-	}
-	.empty {
-		height:40vh;
-	}
+  width: 100%;
+
+  thead {
+    border-top: 2px solid $color-basic;
+    border-bottom: 1px solid #AAA;
+    font-size: $font-small-2;
+  }
+
+  tr {
+  }
+
+  th {
+    padding: 1.4rem;
+    border-bottom: 1px solid #AAA;
+    font-size: $font-small-2;
+  }
+
+  td {
+    padding: 1.4rem;
+    border-bottom: 1px solid #EEE;
+    font-size: $font-small;
+    text-align: center;
+
+    &.subject {
+      text-align: left;
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.num {
+      font-size: $font-small-2;
+    }
+
+    &.date {
+      font-size: $font-small-2;
+    }
+
+    &.hits {
+      font-size: $font-small-2;
+    }
+  }
+
+  .empty {
+    height: 40vh;
+  }
 }
 
 .notReady {
-	position:relative;
-	width:100%;
-	height:82vh;
-	.text {
-		position:absolute;
-		top:50%;
-		left:50%;
-		transform:translate(-50%, -50%);
-		font-size:$font-size-2;
-		font-weight:700;
-		color:$color-basic;
-		text-align:center;
-	}
+  position: relative;
+  width: 100%;
+  height: 82vh;
+
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: $color-basic;
+    font-size: $font-size-2;
+    font-weight: 700;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
 }

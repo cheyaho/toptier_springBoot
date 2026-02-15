@@ -19,24 +19,24 @@
   margin-bottom: 6rem;
 }
 .introduce .aboutBrand p {
-  padding-right: 20rem;
   margin-bottom: 1em;
+  padding-right: 20rem;
+  color: #000;
   font-size: 2.1rem;
   line-height: 1.38;
-  color: #000;
 }
 @media screen and (max-width: 480px) {
   .introduce .aboutBrand p {
-    font-size: 1.8rem;
     padding-right: 0;
+    font-size: 1.8rem;
   }
 }
 .introduce .subject dl {
   display: flex;
-  width: 100%;
-  height: 15rem;
-  max-width: 64rem;
   align-items: center;
+  width: 100%;
+  max-width: 64rem;
+  height: 15rem;
   margin-bottom: 2.4rem;
   background: #F4F4F0;
 }
@@ -50,21 +50,21 @@
   position: relative;
   flex: 0 0 15rem;
   height: 100%;
-  line-height: 0;
-  background: #000;
   border-right: 0.4rem solid #FFF;
+  background: #000;
+  line-height: 0;
 }
 .introduce .subject dt .subject {
   position: absolute;
+  z-index: 3;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  color: #FFF;
   font-size: 2.4rem;
   font-weight: 900;
   line-height: 1.3;
   text-align: center;
-  color: #FFF;
-  z-index: 3;
+  transform: translate(-50%, -50%);
 }
 .introduce .subject dt img {
   display: block;
@@ -74,11 +74,11 @@
 }
 .introduce .subject dd ul {
   display: grid;
+  padding-left: 5.4rem;
+  color: #515242;
+  font-weight: 400;
   grid-template-rows: repeat(3, 1fr);
   gap: 3px;
-  padding-left: 5.4rem;
-  font-weight: 400;
-  color: #515242;
 }
 @media screen and (max-width: 480px) {
   .introduce .subject dd ul {
@@ -88,27 +88,27 @@
 }
 .introduce .subject dd li {
   padding-left: 1em;
-  text-indent: -1em;
   font-size: 1.8rem;
   font-weight: 500;
+  text-indent: -1em;
   letter-spacing: -1px;
 }
 @media screen and (max-width: 480px) {
   .introduce .subject dd li {
-    font-size: 1.6rem;
     padding-left: 0.8em;
+    font-size: 1.6rem;
     text-indent: -0.8em;
   }
 }
 .introduce .subject dd li:before {
   display: inline-block;
-  content: "";
   width: 4px;
   height: 4px;
   margin-right: 0.8rem;
   border-radius: 100%;
   background: #515242;
   vertical-align: middle;
+  content: "";
 }
 
 .visual {
@@ -121,11 +121,11 @@
   position: absolute;
   top: 45%;
   left: 5rem;
+  color: #FFF;
   font-size: 7.7rem;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -1px;
-  color: #FFF;
   transform: translateY(-50%);
 }
 @media screen and (max-width: 1280px) {
@@ -161,10 +161,10 @@
 }
 .toptierLatte .aboutLatte .slogan1 {
   margin-bottom: 2.5rem;
+  color: #004438;
   font-size: 3.2rem;
   font-weight: 700;
   line-height: 1;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .toptierLatte .aboutLatte .slogan1 {
@@ -175,10 +175,10 @@
 .toptierLatte .aboutLatte .description {
   display: block;
   width: 100%;
+  color: #000;
   font-size: 2.1rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #000;
   letter-spacing: -1px;
 }
 @media screen and (max-width: 480px) {
@@ -188,8 +188,8 @@
   }
 }
 .toptierLatte .versus > p:first-child {
-  max-width: 80rem;
   width: 100%;
+  max-width: 80rem;
 }
 .toptierLatte .versus > p:first-child img {
   width: 100%;
@@ -201,9 +201,9 @@
 }
 .toptierLatte .versus dt {
   margin-bottom: 0.2rem;
+  color: #004438;
   font-size: 2.8rem;
   font-weight: 700;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .toptierLatte .versus dt {
@@ -211,16 +211,16 @@
   }
 }
 .toptierLatte .versus dd {
+  color: #000;
   font-size: 1.8rem;
   line-height: 1.3;
   letter-spacing: -1px;
-  color: #000;
 }
 
 .introduceBI {
-  padding-top: 4rem;
   max-width: 1080px;
   margin: 0 auto;
+  padding-top: 4rem;
 }
 @media screen and (max-width: 1280px) {
   .introduceBI {
@@ -242,13 +242,13 @@
 }
 .introduceBIContainer .conceptBI {
   display: flex;
+  align-items: center;
   width: 100%;
   max-width: 108rem;
-  aspect-ratio: 100/27.778;
   margin: 4rem auto 20rem;
-  text-align: center;
-  align-items: center;
   background: #FFF2E3;
+  text-align: center;
+  aspect-ratio: 100/27.778;
 }
 @media screen and (max-width: 480px) {
   .introduceBIContainer .conceptBI {
@@ -269,20 +269,20 @@
   }
 }
 .introduceBIContainer .conceptBI .image img {
-  width: 100%;
   display: block;
+  width: 100%;
 }
 .introduceBIContainer .conceptBI .copy {
   flex: 1 1 auto;
+  color: #004438;
   font-size: 3.4rem;
   text-align: center;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .introduceBIContainer .conceptBI .copy {
+    padding-bottom: 4rem;
     font-size: 2.8rem;
     line-height: 1.3;
-    padding-bottom: 4rem;
   }
 }
 .introduceBIContainer .conceptBI .copy img {
@@ -299,9 +299,9 @@
   margin-bottom: 4rem;
 }
 .introduceBI article h4 {
+  margin-bottom: 1rem;
   font-size: 2.4rem;
   line-height: 1;
-  margin-bottom: 1rem;
 }
 @media screen and (max-width: 480px) {
   .introduceBI article h4 {
@@ -340,10 +340,10 @@
   padding-top: 6rem;
 }
 .signature h2 {
+  margin-bottom: 2rem;
+  color: #004438;
   font-size: 3.8rem;
   font-weight: 700;
-  color: #004438;
-  margin-bottom: 2rem;
 }
 @media screen and (max-width: 480px) {
   .signature h2 {
@@ -361,15 +361,15 @@
   margin-bottom: 3rem;
 }
 .signature .signatureExplane h4 {
+  color: #004438;
   font-size: 2.8rem;
   font-weight: 700;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .signature .signatureExplane h4 {
+    margin-bottom: 1rem;
     font-size: 2.4rem;
     line-height: 1.1;
-    margin-bottom: 1rem;
   }
   .signature .signatureExplane h4 .en {
     display: none;
@@ -379,9 +379,9 @@
 .signature .signatureExplane h4 i {
   display: inline-block;
   height: 1.6em;
-  vertical-align: middle;
   font-size: 2.8rem;
   line-height: 0;
+  vertical-align: middle;
 }
 .signature .signatureExplane h4 i img {
   height: 100%;
@@ -399,30 +399,30 @@
   padding-top: 4rem;
 }
 .menu h2 {
+  color: #FECB8B;
   font-size: 4.8rem;
   text-align: center;
-  color: #FECB8B;
 }
 @media screen and (max-width: 480px) {
   .menu h2 {
-    font-size: 3.2rem;
     margin-bottom: 4rem;
+    font-size: 3.2rem;
   }
 }
 
 .menuList {
-  position: relative;
   display: grid;
+  overflow: hidden;
+  position: relative;
   width: 100%;
   padding-top: 4rem;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
-  overflow: hidden;
 }
 @media screen and (max-width: 1280px) {
   .menuList {
-    padding-left: 4rem;
     padding-right: 4rem;
+    padding-left: 4rem;
   }
 }
 @media screen and (max-width: 1024px) {
@@ -461,10 +461,10 @@
 }
 .menuList .menuItem .floatItem {
   position: absolute;
+  z-index: 3;
   top: 1.2rem;
   right: 1.2rem;
   width: 4rem;
-  z-index: 3;
 }
 .menuList .menuItem .floatItem .ico {
   display: block;
@@ -476,22 +476,22 @@
   width: 100%;
 }
 .menuList .menuImg {
+  overflow: hidden;
   position: relative;
+  position: relative;
+  z-index: 0;
   width: 100%;
   height: 100%;
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
 }
 .menuList .menuImg img {
-  position: relative;
-  left: 50%;
-  top: -1.5rem;
-  transform: translateX(-50%) scale(1);
-  transition: all 0.2s linear;
   display: block;
-  max-width: none;
+  position: relative;
+  top: -1.5rem;
+  left: 50%;
   width: 100%;
+  max-width: none;
+  transition: all 0.2s linear;
+  transform: translateX(-50%) scale(1);
 }
 .menuList .menuImg:hover img {
   transform: translateX(-50%) scale(1.2);
@@ -507,16 +507,16 @@
   margin-bottom: 0.8rem;
 }
 .menuList .menuInfo .menuName .kr {
+  margin-bottom: 0.4rem;
+  color: #58595b;
   font-size: 2rem;
   font-weight: 500;
-  color: #58595b;
   line-height: 1;
-  margin-bottom: 0.4rem;
 }
 .menuList .menuInfo .menuName .en {
+  color: #A97763;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #A97763;
 }
 .menuList .menuInfo .description {
   font-size: 1.1rem;
@@ -531,8 +531,8 @@
 }
 @media screen and (max-width: 1280px) {
   .canLatte {
-    padding-left: 4rem;
     padding-right: 4rem;
+    padding-left: 4rem;
   }
 }
 @media screen and (max-width: 480px) {
@@ -548,17 +548,17 @@
   padding-top: 6rem;
 }
 .canLatteContainer .mainVisual {
-  margin-bottom: 2rem;
   width: 100%;
+  margin-bottom: 2rem;
 }
 .canLatteContainer .mainVisual img {
   width: 100%;
 }
 .canLatte h2 {
+  margin-bottom: 2rem;
+  color: #004438;
   font-size: 3.8rem;
   font-weight: 700;
-  color: #004438;
-  margin-bottom: 2rem;
 }
 @media screen and (max-width: 480px) {
   .canLatte h2 {
@@ -575,10 +575,10 @@
 }
 .canLatte .canLatteExplane {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   width: 100%;
   max-width: 85rem;
   margin-top: 4rem;
+  grid-template-columns: repeat(4, 1fr);
   gap: 4rem;
 }
 @media screen and (max-width: 480px) {
@@ -593,18 +593,18 @@
   width: 100%;
 }
 .canLatte .canLatteExplane h4 {
+  color: #004438;
   font-size: 2.8rem;
   font-weight: 700;
-  color: #004438;
 }
 .canLatte .canLatteExplane .description {
   font-size: 1.8rem;
 }
 .canLatte .versus {
-  margin-top: 10rem;
-  text-align: center;
   width: 100%;
   max-width: 853px;
+  margin-top: 10rem;
+  text-align: center;
 }
 @media screen and (max-width: 480px) {
   .canLatte .versus {
@@ -682,9 +682,9 @@
 }
 .shopInfo .chart .key {
   flex: 0 0 10rem;
-  line-height: 1;
-  padding-top: 6px;
   margin-right: 4px;
+  padding-top: 6px;
+  line-height: 1;
 }
 @media screen and (max-width: 480px) {
   .shopInfo .chart .key {
@@ -693,7 +693,6 @@
 }
 .shopInfo .chart .key:before {
   display: inline-block;
-  content: "";
   width: 10px;
   height: 10px;
   margin-top: 5px;
@@ -701,21 +700,22 @@
   border-radius: 100%;
   background: #44AD4B;
   vertical-align: middle;
+  content: "";
   transform: translateY(-50%);
 }
 .shopService {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3rem;
   width: 100%;
   max-width: 50rem;
   padding: 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
 }
 @media screen and (max-width: 480px) {
   .shopService {
+    margin-left: -1.4rem;
     padding: 1rem 0 0;
     gap: 1.2rem;
-    margin-left: -1.4rem;
   }
 }
 .shopService .service {
@@ -734,8 +734,8 @@
 .shopService i {
   display: block;
   width: 100%;
-  line-height: 1;
   margin-bottom: 0.5rem;
+  line-height: 1;
 }
 .shopService i img {
   width: 100%;
@@ -760,20 +760,20 @@
   width: 24rem;
   height: 5.4rem;
   margin-bottom: 1em;
+  border-radius: 2.7rem;
+  background: #44AD4B;
+  color: #FFF;
   font-size: 2.8rem;
   font-weight: 700;
   line-height: 5.4rem;
-  color: #FFF;
   text-align: center;
-  border-radius: 2.7rem;
-  background: #44AD4B;
 }
 @media screen and (max-width: 480px) {
   .shop .loadmap h3 {
     width: 13.4rem;
     height: 3.8rem;
-    line-height: 3.7rem;
     font-size: 1.8rem;
+    line-height: 3.7rem;
   }
 }
 
@@ -800,9 +800,9 @@
   }
 }
 .franchise .headline {
+  margin-bottom: 3rem;
   font-size: 3.2rem;
   line-height: 1.3;
-  margin-bottom: 3rem;
 }
 @media screen and (max-width: 480px) {
   .franchise .headline {
@@ -815,8 +815,8 @@
   margin-bottom: 4rem;
 }
 .franchise .promise h4 {
-  font-size: 2.8rem;
   color: #004438;
+  font-size: 2.8rem;
 }
 @media screen and (max-width: 480px) {
   .franchise .promise h4 {
@@ -824,8 +824,8 @@
   }
 }
 .franchise .promise p {
-  font-size: 1.8rem;
   margin-bottom: 3rem;
+  font-size: 1.8rem;
 }
 @media screen and (max-width: 480px) {
   .franchise .promise p {
@@ -833,8 +833,8 @@
   }
 }
 .franchise .promise .franchiseProgress {
-  max-width: 72rem;
   width: 100%;
+  max-width: 72rem;
   margin-bottom: 7rem;
 }
 
@@ -866,28 +866,28 @@
   }
 }
 .requestForm .privacyPolicyAll {
+  overflow-y: auto;
   width: 100%;
   height: 100%;
-  font-size: 1.4rem;
   color: #999;
-  overflow-y: auto;
+  font-size: 1.4rem;
 }
 .requestForm .privacyPolicyAllContainer {
   width: 90%;
   height: 4em;
-  padding: 0.5em;
   margin-bottom: 1rem;
+  padding: 0.5em;
   border: 1px solid #CCC;
 }
 .requestForm .checkPrivacy {
   margin-bottom: 3rem;
 }
 .requestForm .chart {
-  max-width: 90%;
-  width: 100%;
   align-items: center;
-  padding-bottom: 1rem;
+  width: 100%;
+  max-width: 90%;
   margin-bottom: 1rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #EEE;
 }
 @media screen and (max-width: 480px) {
@@ -956,12 +956,12 @@
 .requestForm .submit {
   height: 5rem;
   padding: 0 3.2rem;
+  border-radius: 8px;
+  background: #ED5E2D;
+  color: #FFF;
   font-size: 2.4rem;
   font-weight: 700;
   line-height: 5rem;
-  color: #FFF;
-  background: #ED5E2D;
-  border-radius: 8px;
 }
 
 .board {
@@ -982,59 +982,59 @@
 }
 .board h2 {
   margin: 4rem auto;
+  color: #004438;
   font-size: 3.8rem;
   text-align: center;
-  color: #004438;
 }
 @media screen and (max-width: 480px) {
   .board h2 {
-    font-size: 3.2rem;
     margin-bottom: 4rem;
+    font-size: 3.2rem;
   }
 }
 .boardView {
+  display: grid;
   width: 100%;
   margin: 4rem auto;
-  display: grid;
   grid-template-columns: auto auto 18rem;
   grid-template-areas: "title title title" "writer insDate hits" "content content content";
 }
 .boardView .title {
-  grid-area: title;
   padding: 1rem 0;
   border-bottom: 2px solid #AAA;
+  grid-area: title;
 }
 .boardView .writer {
-  grid-area: writer;
   padding: 1rem 0 1rem 1rem;
   font-size: 1.6rem;
+  grid-area: writer;
 }
 .boardView .insDate {
-  grid-area: insDate;
   padding: 1rem 0;
   font-size: 1.6rem;
   text-align: right;
+  grid-area: insDate;
 }
 .boardView .hits {
-  grid-area: hits;
   padding: 1rem 1rem 1rem 0;
   font-size: 1.6rem;
   text-align: right;
+  grid-area: hits;
 }
 .boardView .content {
-  grid-area: content;
-  padding: 2.5rem;
   min-height: 25vh;
+  padding: 2.5rem;
   border-top: 1px solid #CCC;
+  grid-area: content;
 }
 .boardView .content img {
   max-width: 100%;
 }
 .boardBottom {
   width: 100%;
-  padding: 2.5rem;
   max-width: 1024px;
   margin: 4rem auto;
+  padding: 2.5rem;
   border-top: 1px solid #CCC;
   text-align: center;
 }
@@ -1044,19 +1044,19 @@
 }
 .tbTypeBoard thead {
   border-top: 2px solid #004438;
-  font-size: 1.6rem;
   border-bottom: 1px solid #AAA;
+  font-size: 1.6rem;
 }
 .tbTypeBoard th {
-  font-size: 1.6rem;
   padding: 1.4rem;
   border-bottom: 1px solid #AAA;
+  font-size: 1.6rem;
 }
 .tbTypeBoard td {
-  font-size: 1.8rem;
   padding: 1.4rem;
-  text-align: center;
   border-bottom: 1px solid #EEE;
+  font-size: 1.8rem;
+  text-align: center;
 }
 .tbTypeBoard td.subject {
   text-align: left;
@@ -1086,11 +1086,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  color: #004438;
   font-size: 3.8rem;
   font-weight: 700;
-  color: #004438;
   text-align: center;
+  transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=sub.css.map */

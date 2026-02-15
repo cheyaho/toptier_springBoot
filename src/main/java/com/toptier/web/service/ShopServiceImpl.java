@@ -44,26 +44,11 @@ public class ShopServiceImpl implements ShopService {
     }
 
     private Shop shopRequestToShop(ShopRequest reqShop) {
-        ShopAmenity amenity = ShopAmenity.builder()
-                .takeOutYN(reqShop.takeoutYN())
-                .seatYN(reqShop.seatYN())
-                .wifiYN(reqShop.wifiYN())
-                .deliveryYN(reqShop.deliveryYN())
-                .parkingYN(reqShop.parkingYN())
-                .desertYN(reqShop.desertYN())
-                .easypayYN(reqShop.easyPayYN())
-                .build();
-        Shop shop = Shop.builder()
-                .shopName(reqShop.shopName())
-                .addr(reqShop.addr())
-                .addr2(reqShop.addr2())
-                .shopTel(reqShop.shopTel())
-                .operTime(reqShop.operTime())
-                .lat(reqShop.lat())
-                .lng(reqShop.lng())
-                .hidden(reqShop.hidden())
-                .amenity(amenity)
-                .build();
+        ShopAmenity amenity = new ShopAmenity();
+        amenity.update(reqShop);
+        Shop shop = new Shop();
+        shop.update(reqShop);
+        shop.setAmenity(amenity);
         return shop;
     }
 

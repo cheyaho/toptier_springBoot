@@ -28,8 +28,22 @@ public class ManageViewController {
 
     @GetMapping("/main")
     public String manageMain(Model mv) {
-
         return "manage/manageMain";
+    }
+
+    @GetMapping("/login")
+    public String manageLogin(Model mv) {
+        return "manage/login";
+    }
+
+    @GetMapping("/user/signUp")
+    public String addUser(Model mv) {
+        return "manage/userNew";
+    }
+
+    @GetMapping("/user/list")
+    public String userList(Model mv) {
+        return "manage/userList";
     }
 
     @GetMapping("/menu")
@@ -71,7 +85,7 @@ public class ManageViewController {
 
     @GetMapping("/menu/regNewMenuItem")
     public String regNewMenuItem(CommonSearchRequest req, Model mv) {
-        return "manage/regNewMenu";
+        return "menuNew";
     }
 
     @GetMapping("/shop")
@@ -108,7 +122,7 @@ public class ManageViewController {
     @GetMapping("/shop/create")
     public String createShop(@RequestParam(defaultValue = "1") Integer currentPage, Model mv){
         mv.addAttribute("currentPage", currentPage);
-        return "manage/regNewShop";
+        return "shopNew";
     }
 
     /**

@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Table(name = "TBShopAmenity")
 @EntityListeners(value = {AuditingEntityListener.class})
-@Builder
 public class ShopAmenity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
